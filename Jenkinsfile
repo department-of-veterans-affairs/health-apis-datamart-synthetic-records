@@ -30,7 +30,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
     disableConcurrentBuilds()
     retry(0)
-    timeout(time: 30, unit: 'MINUTES')
+    timeout(time: 120, unit: 'MINUTES')
     timestamps()
   }
   parameters {

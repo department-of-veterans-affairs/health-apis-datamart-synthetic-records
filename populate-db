@@ -18,7 +18,7 @@
 # ENTER SUPPORTED RESOURCE TYPES HERE
 #
 RESOURCE_TYPES="AllergyIntolerance Condition DiagnosticReport Immunization Medication MedicationOrder MedicationStatement Observation Patient Procedure"
-
+THE_CHOSEN_PATIENT="$2"
 
 cd $(dirname $(readlink -f $0))
 
@@ -84,7 +84,7 @@ MAIN_CLASS=gov.va.api.health.dataquery.tools.minimart.MitreMinimartMaker
 #
 # Execute the MMM for each set of user records, loading each type of supported resource.
 #
-for USER_RECORDS_DIR in $(find $DATAMART_DIR -maxdepth 1 -type d -name "dm-records-*" | sort)
+for USER_RECORDS_DIR in $(find $DATAMART_DIR -maxdepth 1 -type d -name "dm-records-${THE_CHOSEN_PATIENT:-*}" | sort)
 do
   echo "Loading records in $USER_RECORDS_DIR"
   for RESOURCE_TYPE in $RESOURCE_TYPES

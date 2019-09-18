@@ -13,8 +13,10 @@ listProblems() {
  PROBLEMS=$(find $PATIENT_DIR -regex ".*\(Med[a-z]\|.*P\).*.txt" -exec grep -B 3 "OUTCOME: INVALID" {} \; \
    | grep -E "QUERY.*(patient=|/Medication/).*" \
    | sed 's|.*/dstu2/\([a-zA-Z]\+\).*|\1|' \
-   | sort -u \
-   | paste -sd ' ')
+   | uniq -c \
+   | sed 's/^ *//' \
+   | tr ' ' : \
+   | paste -sd '  ')
  [ -n "$PROBLEMS" ] && echo "$(cat $PATIENT_DIR/patient-id) $(cat $PATIENT_DIR/icn) ${PROBLEMS}"
 }
 export -f listProblems
