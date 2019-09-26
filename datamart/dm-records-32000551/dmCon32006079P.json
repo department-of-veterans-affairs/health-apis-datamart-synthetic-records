@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"32006079:P","patient":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"dateRecorded":"1985-03-25","snomed":{"code":"126906006","display":"Neoplasm of prostate"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1985-03-25T16:17:33Z"}

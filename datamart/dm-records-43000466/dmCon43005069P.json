@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005069:P","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"1993-10-24","snomed":{"code":"26929004","display":"Alzheimer's disease (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1993-10-24T07:42:25Z"}

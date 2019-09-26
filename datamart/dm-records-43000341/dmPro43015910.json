@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43015910","patient":{"type":"Patient","reference":"43000341","display":"Mr. Vicente970 Mata817"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2012-11-03T09:12:34Z"}

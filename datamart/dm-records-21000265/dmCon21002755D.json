@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"21002755:D","patient":{"type":"Patient","reference":"21000265","display":"Mr. Alonso270 Jacobson885"},"dateRecorded":"2006-02-27","snomed":{"code":"55680006","display":"Drug overdose"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2006-02-27T05:28:36Z"}

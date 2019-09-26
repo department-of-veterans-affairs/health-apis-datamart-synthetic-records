@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"25003137:P","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"dateRecorded":"1961-09-13","snomed":{"code":"433144002","display":"Chronic kidney disease stage 3 (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1961-09-14T04:39:20Z"}

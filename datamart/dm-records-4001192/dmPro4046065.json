@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"4046065","patient":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2017-02-21T10:54:46Z"}

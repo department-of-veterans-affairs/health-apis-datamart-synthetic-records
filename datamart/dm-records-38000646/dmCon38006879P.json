@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38006879:P","patient":{"type":"Patient","reference":"38000646","display":"Mr. Silas208 Little434"},"dateRecorded":"1997-09-08","snomed":{"code":"55822004","display":"Hyperlipidemia"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1997-09-09T16:35:41Z"}

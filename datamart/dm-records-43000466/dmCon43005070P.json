@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005070:P","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"2000-07-23","snomed":{"code":"49436004","display":"Atrial Fibrillation"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2000-07-23T07:42:25Z"}

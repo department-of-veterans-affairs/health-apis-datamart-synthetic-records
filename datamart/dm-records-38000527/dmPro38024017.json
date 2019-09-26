@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38024017","patient":{"type":"Patient","reference":"38000527","display":"Mr. Nicholas495 Lueilwitz711"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Plain chest X-ray (procedure)"},"notPerformed":false,"performedDateTime":"1989-05-27T04:42:43Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"98159:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"25428-4","display":"Glucose [Presence] in Urine by Test strip"}},"subject":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"effectiveDateTime":"2015-02-07T06:33:11Z","issued":"2015-02-07T06:33:11Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43013030:D","patient":{"type":"Patient","reference":"43001199","display":"Mr. Gerardo48 Leal292"},"dateRecorded":"2001-10-05","snomed":{"code":"49436004","display":"Atrial Fibrillation"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2001-10-05T13:47:31Z"}

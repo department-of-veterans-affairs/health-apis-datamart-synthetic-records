@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"419:D","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"dateRecorded":"1947-01-11","snomed":{"code":"127013003","display":"Diabetic renal disease (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1947-01-11T15:42:56Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"390:P","patient":{"type":"Patient","reference":"42","display":"Mr. Vance413 Mosciski958"},"dateRecorded":"1992-04-11","snomed":{"code":"124171000119105","display":"Chronic intractable migraine without aura"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1992-04-11T22:10:41Z"}

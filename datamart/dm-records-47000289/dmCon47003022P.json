@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"47003022:P","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"dateRecorded":"1999-11-19","snomed":{"code":"55680006","display":"Drug overdose"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1999-11-19T11:45:13Z"}

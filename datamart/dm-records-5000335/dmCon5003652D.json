@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"5003652:D","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"dateRecorded":"1977-11-15","snomed":{"code":"68496003","display":"Polyp of colon"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1977-11-15T11:47:37Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"5003655:D","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"dateRecorded":"1995-07-19","snomed":{"code":"49436004","display":"Atrial Fibrillation"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1995-07-19T10:47:37Z"}

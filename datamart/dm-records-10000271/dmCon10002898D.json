@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"10002898:D","patient":{"type":"Patient","reference":"10000271","display":"Mr. Cornelius968 Buckridge80"},"dateRecorded":"1962-05-08","snomed":{"code":"431855005","display":"Chronic kidney disease stage 1 (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1962-05-08T13:36:53Z"}

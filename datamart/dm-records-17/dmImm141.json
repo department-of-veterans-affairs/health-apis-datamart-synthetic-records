@@ -1,0 +1,1 @@
+{"objectType":"Immunization","objectVersion":"1","cdwId":"141","status":"completed","date":"2011-10-27T01:00:06Z","vaccineCode":{"text":"zoster","code":"121"},"patient":{"type":"Patient","reference":"17","display":"Mr. Lorenzo669 Bartell116"},"wasNotGiven":false,"note":"Dose #2 of 2 of zoster vaccine administered.","reaction":{"display":"Lethargy"}}

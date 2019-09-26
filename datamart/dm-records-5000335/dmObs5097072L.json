@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"5097072:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"effectiveDateTime":"2011-07-22T10:47:37Z","issued":"2011-07-22T10:47:37Z"}

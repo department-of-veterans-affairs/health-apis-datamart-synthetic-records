@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"4045861","patient":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2011-01-04T10:54:46Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38035303","patient":{"type":"Patient","reference":"38000646","display":"Mr. Silas208 Little434"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2018-03-13T16:35:41Z"}

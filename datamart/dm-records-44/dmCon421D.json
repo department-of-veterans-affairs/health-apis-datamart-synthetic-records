@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"421:D","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"dateRecorded":"1963-06-15","snomed":{"code":"449868002","display":"Smokes tobacco daily"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1963-06-15T14:42:56Z"}

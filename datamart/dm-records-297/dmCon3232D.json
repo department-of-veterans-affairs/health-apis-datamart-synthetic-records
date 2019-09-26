@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"3232:D","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"dateRecorded":"1990-12-26","snomed":{"code":"230690007","display":"Stroke"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1990-12-26T06:33:11Z"}

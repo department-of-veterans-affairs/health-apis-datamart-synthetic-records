@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"32164904:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"effectiveDateTime":"1992-07-15T15:17:33Z","issued":"1992-07-15T15:17:33Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"32022840","patient":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Ankle X-ray"},"notPerformed":false,"performedDateTime":"1997-09-20T15:17:33Z"}

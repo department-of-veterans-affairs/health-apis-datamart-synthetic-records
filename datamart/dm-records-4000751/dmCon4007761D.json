@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4007761:D","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"dateRecorded":"2000-03-12","snomed":{"code":"53741008","display":"Coronary Heart Disease"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2000-03-12T15:22:43Z"}

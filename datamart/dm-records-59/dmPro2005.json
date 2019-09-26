@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"2005","patient":{"type":"Patient","reference":"59","display":"Mrs. Rebecca981 Barrows492"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Colonoscopy"},"notPerformed":false,"performedDateTime":"2012-11-08T20:04:36Z"}

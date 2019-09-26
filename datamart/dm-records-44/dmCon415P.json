@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"415:P","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"dateRecorded":"1941-04-12","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1941-04-12T14:42:56Z"}

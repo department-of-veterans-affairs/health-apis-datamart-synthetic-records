@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"9230489:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"9000777","display":"Mr. Alvaro283 Roberts511"},"effectiveDateTime":"2011-05-12T13:57:17Z","issued":"2011-05-12T13:57:17Z"}

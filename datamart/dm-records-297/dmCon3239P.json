@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"3239:P","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"dateRecorded":"2009-09-23","snomed":{"code":"283385000","display":"Laceration of thigh"},"icd":null,"category":"problem","clinicalStatus":"resolved","onsetDateTime":"2009-09-23T05:33:11Z","abatementDateTime":"2009-10-07T05:33:11Z"}

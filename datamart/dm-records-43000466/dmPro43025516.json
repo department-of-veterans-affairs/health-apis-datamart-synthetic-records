@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43025516","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"2017-01-22T08:42:25Z"}

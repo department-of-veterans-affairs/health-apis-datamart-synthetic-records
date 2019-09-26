@@ -13,6 +13,7 @@ listProblems() {
  PROBLEMS=$(find $PATIENT_DIR -regex ".*\(Med[a-z]\|.*P\).*.txt" -exec grep -B 3 "OUTCOME: INVALID" {} \; \
    | grep -E "QUERY.*(patient=|/Medication/).*" \
    | sed 's|.*/dstu2/\([a-zA-Z]\+\).*|\1|' \
+   | sort \
    | uniq -c \
    | sed 's/^ *//' \
    | tr ' ' : \

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"25010387","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2003-04-24T04:39:20Z"}

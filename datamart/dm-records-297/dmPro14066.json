@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"14066","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Suture open wound"},"notPerformed":false,"performedDateTime":"2009-09-23T05:33:11Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"338:P","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"dateRecorded":"2009-12-23","snomed":{"code":"49436004","display":"Atrial Fibrillation"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2009-12-23T19:16:07Z"}

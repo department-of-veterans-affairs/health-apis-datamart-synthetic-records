@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"468:P","patient":{"type":"Patient","reference":"49","display":"Mr. Hai304 Walter473"},"dateRecorded":"1976-05-09","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1976-05-09T18:39:14Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"1879","patient":{"type":"Patient","reference":"49","display":"Mr. Hai304 Walter473"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2017-07-02T18:39:14Z"}

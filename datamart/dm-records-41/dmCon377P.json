@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"377:P","patient":{"type":"Patient","reference":"41","display":"Mr. Art115 Lang846"},"dateRecorded":"1994-01-06","snomed":{"code":"408512008","display":"Body mass index 40+ - severely obese (finding)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1994-01-06T07:33:04Z"}

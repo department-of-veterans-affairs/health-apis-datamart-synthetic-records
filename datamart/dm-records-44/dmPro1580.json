@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"1580","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Combined chemotherapy and radiation therapy (proce"},"notPerformed":false,"performedDateTime":"1970-12-01T15:42:56Z"}

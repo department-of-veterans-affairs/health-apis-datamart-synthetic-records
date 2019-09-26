@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"373:D","patient":{"type":"Patient","reference":"41","display":"Mr. Art115 Lang846"},"dateRecorded":"1965-06-17","snomed":{"code":"38341003","display":"Hypertension"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1965-06-17T06:33:04Z"}

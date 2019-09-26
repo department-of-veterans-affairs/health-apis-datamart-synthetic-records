@@ -66,6 +66,7 @@ docker run \
   -Daccess-token=$TOKEN \
   -Dpatient-id=$PATIENT_ID \
   -Dcrawler.threads=$THREADS \
+  -Dcrawler.seed="${SEED:-}" \
   -Dcrawler.timelimit=${TIMELIMIT:-} \
   -Dcrawler.url.replace=https://dev-api.va.gov/services/fhir/v0/dstu2 \
   -Dcrawler.allow-query-url-pattern="$ALLOW_URLS" \

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"367:P","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"dateRecorded":"2016-12-18","snomed":{"code":"254637007","display":"Non-small cell lung cancer (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2016-12-18T19:16:07Z"}

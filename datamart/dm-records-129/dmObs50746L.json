@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"50746:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"129","display":"Mr. Hoyt490 Fritsch593"},"effectiveDateTime":"2015-01-21T03:50:50Z","issued":"2015-01-21T03:50:50Z"}

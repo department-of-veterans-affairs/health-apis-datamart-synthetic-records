@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"125:D","patient":{"type":"Patient","reference":"17","display":"Mr. Lorenzo669 Bartell116"},"dateRecorded":"1986-07-02","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1986-07-03T01:00:06Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"10002900:D","patient":{"type":"Patient","reference":"10000271","display":"Mr. Cornelius968 Buckridge80"},"dateRecorded":"1967-11-07","snomed":{"code":"7200002","display":"Alcoholism"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1967-11-07T14:36:53Z"}

@@ -1,4 +1,4 @@
-QUERY: https://dev-api.va.gov/services/fhir/v0/dstu2/DiagnosticReport?patient=5000335&page=22&_count=15
-TIMESTAMP: 2019-08-28T17:32:59.581167Z
+QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/DiagnosticReport?patient=5000335&page=22&_count=15
+TIMESTAMP: 2019-09-18T22:02:25.816148Z
 HTTP_STATUS: 200
 OUTCOME: OK

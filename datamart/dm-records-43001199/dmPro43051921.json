@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43051921","patient":{"type":"Patient","reference":"43001199","display":"Mr. Gerardo48 Leal292"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2009-06-21T13:47:31Z"}

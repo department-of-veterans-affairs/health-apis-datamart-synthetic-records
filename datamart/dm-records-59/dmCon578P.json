@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"578:P","patient":{"type":"Patient","reference":"59","display":"Mrs. Rebecca981 Barrows492"},"dateRecorded":"2012-02-09","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2012-02-09T20:04:36Z"}

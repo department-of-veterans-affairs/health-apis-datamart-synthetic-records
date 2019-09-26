@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43016082","patient":{"type":"Patient","reference":"43000341","display":"Mr. Vicente970 Mata817"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2013-04-06T09:12:34Z"}

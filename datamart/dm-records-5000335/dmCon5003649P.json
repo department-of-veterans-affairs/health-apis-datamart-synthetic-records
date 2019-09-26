@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"5003649:P","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"dateRecorded":"1955-07-13","snomed":{"code":"53741008","display":"Coronary Heart Disease"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1955-07-13T10:47:37Z"}

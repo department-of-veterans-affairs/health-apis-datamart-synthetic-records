@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"9022556","patient":{"type":"Patient","reference":"9000682","display":"Mr. Florentino8 Raynor401"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2011-03-31T12:24:55Z"}

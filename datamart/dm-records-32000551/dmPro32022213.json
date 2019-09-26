@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"32022213","patient":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"1994-09-09T15:17:33Z"}

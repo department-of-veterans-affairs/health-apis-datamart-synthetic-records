@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005065:P","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"1948-01-11","snomed":{"code":"302870006","display":"Hypertriglyceridemia (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1948-01-11T08:42:25Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"47012332","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2015-05-17T10:45:13Z"}

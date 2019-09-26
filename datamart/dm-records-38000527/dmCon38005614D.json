@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38005614:D","patient":{"type":"Patient","reference":"38000527","display":"Mr. Nicholas495 Lueilwitz711"},"dateRecorded":"1950-04-18","snomed":{"code":"127013003","display":"Diabetic renal disease (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1950-04-18T04:42:43Z"}

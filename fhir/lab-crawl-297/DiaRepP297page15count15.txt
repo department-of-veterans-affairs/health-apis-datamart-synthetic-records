@@ -1,4 +1,4 @@
 QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/DiagnosticReport?patient=297&page=15&_count=15
-TIMESTAMP: 2019-09-14T12:04:43.812368Z
+TIMESTAMP: 2019-09-20T17:17:27.744061Z
 HTTP_STATUS: 200
 OUTCOME: OK

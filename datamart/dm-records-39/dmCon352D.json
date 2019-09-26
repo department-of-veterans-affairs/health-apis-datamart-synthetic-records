@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"352:D","patient":{"type":"Patient","reference":"39","display":"Mr. Marcelino726 Nader710"},"dateRecorded":"1967-07-25","snomed":{"code":"15777000","display":"Prediabetes"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1967-07-25T13:49:25Z"}

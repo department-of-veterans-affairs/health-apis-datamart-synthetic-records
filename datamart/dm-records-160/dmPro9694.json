@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"9694","patient":{"type":"Patient","reference":"160","display":"Mr. Ollie731 Abernathy524"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2016-06-07T14:15:38Z"}

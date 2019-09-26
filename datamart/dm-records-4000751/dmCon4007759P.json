@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4007759:P","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"dateRecorded":"1992-06-28","snomed":{"code":"26929004","display":"Alzheimer's disease (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1992-06-28T14:22:43Z"}

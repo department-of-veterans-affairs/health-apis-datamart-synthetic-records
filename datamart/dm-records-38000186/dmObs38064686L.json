@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"38064686:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"38000186","display":"Mr. Elias404 Olson653"},"effectiveDateTime":"2013-07-02T19:13:43Z","issued":"2013-07-02T19:13:43Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"25011049","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2006-10-05T04:39:20Z"}

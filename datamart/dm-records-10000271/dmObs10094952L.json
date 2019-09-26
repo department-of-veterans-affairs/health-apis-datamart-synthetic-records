@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"10094952:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"10000271","display":"Mr. Cornelius968 Buckridge80"},"effectiveDateTime":"2017-04-18T13:36:53Z","issued":"2017-04-18T13:36:53Z"}

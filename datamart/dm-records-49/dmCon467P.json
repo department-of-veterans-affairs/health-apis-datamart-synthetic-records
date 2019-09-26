@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"467:P","patient":{"type":"Patient","reference":"49","display":"Mr. Hai304 Walter473"},"dateRecorded":"1976-05-09","snomed":{"code":"38341003","display":"Hypertension"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1976-05-09T18:39:14Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43025626","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2017-04-15T07:42:25Z"}

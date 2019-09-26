@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"1438:P","patient":{"type":"Patient","reference":"129","display":"Mr. Hoyt490 Fritsch593"},"dateRecorded":"1998-10-06","snomed":{"code":"15777000","display":"Prediabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1998-10-07T02:50:50Z"}

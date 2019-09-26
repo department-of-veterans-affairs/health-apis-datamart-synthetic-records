@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"10011653","patient":{"type":"Patient","reference":"10000271","display":"Mr. Cornelius968 Buckridge80"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2011-05-10T13:36:53Z"}

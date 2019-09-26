@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43052849","patient":{"type":"Patient","reference":"43001199","display":"Mr. Gerardo48 Leal292"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"2013-11-08T14:47:31Z"}

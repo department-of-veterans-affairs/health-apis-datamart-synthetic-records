@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"38237725:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"38000646","display":"Mr. Silas208 Little434"},"effectiveDateTime":"2016-04-25T16:35:41Z","issued":"2016-04-25T16:35:41Z"}

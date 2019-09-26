@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"12198:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"25428-4","display":"Glucose [Presence] in Urine by Test strip"}},"subject":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"effectiveDateTime":"1972-11-28T15:42:56Z","issued":"1972-11-28T15:42:56Z"}

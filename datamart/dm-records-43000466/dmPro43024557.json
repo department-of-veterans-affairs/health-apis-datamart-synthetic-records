@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43024557","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2014-03-30T07:42:25Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"39000434:P","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"dateRecorded":"1945-12-14","snomed":{"code":"38341003","display":"Hypertension"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1945-12-14T11:42:08Z"}

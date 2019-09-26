@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"9007243:P","patient":{"type":"Patient","reference":"9000682","display":"Mr. Florentino8 Raynor401"},"dateRecorded":"1978-12-14","snomed":{"code":"162864005","display":"Body mass index 30+ - obesity (finding)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1978-12-14T13:24:55Z"}

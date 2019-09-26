@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"43103711:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"43000334","display":"Mr. Boris111 Keebler762"},"effectiveDateTime":"2015-01-03T01:14:00Z","issued":"2015-01-03T01:14:00Z"}

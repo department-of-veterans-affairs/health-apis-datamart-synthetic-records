@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"761","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"2012-05-02T18:16:07Z"}

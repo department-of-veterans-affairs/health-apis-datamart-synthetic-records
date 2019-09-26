@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"5099898:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"32167-9","display":"Clarity of Urine"}},"subject":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"effectiveDateTime":"2015-07-31T10:47:37Z","issued":"2015-07-31T10:47:37Z"}

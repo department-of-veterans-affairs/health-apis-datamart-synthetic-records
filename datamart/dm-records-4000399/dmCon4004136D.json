@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4004136:D","patient":{"type":"Patient","reference":"4000399","display":"Mr. Andres25 Wintheiser220"},"dateRecorded":"2004-06-14","snomed":{"code":"162573006","display":"Suspected lung cancer (situation)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2004-06-14T16:22:39Z"}

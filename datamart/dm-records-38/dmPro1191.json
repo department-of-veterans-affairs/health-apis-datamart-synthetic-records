@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"1191","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Measurement of respiratory function (procedure)"},"notPerformed":false,"performedDateTime":"2017-12-09T19:16:07Z"}

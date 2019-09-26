@@ -1,4 +1,4 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Condition?patient=2000163
-TIMESTAMP: 2019-09-18T17:08:16.418683Z
-HTTP_STATUS: 404
-OUTCOME: INVALID_STATUS
+QUERY: http://localhost:8090/Condition?patient=2000163
+TIMESTAMP: 2019-09-23T18:51:34.386409Z
+HTTP_STATUS: 200
+OUTCOME: OK

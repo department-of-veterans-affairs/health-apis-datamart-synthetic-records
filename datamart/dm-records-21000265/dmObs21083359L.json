@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"21083359:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"21000265","display":"Mr. Alonso270 Jacobson885"},"effectiveDateTime":"2016-11-15T05:28:36Z","issued":"2016-11-15T05:28:36Z"}

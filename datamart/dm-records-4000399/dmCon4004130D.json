@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4004130:D","patient":{"type":"Patient","reference":"4000399","display":"Mr. Andres25 Wintheiser220"},"dateRecorded":"1963-07-04","snomed":{"code":"15777000","display":"Prediabetes"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1963-07-04T16:22:39Z"}

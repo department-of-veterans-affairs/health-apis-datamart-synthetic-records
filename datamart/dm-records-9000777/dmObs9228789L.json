@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"9228789:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"9000777","display":"Mr. Alvaro283 Roberts511"},"effectiveDateTime":"2009-05-30T13:57:17Z","issued":"2009-05-30T13:57:17Z"}

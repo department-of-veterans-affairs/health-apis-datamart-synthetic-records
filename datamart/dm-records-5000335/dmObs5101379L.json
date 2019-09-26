@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"5101379:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"effectiveDateTime":"2016-11-22T11:47:37Z","issued":"2016-11-22T11:47:37Z"}

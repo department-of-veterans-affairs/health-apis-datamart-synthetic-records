@@ -36,11 +36,12 @@ do
 
   while read dm
   do
-    local dmChangedTime="$(echo $dm | cut -d ' ' -f1)"
     local dmPatientId="$(echo $dm | cut -d ' ' -f2)"
 
     # Keep Going Until the Patient IDs match
     [ "$fhirPatientId" == "$dmPatientId" ] || continue
+
+    local dmChangedTime="$(echo $dm | cut -d ' ' -f1)"
 
     # Uses time since epoch so we can just do a quick value compare
     if [ $dmChangedTime -lt $fhirChangedTime ]
@@ -68,13 +69,18 @@ transformDatamartForPatient() {
     compile='false'
   done
 
-  if [ "$TRANSFORM_FAILED" == 'false' ]
+  # SINGLE_LADY is a workaround for invalid patients
+  # It allows the patient to be transformed if being done one patient at a time
+  if [ "$TRANSFORM_FAILED" == 'false' ] || [ "${SINGLE_LADY:-false}" == 'true' ]
   then
     echo "Copying files to Synthetic Records Repo..."
 
     [ ! -d "$SD/datamart/dm-records-$PATIENT/" ] && mkdir "$SD/datamart/dm-records-$PATIENT/"
 
     cp $FHIR_RESOURCES/target/fhir-to-datamart-samples/* "$SD/datamart/dm-records-$PATIENT/"
+
+    [ "${SINGLE_LADY:-false}" == 'true' ] \
+      && echo "Safe transform of resources has been skipped... Double check your records to make sure there were no failures..."
 
   else
     echo "Failed to transform resource(s)..."
@@ -125,7 +131,7 @@ cat <<EOF
   Commands:
     transformAllPatients
       Transform all patients changed to datamart
-    datamartTransformByPatient <patient-id>
+    transformByPatient <patient-id>
       Transform a single patient to datamart for all resources
     listChangedPatients <list-patients-boolean>
       List all changed patients (true lists changed ids, false gives a count)
@@ -133,7 +139,7 @@ cat <<EOF
 
   Example:
     transformAllPatients
-    datamartTransformByPatient 1010101010V666666
+    transformByPatient 1010101010V666666
     listChangedPatients false
 
 ==========
@@ -147,7 +153,7 @@ COMMAND="$1"
 
 case $COMMAND in
   transformAllPatients) transformDatamartAllPatients;;
-  datamartTransformByPatient) transformDatamartForPatient "$2";;
+  transformByPatient) SINGLE_LADY='true' && transformDatamartForPatient "$2";;
   listChangedPatients) determineChangedPatients "$2";;
   createInvalidPatientsCsv) createInvalidPatientsCsv;;
   *) usage "Invalid Command: $COMMAND";;

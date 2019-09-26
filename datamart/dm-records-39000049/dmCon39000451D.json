@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"39000451:D","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"dateRecorded":"1991-04-12","snomed":{"code":"399211009","display":"History of myocardial infarction (situation)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1991-04-12T10:42:08Z"}

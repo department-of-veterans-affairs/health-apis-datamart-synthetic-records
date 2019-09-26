@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005071:D","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"2003-10-19","snomed":{"code":"230690007","display":"Stroke"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2003-10-19T07:42:25Z"}

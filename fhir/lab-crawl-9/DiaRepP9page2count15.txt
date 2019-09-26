@@ -1,4 +1,4 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/DiagnosticReport?patient=9&page=2&_count=15
-TIMESTAMP: 2019-09-14T06:26:45.379283Z
+QUERY: http://localhost:8090/api/DiagnosticReport?patient=9&page=2&_count=15
+TIMESTAMP: 2019-09-24T13:44:07.654516Z
 HTTP_STATUS: 200
 OUTCOME: OK

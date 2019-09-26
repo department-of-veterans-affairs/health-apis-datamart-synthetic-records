@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43012971","patient":{"type":"Patient","reference":"43000334","display":"Mr. Boris111 Keebler762"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"2008-12-12T01:14:00Z"}

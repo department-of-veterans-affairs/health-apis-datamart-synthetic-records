@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"21002751:P","patient":{"type":"Patient","reference":"21000265","display":"Mr. Alonso270 Jacobson885"},"dateRecorded":"1990-10-24","snomed":{"code":"196416002","display":"Impacted molars"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1990-10-24T04:28:36Z"}

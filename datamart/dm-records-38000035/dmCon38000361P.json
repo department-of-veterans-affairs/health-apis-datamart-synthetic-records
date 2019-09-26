@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38000361:P","patient":{"type":"Patient","reference":"38000035","display":"Mr. Chet188 Sanford861"},"dateRecorded":"1999-08-31","snomed":{"code":"49436004","display":"Atrial Fibrillation"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1999-08-31T18:14:49Z"}

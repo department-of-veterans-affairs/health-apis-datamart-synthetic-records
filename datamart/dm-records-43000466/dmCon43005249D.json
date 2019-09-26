@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005249:D","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"2017-12-24","snomed":{"code":"22298006","display":"Myocardial Infarction"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2017-12-24T08:42:25Z"}

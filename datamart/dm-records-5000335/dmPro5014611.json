@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"5014611","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2018-06-06T10:47:37Z"}

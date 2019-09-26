@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005072:D","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"2005-10-15","snomed":{"code":"40055000","display":"Chronic sinusitis (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2005-10-15T07:42:25Z"}

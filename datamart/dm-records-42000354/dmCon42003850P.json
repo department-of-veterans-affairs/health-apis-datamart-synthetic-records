@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"42003850:P","patient":{"type":"Patient","reference":"42000354","display":"Mr. Gilberto712 Iglesias873"},"dateRecorded":"2003-01-12","snomed":{"code":"49436004","display":"Atrial Fibrillation"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2003-01-13T01:13:38Z"}

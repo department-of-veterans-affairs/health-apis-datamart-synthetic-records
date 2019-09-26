@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"96119:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"2514-8","display":"Ketones [Presence] in Urine by Test strip"}},"subject":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"effectiveDateTime":"2011-05-29T05:33:11Z","issued":"2011-05-29T05:33:11Z"}

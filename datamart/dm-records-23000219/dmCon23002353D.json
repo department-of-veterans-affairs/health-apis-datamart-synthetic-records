@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"23002353:D","patient":{"type":"Patient","reference":"23000219","display":"Mr. Taylor21 Mann644"},"dateRecorded":"1969-10-24","snomed":{"code":"237602007","display":"Metabolic syndrome X (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1969-10-24T17:03:16Z"}

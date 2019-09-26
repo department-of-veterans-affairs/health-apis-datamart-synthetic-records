@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"14934","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2015-05-20T05:33:11Z"}

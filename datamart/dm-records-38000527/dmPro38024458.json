@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38024458","patient":{"type":"Patient","reference":"38000527","display":"Mr. Nicholas495 Lueilwitz711"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Clavicle X-ray"},"notPerformed":false,"performedDateTime":"1990-06-20T04:42:43Z"}

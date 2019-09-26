@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4012302:D","patient":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"dateRecorded":"1973-04-24","snomed":{"code":"162864005","display":"Body mass index 30+ - obesity (finding)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1973-04-24T09:54:46Z"}

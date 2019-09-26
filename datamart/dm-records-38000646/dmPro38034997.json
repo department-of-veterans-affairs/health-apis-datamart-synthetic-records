@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38034997","patient":{"type":"Patient","reference":"38000646","display":"Mr. Silas208 Little434"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2016-04-13T16:35:41Z"}

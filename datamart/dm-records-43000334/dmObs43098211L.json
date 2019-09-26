@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"43098211:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"32167-9","display":"Clarity of Urine"}},"subject":{"type":"Patient","reference":"43000334","display":"Mr. Boris111 Keebler762"},"effectiveDateTime":"2008-11-05T01:14:00Z","issued":"2008-11-05T01:14:00Z"}

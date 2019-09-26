@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"4219782:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"effectiveDateTime":"2013-01-17T15:22:43Z","issued":"2013-01-17T15:22:43Z"}

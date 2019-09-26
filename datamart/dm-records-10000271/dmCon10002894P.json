@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"10002894:P","patient":{"type":"Patient","reference":"10000271","display":"Mr. Cornelius968 Buckridge80"},"dateRecorded":"1955-07-12","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1955-07-12T13:36:53Z"}

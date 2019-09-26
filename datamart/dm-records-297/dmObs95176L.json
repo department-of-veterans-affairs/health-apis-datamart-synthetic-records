@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"95176:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"effectiveDateTime":"2009-09-06T05:33:11Z","issued":"2009-09-06T05:33:11Z"}

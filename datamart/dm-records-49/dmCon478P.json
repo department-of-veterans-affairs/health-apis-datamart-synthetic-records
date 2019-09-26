@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"478:P","patient":{"type":"Patient","reference":"49","display":"Mr. Hai304 Walter473"},"dateRecorded":"1996-12-15","snomed":{"code":"422034002","display":"Diabetic retinopathy associated with type II diabetes mellitus (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1996-12-15T19:39:14Z"}

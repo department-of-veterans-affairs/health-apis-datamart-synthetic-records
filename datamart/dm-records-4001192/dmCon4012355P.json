@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4012355:P","patient":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"dateRecorded":"2015-06-17","snomed":{"code":"424132000","display":"Non-small cell carcinoma of lung  TNM stage 1 (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2015-06-17T09:54:46Z"}

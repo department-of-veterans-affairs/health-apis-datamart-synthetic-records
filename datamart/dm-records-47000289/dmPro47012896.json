@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"47012896","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2016-12-04T11:45:13Z"}

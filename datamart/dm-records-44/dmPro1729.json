@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"1729","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"High resolution computed tomography of chest witho"},"notPerformed":false,"performedDateTime":"1974-08-13T14:42:56Z"}

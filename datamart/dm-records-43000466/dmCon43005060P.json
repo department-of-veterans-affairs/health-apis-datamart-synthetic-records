@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43005060:P","patient":{"type":"Patient","reference":"43000466","display":"Mrs. Emmaline88 Considine820"},"dateRecorded":"1947-10-12","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1947-10-12T07:42:25Z"}

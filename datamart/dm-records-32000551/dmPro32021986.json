@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"32021986","patient":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"1993-04-19T15:17:33Z"}

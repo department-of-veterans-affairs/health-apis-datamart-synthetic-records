@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38024566","patient":{"type":"Patient","reference":"38000527","display":"Mr. Nicholas495 Lueilwitz711"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"1990-08-28T04:42:43Z"}

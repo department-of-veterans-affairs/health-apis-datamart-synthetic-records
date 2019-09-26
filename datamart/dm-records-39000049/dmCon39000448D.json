@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"39000448:D","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"dateRecorded":"1990-03-02","snomed":{"code":"126906006","display":"Neoplasm of prostate"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1990-03-02T11:42:08Z"}

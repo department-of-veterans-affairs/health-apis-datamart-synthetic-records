@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"47081454:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"32167-9","display":"Clarity of Urine"}},"subject":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"effectiveDateTime":"2011-05-07T10:45:13Z","issued":"2011-05-07T10:45:13Z"}

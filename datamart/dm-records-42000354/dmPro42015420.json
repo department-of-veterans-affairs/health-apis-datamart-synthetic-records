@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"42015420","patient":{"type":"Patient","reference":"42000354","display":"Mr. Gilberto712 Iglesias873"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2006-05-01T00:13:38Z"}

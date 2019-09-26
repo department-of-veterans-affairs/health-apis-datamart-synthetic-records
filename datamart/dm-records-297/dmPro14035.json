@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"14035","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2009-07-15T05:33:11Z"}

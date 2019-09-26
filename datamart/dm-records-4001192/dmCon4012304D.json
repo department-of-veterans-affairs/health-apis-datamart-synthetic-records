@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4012304:D","patient":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"dateRecorded":"1983-08-16","snomed":{"code":"431855005","display":"Chronic kidney disease stage 1 (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1983-08-16T09:54:46Z"}

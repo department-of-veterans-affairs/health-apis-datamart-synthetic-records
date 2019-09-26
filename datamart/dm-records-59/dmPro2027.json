@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"2027","patient":{"type":"Patient","reference":"59","display":"Mrs. Rebecca981 Barrows492"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Lung volume reduction surgery (procedure)"},"notPerformed":false,"performedDateTime":"2015-06-11T19:04:36Z"}

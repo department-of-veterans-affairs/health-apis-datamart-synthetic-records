@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"5012399","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2009-04-18T10:47:37Z"}

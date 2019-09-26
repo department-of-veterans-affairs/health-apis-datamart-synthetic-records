@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"427:D","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"dateRecorded":"1970-10-26","snomed":{"code":"254637007","display":"Non-small cell lung cancer (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1970-10-26T15:42:56Z"}

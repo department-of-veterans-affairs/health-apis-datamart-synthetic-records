@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"47082511:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"effectiveDateTime":"2012-05-01T10:45:13Z","issued":"2012-05-01T10:45:13Z"}

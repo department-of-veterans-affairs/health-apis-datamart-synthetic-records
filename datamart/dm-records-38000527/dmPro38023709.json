@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38023709","patient":{"type":"Patient","reference":"38000527","display":"Mr. Nicholas495 Lueilwitz711"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"1988-07-26T04:42:43Z"}

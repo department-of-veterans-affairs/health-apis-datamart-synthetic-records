@@ -1,4 +1,4 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Immunization?patient=1000005
-TIMESTAMP: 2019-09-14T12:47:34.495063Z
-HTTP_STATUS: 404
-OUTCOME: INVALID_STATUS
+QUERY: http://localhost:8090/Immunization?patient=1000005
+TIMESTAMP: 2019-09-23T18:50:55.166027Z
+HTTP_STATUS: 200
+OUTCOME: OK

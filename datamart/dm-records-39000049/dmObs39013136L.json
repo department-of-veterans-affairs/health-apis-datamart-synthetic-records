@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"39013136:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"effectiveDateTime":"2010-07-07T10:42:08Z","issued":"2010-07-07T10:42:08Z"}

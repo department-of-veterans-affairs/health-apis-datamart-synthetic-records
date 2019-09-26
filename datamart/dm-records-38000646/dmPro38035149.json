@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38035149","patient":{"type":"Patient","reference":"38000646","display":"Mr. Silas208 Little434"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Measurement of respiratory function (procedure)"},"notPerformed":false,"performedDateTime":"2017-04-25T16:35:41Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"11460:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"32167-9","display":"Clarity of Urine"}},"subject":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"effectiveDateTime":"1971-09-12T14:42:56Z","issued":"1971-09-12T14:42:56Z"}

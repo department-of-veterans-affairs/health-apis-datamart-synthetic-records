@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"2002","patient":{"type":"Patient","reference":"59","display":"Mrs. Rebecca981 Barrows492"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Replacement of contraceptive intrauterine device"},"notPerformed":false,"performedDateTime":"2010-10-28T19:04:36Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"9028589","patient":{"type":"Patient","reference":"9000777","display":"Mr. Alvaro283 Roberts511"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2013-08-22T13:57:17Z"}

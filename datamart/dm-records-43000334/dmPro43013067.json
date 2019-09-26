@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43013067","patient":{"type":"Patient","reference":"43000334","display":"Mr. Boris111 Keebler762"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2009-07-06T00:14:00Z"}

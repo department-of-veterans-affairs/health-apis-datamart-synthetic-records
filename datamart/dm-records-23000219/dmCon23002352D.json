@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"23002352:D","patient":{"type":"Patient","reference":"23000219","display":"Mr. Taylor21 Mann644"},"dateRecorded":"1965-10-15","snomed":{"code":"302870006","display":"Hypertriglyceridemia (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1965-10-15T17:03:16Z"}

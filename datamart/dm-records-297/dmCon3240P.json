@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"3240:P","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"dateRecorded":"2013-05-19","snomed":{"code":"65966004","display":"Fracture of forearm"},"icd":null,"category":"problem","clinicalStatus":"resolved","onsetDateTime":"2013-05-19T05:33:11Z","abatementDateTime":"2013-07-18T05:33:11Z"}

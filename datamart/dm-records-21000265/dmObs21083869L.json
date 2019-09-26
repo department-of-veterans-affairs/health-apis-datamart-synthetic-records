@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"21083869:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"21000265","display":"Mr. Alonso270 Jacobson885"},"effectiveDateTime":"2017-11-10T05:28:36Z","issued":"2017-11-10T05:28:36Z"}

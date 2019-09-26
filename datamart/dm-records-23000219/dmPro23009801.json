@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"23009801","patient":{"type":"Patient","reference":"23000219","display":"Mr. Taylor21 Mann644"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2017-04-01T17:03:16Z"}

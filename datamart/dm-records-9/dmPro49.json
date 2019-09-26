@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"49","patient":{"type":"Patient","reference":"9","display":"Mr. Titus37 Mosciski958"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2009-01-22T00:37:51Z"}

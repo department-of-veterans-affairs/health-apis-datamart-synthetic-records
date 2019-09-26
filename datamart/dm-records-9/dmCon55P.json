@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"55:P","patient":{"type":"Patient","reference":"9","display":"Mr. Titus37 Mosciski958"},"dateRecorded":"1972-06-07","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1972-06-07T23:37:51Z"}

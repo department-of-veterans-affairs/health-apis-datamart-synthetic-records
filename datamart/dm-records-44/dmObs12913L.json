@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"12913:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"effectiveDateTime":"1974-02-07T15:42:56Z","issued":"1974-02-07T15:42:56Z"}

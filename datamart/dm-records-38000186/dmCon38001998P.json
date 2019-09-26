@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38001998:P","patient":{"type":"Patient","reference":"38000186","display":"Mr. Elias404 Olson653"},"dateRecorded":"1992-03-25","snomed":{"code":"92691004","display":"Carcinoma in situ of prostate (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1992-03-25T20:13:43Z"}

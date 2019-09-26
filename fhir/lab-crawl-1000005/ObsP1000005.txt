@@ -1,4 +1,4 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Observation?patient=1000005
-TIMESTAMP: 2019-09-17T21:51:35.594091Z
-HTTP_STATUS: 404
-OUTCOME: INVALID_STATUS
+QUERY: http://localhost:8090/Observation?patient=1000005
+TIMESTAMP: 2019-09-23T18:50:55.166857Z
+HTTP_STATUS: 200
+OUTCOME: OK

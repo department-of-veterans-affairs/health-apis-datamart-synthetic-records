@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"956","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2015-11-18T19:16:07Z"}

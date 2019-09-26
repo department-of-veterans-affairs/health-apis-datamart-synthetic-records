@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"13167:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"20454-5","display":"Protein [Presence] in Urine by Test strip"}},"subject":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"effectiveDateTime":"1974-06-09T14:42:56Z","issued":"1974-06-09T14:42:56Z"}

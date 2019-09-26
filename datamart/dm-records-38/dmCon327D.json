@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"327:D","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"dateRecorded":"1974-04-18","snomed":{"code":"195967001","display":"Asthma"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1974-04-18T18:16:07Z"}

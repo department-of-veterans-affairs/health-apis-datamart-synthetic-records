@@ -1,1 +1,655 @@
-{"id":"796c688f-2c0f-40cd-b571-a1e91e5202e3","resourceType":"OperationOutcome","text":{"status":"additional","div":"<div>Failure: /Observation</div>"},"issue":[{"severity":"fatal","code":"not-found","diagnostics":"Error: NotFound Timestamp:2019-09-18T10:54:37.449952Z"}]}
+{
+  "resourceType": "Bundle",
+  "type": "searchset",
+  "total": 74,
+  "link": [
+    {
+      "relation": "first",
+      "url": "http://localhost:8090/api/Observation?patient=9000682&page=1&_count=15"
+    },
+    {
+      "relation": "self",
+      "url": "http://localhost:8090/api/Observation?patient=9000682&page=1&_count=15"
+    },
+    {
+      "relation": "next",
+      "url": "http://localhost:8090/api/Observation?patient=9000682&page=2&_count=15"
+    },
+    {
+      "relation": "last",
+      "url": "http://localhost:8090/api/Observation?patient=9000682&page=5&_count=15"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/ae8f1d12-6a93-563a-99e1-1371422a5999",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ae8f1d12-6a93-563a-99e1-1371422a5999",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32623-1",
+              "display": "Platelet mean volume [Entitic volume] in Blood by"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 10.892302582260127,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/1a21eae3-e08c-5f04-b7a7-fb6681fa2623",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1a21eae3-e08c-5f04-b7a7-fb6681fa2623",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32207-3",
+              "display": "Platelet distribution width [Entitic volume] in Bl"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 357.303877706699,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/4c18a0c4-e414-5396-9fa0-f80d9b5be74a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4c18a0c4-e414-5396-9fa0-f80d9b5be74a",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 425.50687000016444,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/d813468a-3f0e-5fa8-97ab-6227d98ad7d2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d813468a-3f0e-5fa8-97ab-6227d98ad7d2",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "21000-5",
+              "display": "Erythrocyte distribution width [Entitic volume] by"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 39.49535936276074,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/78c44b56-0f00-5f11-bc45-358ded49bb48",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "78c44b56-0f00-5f11-bc45-358ded49bb48",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "786-4",
+              "display": "MCHC [Mass/volume] by Automated count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 34.94057222358059,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/e5e7e72b-b70b-5a1d-90ba-e3caf4111734",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e5e7e72b-b70b-5a1d-90ba-e3caf4111734",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "785-6",
+              "display": "MCH [Entitic mass] by Automated count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 32.27893042836461,
+          "unit": "pg",
+          "system": "http://unitsofmeasure.org",
+          "code": "pg"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/71ee6ffb-afff-52c8-a7ad-9c87a9cf2ae4",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "71ee6ffb-afff-52c8-a7ad-9c87a9cf2ae4",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "787-2",
+              "display": "MCV [Entitic volume] by Automated count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 87.62586658143908,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/208f14a8-09c3-57bd-8d8e-4ba1aa54551d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "208f14a8-09c3-57bd-8d8e-4ba1aa54551d",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 49.64401638079773,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/3cc6f7a6-7e5a-54a2-8b06-09bca8f7bcb1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3cc6f7a6-7e5a-54a2-8b06-09bca8f7bcb1",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 13.575218353530573,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/125916c0-c202-528e-a76d-2a1c6a0e14b6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "125916c0-c202-528e-a76d-2a1c6a0e14b6",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated coun"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 5.209582426709645,
+          "unit": "10*6/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*6/uL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/594a74e0-cc02-502b-9245-42ed9120997d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "594a74e0-cc02-502b-9245-42ed9120997d",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "Leukocytes [#/volume] in Blood by Automated count"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2018-05-10T12:24:55Z",
+        "issued": "2018-05-10T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 10.324649671430997,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/85d34304-0431-5f0b-8bea-e2ce3bc82090",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "85d34304-0431-5f0b-8bea-e2ce3bc82090",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2085-9",
+              "display": "High Density Lipoprotein Cholesterol"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2016-04-28T12:24:55Z",
+        "issued": "2016-04-28T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 60.636371665382704,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/3c554cac-5328-5cb5-ab69-6b46d990d959",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3c554cac-5328-5cb5-ab69-6b46d990d959",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18262-6",
+              "display": "Low Density Lipoprotein Cholesterol"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2016-04-28T12:24:55Z",
+        "issued": "2016-04-28T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 105.2385362287289,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/6a820f1d-0e8c-5f02-a502-210d95375f11",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "6a820f1d-0e8c-5f02-a502-210d95375f11",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2571-8",
+              "display": "Triglycerides"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2016-04-28T12:24:55Z",
+        "issued": "2016-04-28T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 115.53604571315324,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8090/api/Observation/d3a38b51-a52a-5404-bbea-e8eda6b9e9e7",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d3a38b51-a52a-5404-bbea-e8eda6b9e9e7",
+        "status": "final",
+        "category": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "http://localhost:8090/api/Patient/9000682",
+          "display": "Mr. Florentino8 Raynor401"
+        },
+        "effectiveDateTime": "2016-04-28T12:24:55Z",
+        "issued": "2016-04-28T12:24:55Z",
+        "performer": [],
+        "valueQuantity": {
+          "value": 188.98211703674227,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+  ]
+}

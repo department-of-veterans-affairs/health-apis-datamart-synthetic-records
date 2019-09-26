@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"98010:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"effectiveDateTime":"2014-10-10T05:33:11Z","issued":"2014-10-10T05:33:11Z"}

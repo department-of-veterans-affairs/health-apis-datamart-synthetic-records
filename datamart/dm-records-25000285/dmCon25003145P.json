@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"25003145:P","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"dateRecorded":"1989-07-05","snomed":{"code":"230690007","display":"Stroke"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1989-07-06T04:39:20Z"}

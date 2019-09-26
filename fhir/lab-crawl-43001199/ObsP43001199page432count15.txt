@@ -1,0 +1,4 @@
+QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Observation?patient=43001199&page=432&_count=15
+TIMESTAMP: 2019-09-20T13:25:28.365030Z
+HTTP_STATUS: 200
+OUTCOME: OK

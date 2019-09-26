@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4007771:D","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"dateRecorded":"2009-10-11","snomed":{"code":"44465007","display":"Sprain of ankle"},"icd":null,"category":"diagnosis","clinicalStatus":"resolved","onsetDateTime":"2009-10-11T14:22:43Z","abatementDateTime":"2009-11-08T15:22:43Z"}

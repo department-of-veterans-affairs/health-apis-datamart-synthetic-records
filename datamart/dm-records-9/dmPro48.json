@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"48","patient":{"type":"Patient","reference":"9","display":"Mr. Titus37 Mosciski958"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Throat culture (procedure)"},"notPerformed":false,"performedDateTime":"2008-05-23T23:37:51Z"}

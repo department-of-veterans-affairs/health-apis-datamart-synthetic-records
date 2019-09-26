@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4007757:P","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"dateRecorded":"1984-07-26","snomed":{"code":"68496003","display":"Polyp of colon"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1984-07-26T14:22:43Z"}

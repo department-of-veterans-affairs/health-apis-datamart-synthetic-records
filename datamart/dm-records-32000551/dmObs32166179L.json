@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"32166179:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"32167-9","display":"Clarity of Urine"}},"subject":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"effectiveDateTime":"1994-11-02T16:17:33Z","issued":"1994-11-02T16:17:33Z"}

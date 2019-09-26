@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"39001492","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Colonoscopy"},"notPerformed":false,"performedDateTime":"2007-10-14T10:42:08Z"}

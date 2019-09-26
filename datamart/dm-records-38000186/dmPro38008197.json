@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38008197","patient":{"type":"Patient","reference":"38000186","display":"Mr. Elias404 Olson653"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2016-12-22T20:13:43Z"}

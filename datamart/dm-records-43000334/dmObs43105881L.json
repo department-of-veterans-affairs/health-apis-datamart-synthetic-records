@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"43105881:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"43000334","display":"Mr. Boris111 Keebler762"},"effectiveDateTime":"2016-01-28T01:14:00Z","issued":"2016-01-28T01:14:00Z"}

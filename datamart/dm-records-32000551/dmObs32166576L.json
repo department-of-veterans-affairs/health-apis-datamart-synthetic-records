@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"32166576:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"effectiveDateTime":"1995-04-01T16:17:33Z","issued":"1995-04-01T16:17:33Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"23071015:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"23000219","display":"Mr. Taylor21 Mann644"},"effectiveDateTime":"2013-03-02T18:03:16Z","issued":"2013-03-02T18:03:16Z"}

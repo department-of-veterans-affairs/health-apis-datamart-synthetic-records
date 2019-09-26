@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"417:D","patient":{"type":"Patient","reference":"44","display":"Mr. Mariano761 Stark857"},"dateRecorded":"1944-04-15","snomed":{"code":"237602007","display":"Metabolic syndrome X (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1944-04-15T14:42:56Z"}

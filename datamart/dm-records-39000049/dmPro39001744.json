@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"39001744","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2009-07-24T10:42:08Z"}

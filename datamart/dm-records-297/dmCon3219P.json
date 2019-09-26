@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"3219:P","patient":{"type":"Patient","reference":"297","display":"Mr. Lavern240 Hickle134"},"dateRecorded":"1945-04-11","snomed":{"code":"431855005","display":"Chronic kidney disease stage 1 (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1945-04-11T05:33:11Z"}

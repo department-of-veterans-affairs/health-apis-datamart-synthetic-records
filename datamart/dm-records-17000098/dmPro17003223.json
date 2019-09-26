@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"17003223","patient":{"type":"Patient","reference":"17000098","display":"Mr. Freeman822 Prohaska837"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2007-07-21T09:19:58Z"}

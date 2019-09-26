@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"47011070","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2011-01-10T11:45:13Z"}

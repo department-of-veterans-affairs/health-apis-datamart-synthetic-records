@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"42119511:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5767-9","display":"Appearance of Urine"}},"subject":{"type":"Patient","reference":"42000354","display":"Mr. Gilberto712 Iglesias873"},"effectiveDateTime":"2006-11-26T01:13:38Z","issued":"2006-11-26T01:13:38Z"}

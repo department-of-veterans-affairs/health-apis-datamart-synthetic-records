@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43013031:P","patient":{"type":"Patient","reference":"43001199","display":"Mr. Gerardo48 Leal292"},"dateRecorded":"2006-01-24","snomed":{"code":"40055000","display":"Chronic sinusitis (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"2006-01-24T14:47:31Z"}

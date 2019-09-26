@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"32022117","patient":{"type":"Patient","reference":"32000551","display":"Mr. Moshe758 Windler79"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"1994-02-14T16:17:33Z"}

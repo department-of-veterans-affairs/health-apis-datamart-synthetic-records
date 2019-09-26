@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"4025811","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Digital examination of rectum"},"notPerformed":false,"performedDateTime":"2014-04-27T14:22:43Z"}

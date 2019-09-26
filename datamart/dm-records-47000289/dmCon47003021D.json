@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"47003021:D","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"dateRecorded":"1997-02-16","snomed":{"code":"230690007","display":"Stroke"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1997-02-16T11:45:13Z"}

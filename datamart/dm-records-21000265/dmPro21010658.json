@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"21010658","patient":{"type":"Patient","reference":"21000265","display":"Mr. Alonso270 Jacobson885"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"2010-05-01T04:28:36Z"}

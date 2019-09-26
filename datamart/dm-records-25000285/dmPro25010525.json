@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"25010525","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2004-01-15T05:39:20Z"}

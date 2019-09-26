@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"47003012:P","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"dateRecorded":"1949-11-06","snomed":{"code":"410429000","display":"Cardiac Arrest"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1949-11-06T11:45:13Z"}

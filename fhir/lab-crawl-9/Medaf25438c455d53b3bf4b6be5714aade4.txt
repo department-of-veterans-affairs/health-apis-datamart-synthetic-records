@@ -1,4 +1,4 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Medication/af25438c-455d-53b3-bf4b-6be5714aade4
-TIMESTAMP: 2019-09-14T06:25:18.970586Z
+QUERY: http://localhost:8090/api/Medication/af25438c-455d-53b3-bf4b-6be5714aade4
+TIMESTAMP: 2019-09-24T13:44:01.266445Z
 HTTP_STATUS: 200
 OUTCOME: OK

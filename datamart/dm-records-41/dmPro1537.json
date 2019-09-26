@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"1537","patient":{"type":"Patient","reference":"41","display":"Mr. Art115 Lang846"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"High resolution computed tomography of chest witho"},"notPerformed":false,"performedDateTime":"2001-06-09T06:33:04Z"}

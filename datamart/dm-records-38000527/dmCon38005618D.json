@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38005618:D","patient":{"type":"Patient","reference":"38000527","display":"Mr. Nicholas495 Lueilwitz711"},"dateRecorded":"1952-04-08","snomed":{"code":"80394007","display":"Hyperglycemia (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1952-04-08T04:42:43Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"21002759:D","patient":{"type":"Patient","reference":"21000265","display":"Mr. Alonso270 Jacobson885"},"dateRecorded":"2012-07-28","snomed":{"code":"26929004","display":"Alzheimer's disease (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2012-07-28T04:28:36Z"}

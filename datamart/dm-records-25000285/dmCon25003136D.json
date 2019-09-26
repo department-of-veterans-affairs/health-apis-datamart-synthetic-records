@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"25003136:D","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"dateRecorded":"1961-09-13","snomed":{"code":"15777000","display":"Prediabetes"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1961-09-14T04:39:20Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"4007750:D","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"dateRecorded":"1944-07-16","snomed":{"code":"237602007","display":"Metabolic syndrome X (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1944-07-16T14:22:43Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"4026610","patient":{"type":"Patient","reference":"4000751","display":"Mr. Dante562 Hayes766"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2018-07-29T14:22:43Z"}

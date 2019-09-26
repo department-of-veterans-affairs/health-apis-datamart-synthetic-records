@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"5003654:D","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"dateRecorded":"1988-01-13","snomed":{"code":"26929004","display":"Alzheimer's disease (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1988-01-13T11:47:37Z"}

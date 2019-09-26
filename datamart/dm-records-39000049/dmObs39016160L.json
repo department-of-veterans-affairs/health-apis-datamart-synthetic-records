@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"39016160:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"32167-9","display":"Clarity of Urine"}},"subject":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"effectiveDateTime":"2016-02-06T11:42:08Z","issued":"2016-02-06T11:42:08Z"}

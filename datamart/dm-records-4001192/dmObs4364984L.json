@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"4364984:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"effectiveDateTime":"2015-02-02T10:54:46Z","issued":"2015-02-02T10:54:46Z"}

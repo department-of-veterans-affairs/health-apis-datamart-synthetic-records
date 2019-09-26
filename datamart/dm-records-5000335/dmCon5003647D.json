@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"5003647:D","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"dateRecorded":"1937-09-15","snomed":{"code":"237602007","display":"Metabolic syndrome X (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1937-09-15T10:47:37Z"}

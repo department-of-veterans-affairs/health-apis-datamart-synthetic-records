@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43003718:D","patient":{"type":"Patient","reference":"43000341","display":"Mr. Vicente970 Mata817"},"dateRecorded":"2005-12-03","snomed":{"code":"429007001","display":"History of cardiac arrest (situation)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2005-12-03T10:12:34Z"}

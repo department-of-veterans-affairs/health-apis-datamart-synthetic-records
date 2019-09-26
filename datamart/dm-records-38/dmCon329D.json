@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"329:D","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"dateRecorded":"1985-05-22","snomed":{"code":"7200002","display":"Alcoholism"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1985-05-22T18:16:07Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"39000456:D","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"dateRecorded":"2012-08-14","snomed":{"code":"44465007","display":"Sprain of ankle"},"icd":null,"category":"diagnosis","clinicalStatus":"resolved","onsetDateTime":"2012-08-14T10:42:08Z","abatementDateTime":"2012-09-18T10:42:08Z"}

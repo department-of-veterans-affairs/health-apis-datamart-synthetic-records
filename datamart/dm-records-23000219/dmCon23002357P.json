@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"23002357:P","patient":{"type":"Patient","reference":"23000219","display":"Mr. Taylor21 Mann644"},"dateRecorded":"1983-05-06","snomed":{"code":"127013003","display":"Diabetic renal disease (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1983-05-06T17:03:16Z"}

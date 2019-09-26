@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"1434:P","patient":{"type":"Patient","reference":"129","display":"Mr. Hoyt490 Fritsch593"},"dateRecorded":"1990-05-26","snomed":{"code":"124171000119105","display":"Chronic intractable migraine without aura"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1990-05-27T02:50:50Z"}

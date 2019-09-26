@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"5012738","patient":{"type":"Patient","reference":"5000335","display":"Mr. Mariano761 Ruelas156"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2011-04-20T10:47:37Z"}

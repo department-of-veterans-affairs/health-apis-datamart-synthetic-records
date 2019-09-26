@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"38000983","patient":{"type":"Patient","reference":"38000035","display":"Mr. Chet188 Sanford861"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Electrical cardioversion"},"notPerformed":false,"performedDateTime":"2005-10-04T18:14:49Z"}

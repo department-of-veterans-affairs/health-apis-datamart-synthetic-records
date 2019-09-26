@@ -1,0 +1,1 @@
+{"objectType":"Observation","objectVersion":1,"cdwId":"43377649:L","status":"final","category":"laboratory","code":{"coding":{"system":"http://loinc.org","code":"5778-6","display":"Color of Urine"}},"subject":{"type":"Patient","reference":"43001199","display":"Mr. Gerardo48 Leal292"},"effectiveDateTime":"2018-01-08T14:47:31Z","issued":"2018-01-08T14:47:31Z"}

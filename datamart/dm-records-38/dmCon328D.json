@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"328:D","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"dateRecorded":"1984-04-08","snomed":{"code":"201834006","display":"Localized  primary osteoarthritis of the hand"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1984-04-08T18:16:07Z"}

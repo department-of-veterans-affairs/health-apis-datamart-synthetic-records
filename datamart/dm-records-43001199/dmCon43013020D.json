@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"43013020:D","patient":{"type":"Patient","reference":"43001199","display":"Mr. Gerardo48 Leal292"},"dateRecorded":"1977-02-18","snomed":{"code":"302870006","display":"Hypertriglyceridemia (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1977-02-18T14:47:31Z"}

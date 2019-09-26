@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"23002351:D","patient":{"type":"Patient","reference":"23000219","display":"Mr. Taylor21 Mann644"},"dateRecorded":"1963-10-11","snomed":{"code":"44054006","display":"Diabetes"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1963-10-11T17:03:16Z"}

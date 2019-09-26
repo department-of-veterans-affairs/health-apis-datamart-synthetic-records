@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38000362:D","patient":{"type":"Patient","reference":"38000035","display":"Mr. Chet188 Sanford861"},"dateRecorded":"2003-05-09","snomed":{"code":"162573006","display":"Suspected lung cancer (situation)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"2003-05-09T18:14:49Z"}

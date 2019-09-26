@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"1454","patient":{"type":"Patient","reference":"42","display":"Mr. Vance413 Mosciski958"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Extraction of wisdom tooth"},"notPerformed":false,"performedDateTime":"2009-06-13T22:10:41Z"}

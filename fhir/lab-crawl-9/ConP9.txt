@@ -1,4 +1,4 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Condition?patient=9
-TIMESTAMP: 2019-09-14T06:24:20.630070Z
+QUERY: http://localhost:8090/Condition?patient=9
+TIMESTAMP: 2019-09-24T13:43:39.369007Z
 HTTP_STATUS: 200
 OUTCOME: OK

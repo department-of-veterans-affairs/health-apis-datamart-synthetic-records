@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"374:D","patient":{"type":"Patient","reference":"41","display":"Mr. Art115 Lang846"},"dateRecorded":"1975-07-03","snomed":{"code":"162864005","display":"Body mass index 30+ - obesity (finding)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1975-07-03T06:33:04Z"}

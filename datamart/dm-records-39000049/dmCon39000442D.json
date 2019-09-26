@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"39000442:D","patient":{"type":"Patient","reference":"39000049","display":"Mr. Harvey63 Kuhic920"},"dateRecorded":"1963-02-15","snomed":{"code":"127013003","display":"Diabetic renal disease (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1963-02-15T11:42:08Z"}

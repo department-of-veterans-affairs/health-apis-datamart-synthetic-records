@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43014219","patient":{"type":"Patient","reference":"43000334","display":"Mr. Boris111 Keebler762"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Partial resection of colon"},"notPerformed":false,"performedDateTime":"2014-09-02T00:14:00Z"}

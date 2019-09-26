@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"25003149:P","patient":{"type":"Patient","reference":"25000285","display":"Mr. Porfirio146 Schmeler639"},"dateRecorded":"1997-11-25","snomed":{"code":"26929004","display":"Alzheimer's disease (disorder)"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1997-11-27T05:39:20Z"}

@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"4045947","patient":{"type":"Patient","reference":"4001192","display":"Mr. Stevie682 Gerhold939"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Catheter ablation of tissue of heart"},"notPerformed":false,"performedDateTime":"2013-10-15T09:54:46Z"}

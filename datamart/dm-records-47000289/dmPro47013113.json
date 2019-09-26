@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"47013113","patient":{"type":"Patient","reference":"47000289","display":"Mr. Reynaldo722 Simonis280"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Measurement of respiratory function (procedure)"},"notPerformed":false,"performedDateTime":"2017-07-10T10:45:13Z"}

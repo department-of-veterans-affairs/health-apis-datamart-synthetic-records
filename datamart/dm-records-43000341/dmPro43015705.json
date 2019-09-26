@@ -1,0 +1,1 @@
+{"objectType":"Procedure","objectVersion":"1","cdwId":"43015705","patient":{"type":"Patient","reference":"43000341","display":"Mr. Vicente970 Mata817"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Renal dialysis (procedure)"},"notPerformed":false,"performedDateTime":"2012-06-17T09:12:34Z"}

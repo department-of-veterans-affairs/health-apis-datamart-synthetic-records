@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"38001996:D","patient":{"type":"Patient","reference":"38000186","display":"Mr. Elias404 Olson653"},"dateRecorded":"1976-10-26","snomed":{"code":"449868002","display":"Smokes tobacco daily"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1976-10-26T19:13:43Z"}

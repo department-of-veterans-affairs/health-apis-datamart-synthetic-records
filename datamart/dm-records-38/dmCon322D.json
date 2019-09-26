@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"322:D","patient":{"type":"Patient","reference":"38","display":"Mr. Darryl392 Hartmann983"},"dateRecorded":"1968-09-25","snomed":{"code":"302870006","display":"Hypertriglyceridemia (disorder)"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1968-09-25T18:16:07Z"}

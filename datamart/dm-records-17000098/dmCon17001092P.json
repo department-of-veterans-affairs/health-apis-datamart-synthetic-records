@@ -1,0 +1,1 @@
+{"objectType":"Condition","objectVersion":"1","cdwId":"17001092:P","patient":{"type":"Patient","reference":"17000098","display":"Mr. Freeman822 Prohaska837"},"dateRecorded":"1977-01-22","snomed":{"code":"126906006","display":"Neoplasm of prostate"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1977-01-22T10:19:58Z"}
