@@ -1,1 +1,0 @@
-{"objectType":"Procedure","objectVersion":"1","cdwId":"14000021","patient":{"type":"Patient","reference":"14000005","display":"Mr. Toby274 Bins636"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2013-05-09T14:49:14Z"}

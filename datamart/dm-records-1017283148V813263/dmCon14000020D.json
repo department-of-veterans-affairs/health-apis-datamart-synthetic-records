@@ -1,1 +1,0 @@
-{"objectType":"Condition","objectVersion":"1","cdwId":"14000020:D","patient":{"type":"Patient","reference":"14000005","display":"Mr. Toby274 Bins636"},"dateRecorded":"1979-05-03","snomed":{"code":"370143000","display":"Major depression disorder"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1979-05-03T14:49:14Z"}

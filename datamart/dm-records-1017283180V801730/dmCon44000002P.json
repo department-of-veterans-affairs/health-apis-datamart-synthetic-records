@@ -1,1 +1,0 @@
-{"objectType":"Condition","objectVersion":"1","cdwId":"44000002:P","patient":{"type":"Patient","reference":"44000002","display":"Mr. Cary869 Wuckert783"},"dateRecorded":"1990-11-21","snomed":{"code":"196416002","display":"Impacted molars"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1990-11-21T17:45:50Z"}

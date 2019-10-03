@@ -1,1 +1,0 @@
-{"objectType":"Condition","objectVersion":"1","cdwId":"44000007:D","patient":{"type":"Patient","reference":"44000002","display":"Mr. Cary869 Wuckert783"},"dateRecorded":"1998-11-22","snomed":{"code":"55680006","display":"Drug overdose"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1998-11-22T17:45:50Z"}

@@ -1,1 +1,0 @@
-{"objectType":"Procedure","objectVersion":"1","cdwId":"44000006","patient":{"type":"Patient","reference":"44000002","display":"Mr. Cary869 Wuckert783"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Documentation of current medications"},"notPerformed":false,"performedDateTime":"2011-09-02T16:45:50Z"}

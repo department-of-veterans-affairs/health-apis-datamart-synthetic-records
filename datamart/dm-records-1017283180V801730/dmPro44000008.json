@@ -1,1 +1,0 @@
-{"objectType":"Procedure","objectVersion":"1","cdwId":"44000008","patient":{"type":"Patient","reference":"44000002","display":"Mr. Cary869 Wuckert783"},"status":"completed","coding":{"system":"http://www.ama-assn.org/go/cpt","code":"XXXXX","display":"Surgical manipulation of joint of knee"},"notPerformed":false,"performedDateTime":"2013-05-28T16:45:50Z"}

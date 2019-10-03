@@ -1,1 +1,0 @@
-{"objectType":"Condition","objectVersion":"1","cdwId":"14000017:D","patient":{"type":"Patient","reference":"14000005","display":"Mr. Toby274 Bins636"},"dateRecorded":"1963-03-24","snomed":{"code":"232353008","display":"Perennial allergic rhinitis with seasonal variation"},"icd":null,"category":"diagnosis","clinicalStatus":"active","onsetDateTime":"1963-03-24T15:49:14Z"}

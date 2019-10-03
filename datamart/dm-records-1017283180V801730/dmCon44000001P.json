@@ -1,1 +1,0 @@
-{"objectType":"Condition","objectVersion":"1","cdwId":"44000001:P","patient":{"type":"Patient","reference":"44000002","display":"Mr. Cary869 Wuckert783"},"dateRecorded":"1990-02-04","snomed":{"code":"124171000119105","display":"Chronic intractable migraine without aura"},"icd":null,"category":"problem","clinicalStatus":"active","onsetDateTime":"1990-02-04T17:45:50Z"}

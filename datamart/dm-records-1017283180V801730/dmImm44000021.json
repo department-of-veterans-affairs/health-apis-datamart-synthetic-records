@@ -1,1 +1,0 @@
-{"objectType":"Immunization","objectVersion":"1","cdwId":"44000021","status":"completed","date":"2016-01-29T17:45:50Z","vaccineCode":{"text":"Hep A  adult","code":"52"},"patient":{"type":"Patient","reference":"44000002","display":"Mr. Cary869 Wuckert783"},"wasNotGiven":false,"note":"Dose #2 of 2 of Hep A  adult vaccine administered.","reaction":{"display":"Rash or itching"}}
