@@ -1,0 +1,39 @@
+{
+  "objectType": "Patient",
+  "objectVersion": 1,
+  "fullIcn": "1017283180V801730",
+  "ssn": "001-01-1818",
+  "name": "Mr. Victor Frankenpatient",
+  "lastName": "Frankenpatient",
+  "firstName": "Victor",
+  "birthDateTime": "1974-12-15T00:00:00Z",
+  "deceased": "N",
+  "gender": "M",
+  "maritalStatus": {
+    "abbrev": "M",
+    "code": "M"
+  },
+  "race": [
+    {
+      "display": "White"
+    }
+  ],
+  "telecom": [
+    {
+      "type": "Patient Cell Phone",
+      "phoneNumber": "0110211931"
+    },
+    {
+      "type": "Patient Email",
+      "email": "modern.prometheus@maryshelley.com"
+    }
+  ],
+  "address": [
+    {
+      "street1": "20000 Shanktopus Lane",
+      "city": "Darmstadt",
+      "state": "Florida",
+      "postalCode": "01252"
+    }
+  ]
+}

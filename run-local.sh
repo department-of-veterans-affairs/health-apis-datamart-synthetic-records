@@ -18,6 +18,7 @@ then
   [ -f "environments/local.conf" ] && . environments/local.conf
   [ -z "$FLYWAY_PASSWORD" ] && "Help! I can't seem to find my password(FLYWAY_PASSWORD)!" && exit 1
   docker run \
+    --name "dqdb" \
     -e 'ACCEPT_EULA=Y' \
     -e "SA_PASSWORD=$FLYWAY_PASSWORD" \
     -p 1433:1433 \
