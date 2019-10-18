@@ -1,0 +1,30 @@
+{
+  "objectType": "MedicationOrder",
+  "objectVersion": "1",
+  "cdwId": "10000004:FP",
+  "patient": {
+    "type": "Patient",
+    "reference": "1017283180V801730",
+    "display": "Mr. Victor Frankenpatient"
+  },
+  "dateWritten": "2012-01-23T06:00:00Z",
+  "status": "DISCONTINUED BY PROVIDER",
+  "dateEnded": "2013-01-17T06:00:00Z",
+  "prescriber": {
+    "type": "Practitioner",
+    "reference": "4308",
+    "display": null
+  },
+  "medication": {
+    "type": "Medication",
+    "reference": "17247",
+    "display": "Errin 28 Day Pack"
+  },
+  "dispenseRequest": {
+    "numberOfRepeatsAllowed": null,
+    "quantity": 1,
+    "unit": null,
+    "expectedSupplyDuration": 30,
+    "supplyDurationUnits": "days"
+  }
+}

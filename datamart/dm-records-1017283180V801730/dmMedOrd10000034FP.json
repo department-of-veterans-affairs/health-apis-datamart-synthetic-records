@@ -1,0 +1,25 @@
+{
+  "objectType": "MedicationOrder",
+  "objectVersion": "1",
+  "cdwId": "10000034:FP",
+  "patient": {
+    "type": "Patient",
+    "reference": "1017283180V801730",
+    "display": "Mr. Victor Frankenpatient"
+  },
+  "dateWritten": "2012-12-02T08:00:00Z",
+  "status": "on-hold",
+  "dateEnded": "2012-12-02T08:00:00Z",
+  "medication": {
+    "type": "Medication",
+    "reference": "18815",
+    "display": "Clopidogrel 75 MG Oral Tablet"
+  },
+  "dispenseRequest": {
+    "numberOfRepeatsAllowed": null,
+    "quantity": 1,
+    "unit": null,
+    "expectedSupplyDuration": 30,
+    "supplyDurationUnits": "days"
+  }
+}

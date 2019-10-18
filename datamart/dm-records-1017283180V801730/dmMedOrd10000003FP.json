@@ -1,0 +1,29 @@
+{
+  "objectType": "MedicationOrder",
+  "objectVersion": "1",
+  "cdwId": "10000003:FP",
+  "patient": {
+    "type": "Patient",
+    "reference": "1017283180V801730",
+    "display": "Mr. Victor Frankenpatient"
+  },
+  "dateWritten": "1999-01-06T06:00:00Z",
+  "status": "DISCONTINUED (EDIT)",
+  "prescriber": {
+    "type": "Practitioner",
+    "reference": "4355",
+    "display": null
+  },
+  "medication": {
+    "type": "Medication",
+    "reference": "17256",
+    "display": "0.3 ML EPINEPHrine 0.5 MG/ML Auto-Injector"
+  },
+  "dispenseRequest": {
+    "numberOfRepeatsAllowed": null,
+    "quantity": 1,
+    "unit": null,
+    "expectedSupplyDuration": 30,
+    "supplyDurationUnits": "days"
+  }
+}

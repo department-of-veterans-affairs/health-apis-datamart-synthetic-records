@@ -1,0 +1,24 @@
+{
+  "objectType": "MedicationOrder",
+  "objectVersion": "1",
+  "cdwId": "10000015:FP",
+  "patient": {
+    "type": "Patient",
+    "reference": "1017283180V801730",
+    "display": "Mr. Victor Frankenpatient"
+  },
+  "dateWritten": "1950-07-23T07:00:00Z",
+  "status": "RENEW",
+  "medication": {
+    "type": "Medication",
+    "reference": "18805",
+    "display": "24hr nicotine transdermal patch"
+  },
+  "dispenseRequest": {
+    "numberOfRepeatsAllowed": null,
+    "quantity": 1,
+    "unit": null,
+    "expectedSupplyDuration": 30,
+    "supplyDurationUnits": "days"
+  }
+}
