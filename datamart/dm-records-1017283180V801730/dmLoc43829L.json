@@ -1,0 +1,21 @@
+{
+  "objectType" : "Location",
+  "objectVersion" : "1",
+  "cdwId" : "43829:L",
+  "status" : "active",
+  "name" : "TEM MH PSO TRS IND93EH 2",
+  "description" : "BLDG 146, RM W02",
+  "type" : "PSYCHIATRY CLINIC",
+  "telecom" : "254-743-2867 x0002",
+  "address" : {
+    "line1" : "1901 VETERANS MEMORIAL DRIVE",
+    "city" : "TEMPLE",
+    "state" : "TEXAS",
+    "postalCode" : 76504
+  },
+  "physicalType" : "BLDG 146, RM W02",
+  "managingOrganization" : {
+    "reference" : "561596:I",
+    "display" : "CHEYENNE VA MEDICAL"
+  }
+}

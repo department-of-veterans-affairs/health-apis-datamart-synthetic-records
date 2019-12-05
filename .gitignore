@@ -1,4 +1,4 @@
 flyway-*
+.jenkins/*
 data-query.tar.gz
 transformFailures.txt
-.jenkins
