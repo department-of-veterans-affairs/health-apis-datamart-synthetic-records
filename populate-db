@@ -81,16 +81,22 @@ then
   JAVA_EXE=$JAVA_HOME/bin/java
 fi
 MAIN_CLASS=gov.va.api.health.dataquery.tools.minimart.MitreMinimartMaker
+
 #
-# Execute the MMM for each set of user records, loading each type of supported resource.
+# If a specific user was given, use that users directory, otherwise just use the base parent
+# datamart directory.
 #
-for USER_RECORDS_DIR in $(find $DATAMART_DIR -maxdepth 1 -type d -name "dm-records-${THE_CHOSEN_PATIENT:-*}" | sort)
+DIRECTORY_TO_IMPORT=$DATAMART_DIR
+if [ -n "$THE_CHOSEN_PATIENT" ]
+then
+  DIRECTORY_TO_IMPORT=$DATAMART_DIR/dm-records-$THE_CHOSEN_PATIENT
+fi
+
+#                                                                                                                   # Execute the MMM for each set of user records, loading each type of supported resource.                            #
+echo "Loading records in $DIRECTORY_TO_IMPORT"
+for RESOURCE_TYPE in $RESOURCE_TYPES
 do
-  echo "Loading records in $USER_RECORDS_DIR"
-  for RESOURCE_TYPE in $RESOURCE_TYPES
-  do
-    $JAVA_EXE -cp "$(basename $DQ_DIR)/*" \
-      -Dlogback.configurationFile=$BASE_DIR/logback.xml \
-      $MAIN_CLASS $RESOURCE_TYPE $USER_RECORDS_DIR $CONFIG_FILE
-  done
+  $JAVA_EXE -cp "$(basename $DQ_DIR)/*" \
+    -Dlogback.configurationFile=$BASE_DIR/logback.xml \
+    $MAIN_CLASS $RESOURCE_TYPE $DIRECTORY_TO_IMPORT $CONFIG_FILE
 done
