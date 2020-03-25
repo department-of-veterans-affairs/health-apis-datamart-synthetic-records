@@ -29,6 +29,7 @@ import gov.va.api.health.dataquery.service.controller.organization.DatamartOrgan
 import gov.va.api.health.dataquery.service.controller.organization.OrganizationEntity;
 import gov.va.api.health.dataquery.service.controller.patient.DatamartPatient;
 import gov.va.api.health.dataquery.service.controller.patient.PatientEntity;
+import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.patient.PatientSearchEntity;
 import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPractitioner;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
@@ -80,6 +81,7 @@ public class MitreMinimartMaker {
           OrganizationEntity.class,
           PatientEntity.class,
           PatientSearchEntity.class,
+          PatientEntityV2.class,
           PractitionerEntity.class,
           ProcedureEntity.class);
 
@@ -245,8 +247,6 @@ public class MitreMinimartMaker {
   private void insertByFallRiskPayload(String payload) {
     DatamartFallRisk dm = JacksonConfig.createMapper().readValue(payload, DatamartFallRisk.class);
     String cdwId = dm.cdwId();
-    // TODO - ENTITY NEEDS TO BE UPDATED WITH NEW COLUMNS
-
     FallRiskEntity entity =
         FallRiskEntity.builder()
             .admitDateTime(dm.admitDateTime())
@@ -375,6 +375,8 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private void insertByPatient(File file) {
     DatamartPatient dm = JacksonConfig.createMapper().readValue(file, DatamartPatient.class);
+
+    // Old patient entity model, 2 tables
     PatientEntity patEntity =
         PatientEntity.builder().icn(dm.fullIcn()).payload(fileToString(file)).build();
     save(patEntity);
@@ -389,6 +391,20 @@ public class MitreMinimartMaker {
             .patient(patEntity)
             .build();
     save(patientSearchEntity);
+
+    // New combined entity model, 1 table
+    PatientEntityV2 patientEntityV2 =
+        PatientEntityV2.builder()
+            .icn(dm.fullIcn())
+            .fullName(dm.name())
+            .lastName(dm.lastName())
+            .firstName(dm.firstName())
+            .birthDate(Instant.parse(dm.birthDateTime()))
+            .gender(dm.gender())
+            // .lastUpdated() unused
+            .payload(fileToString(file))
+            .build();
+    save(patientEntityV2);
   }
 
   @SneakyThrows

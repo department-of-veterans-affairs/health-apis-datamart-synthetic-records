@@ -35,6 +35,7 @@ CREATE TABLE [app].[Patient](
   [Gender] [varchar](50) NULL,
   [LastUpdated] smalldatetime DEFAULT GETUTCDATE(),
   [Patient] [varchar](max) NULL
+  constraint PK_Patient primary key clustered (PatientFullICN)
 )
 GO
 
