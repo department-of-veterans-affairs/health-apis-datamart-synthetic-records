@@ -11,7 +11,7 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <properties>
-    <data-query.version>2.0.288</data-query.version>
+    <data-query.version>2.0.289</data-query.version>
     <fall-risk.version>1.0.29</fall-risk.version>
     <git.allowedBranchNames><![CDATA[^(dependabot/.*|staging_lab|lab|PR-[0-9]+|(.*/)?[A-Z]{2,10}-[0-9]+-.*)$]]></git.allowedBranchNames>
   </properties>
