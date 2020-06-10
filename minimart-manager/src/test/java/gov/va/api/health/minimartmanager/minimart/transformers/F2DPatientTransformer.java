@@ -1,6 +1,6 @@
 package gov.va.api.health.minimartmanager.minimart.transformers;
 
-import static gov.va.api.health.dataquery.service.controller.Dstu2Transformers.parseInstant;
+import static gov.va.api.health.dataquery.service.controller.Transformers.parseInstant;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import gov.va.api.health.argonaut.api.resources.Patient;

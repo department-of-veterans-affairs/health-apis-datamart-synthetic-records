@@ -353,9 +353,6 @@ public class MitreMinimartMaker {
         OrganizationEntity.builder()
             .cdwId(dm.cdwId())
             .npi(dm.npi().orElse(null))
-            .providerId(dm.providerId().orElse(null))
-            .ediId(dm.ediId().orElse(null))
-            .agencyId(dm.agencyId().orElse(null))
             .payload(fileToString(file))
             .street(
                 trimToNull(
