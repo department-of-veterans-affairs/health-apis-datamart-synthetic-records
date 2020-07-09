@@ -108,14 +108,14 @@ $FLYWAY migrate \
 
 
 #
-# Look for a Java 12 that is nearby. If we find one use it (like in the docker image for Jenkins)
+# Look for a Java 14 that is nearby. If we find one use it (like in the docker image for Jenkins)
 # Otherwise, just assume 'java' will magically exist.
 #
 JAVA_EXE=java
-JAVA_12=$(find ${EXTRA_JRES:-} -maxdepth 1 -type d -name "jdk-12.*" | head -1)
-if [ -n "${JAVA_12:-}" ]
+JAVA_14=$(find ${EXTRA_JRES:-} -maxdepth 1 -type d -name "jdk-14.*" | head -1)
+if [ -n "${JAVA_14:-}" ]
 then
-  export JAVA_HOME=$JAVA_12
+  export JAVA_HOME=$JAVA_14
   JAVA_EXE=$JAVA_HOME/bin/java
 fi
 

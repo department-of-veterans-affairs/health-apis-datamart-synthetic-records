@@ -1,5 +1,5 @@
 #
-# Adds Java 12 to flyway image so we can run our custom resource loader
+# Adds Java 14 to flyway image so we can run our custom resource loader
 #
 FROM flyway/flyway:6.0.1
 
@@ -24,12 +24,10 @@ RUN echo 'java.nio.file.Files.copy(new java.net.URL("http://aia.pki.va.gov/PKI/A
 USER flyway
 
 ENTRYPOINT []
-RUN curl -sL http://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz -o /tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.tar.gz
+RUN curl -sL http://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14.0.1%2B7/OpenJDK14U-jdk_x64_linux_hotspot_14.0.1_7.tar.gz -o /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.tar.gz
 ENV EXTRA_JRES=/flyway/jre/
-RUN mkdir -p $EXTRA_JRES && tar -x -C $EXTRA_JRES -f /tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.tar.gz
+RUN mkdir -p $EXTRA_JRES && tar -x -C $EXTRA_JRES -f /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.tar.gz
 
 RUN curl -sL http://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -o /tmp/apache-maven-3.6.3-bin.tar.gz \
   && tar -x -C /flyway/ -f /tmp/apache-maven-3.6.3-bin.tar.gz
 ENV EXTRA_MVNS=/flyway/
-
-
