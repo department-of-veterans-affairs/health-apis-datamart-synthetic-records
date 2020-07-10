@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
 import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportCrossEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportsEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.LocationEntity;
@@ -46,6 +47,7 @@ public class DatamartExporter {
           ExportForPatientCriteria.of(AllergyIntoleranceEntity.class),
           ExportForPatientCriteria.of(ConditionEntity.class),
           ExportForPatientCriteria.of(DiagnosticReportCrossEntity.class),
+          ExportForPatientCriteria.of(DiagnosticReportEntity.class),
           ExportForPatientCriteria.of(DiagnosticReportsEntity.class),
           ExportAllCriteria.of(FallRiskEntity.class),
           ExportForPatientCriteria.of(ImmunizationEntity.class),
