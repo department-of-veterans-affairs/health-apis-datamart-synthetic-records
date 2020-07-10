@@ -43,7 +43,7 @@ pipeline {
     }
   }
   environment {
-    ENVIRONMENT = "${["staging_lab", "lab"].contains(env.BRANCH_NAME) ? env.BRANCH_NAME.replaceAll('_','-') : "i-cant-even-w-this"}"
+    ENVIRONMENT = "${["staging_lab", "lab"].contains(env.BRANCH_NAME) ? env.BRANCH_NAME.replaceAll('_','-') : "staging_lab"}"
   }
   stages {
     stage('Clean') {
@@ -63,7 +63,7 @@ pipeline {
     stage('Build') {
       when {
         expression { return env.CLEAN != 'true'}
-        //expression { return env.ENVIRONMENT != 'i-cant-even-w-this' }
+        expression { return env.ENVIRONMENT != 'i-cant-even-w-this' }
       }
       steps {
         saunter('./build.sh')
@@ -77,7 +77,6 @@ pipeline {
         currentBuild.displayName = "#${currentBuild.number} - ${buildName}"
         def description = sh returnStdout: true, script: '''[ -f .jenkins/description ] && cat .jenkins/description ; exit 0'''
         currentBuild.description = "${description}"
-        sendNotifications('shankins')
         if (env.ENVIRONMENT != 'i-cant-even-w-this') {
           sendNotifications('shankins')
         }
