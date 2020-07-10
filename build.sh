@@ -7,6 +7,12 @@ cd $(readlink -f $(dirname $0))
 BASE_DIR=$(pwd)
 export PATH=$BASE_DIR:$PATH
 
+trap onExit EXIT
+
+onExit() {
+  [ "${ENVIRONMENT}" == "local" ] && [ -d "$JENKINS_DIR" ] && rm -r $JENKINS_DIR
+}
+
 #
 # Set up a mechanism to communicate job descriptions, etc. so that Jenkins provides more meaningful pages
 #
