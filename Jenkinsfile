@@ -37,12 +37,9 @@ pipeline {
     booleanParam(name: 'CLEAN', defaultValue: false, description: "Remove existing database and start from scratch.")
   }
   agent {
-    docker {
-      registryUrl 'https://index.docker.io/v1/'
-      registryCredentialsId 'DOCKER_USERNAME_PASSWORD'
-      image 'vasdvp/health-apis-synthetic-records-builder:latest'
+    dockerfile {
+      filename './docker/Dockerfile'
       args "--privileged --group-add 497 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /data/jenkins/.m2/repository:/home/jenkins/.m2/repository -v /var/lib/jenkins/.ssh:/home/jenkins/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker"
-      alwaysPull true
     }
   }
   environment {
