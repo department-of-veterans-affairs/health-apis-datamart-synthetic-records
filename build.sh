@@ -136,3 +136,10 @@ cat $CONFIG_FILE
 # Run test PopulateDb "test", which will launch the MMM
 #
 mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
+
+if [ "$?" != "0" ]; then
+ echo -e "\nFAILURE"
+else
+ echo -e "\nSUCCESS"
+ exit 0
+fi

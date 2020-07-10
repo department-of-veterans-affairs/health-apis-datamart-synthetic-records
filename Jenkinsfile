@@ -62,25 +62,27 @@ pipeline {
     }
     stage('Build') {
       when {
-        expression { return env.ENVIRONMENT != 'i-cant-even-w-this' }
+        expression { return env.CLEAN != 'true'}
+        //expression { return env.ENVIRONMENT != 'i-cant-even-w-this' }
       }
       steps {
         saunter('./build.sh')
       }
     }
   }
-    post {
+  post {
     always {
       script {
-         def buildName = sh returnStdout: true, script: '''[ -f .jenkins/build-name ] && cat .jenkins/build-name ; exit 0'''
+        def buildName = sh returnStdout: true, script: '''[ -f .jenkins/build-name ] && cat .jenkins/build-name ; exit 0'''
         currentBuild.displayName = "#${currentBuild.number} - ${buildName}"
         def description = sh returnStdout: true, script: '''[ -f .jenkins/description ] && cat .jenkins/description ; exit 0'''
         currentBuild.description = "${description}"
+        sendNotifications('shankins')
         if (env.ENVIRONMENT != 'i-cant-even-w-this') {
-          sendNotifications("shankins")
+          sendNotifications('shankins')
         }
         if (env.ENVIRONMENT == 'lab') {
-          sendNotifications("api_operations")
+          sendNotifications('api_operations')
         }
       }
     }
