@@ -310,7 +310,7 @@ public class MitreMinimartMaker {
                       .icn(dm.fullIcn())
                       .category("LAB")
                       .code(null)
-                      .dateUtc(null)
+                      .dateUtc(Instant.parse(report.issuedDateTime()))
                       .lastUpdated(null)
                       .payload(
                           JacksonConfig.createMapper()
