@@ -4,13 +4,20 @@ WORKING_DIR=$(readlink -f $(dirname $0))
 cd $WORKING_DIR
 
 main() {
-
   if [ "$1" == "start" ]; then
     createDatabase
     shift
   fi
 
+  syntheticRecordsBuilder
+
   loadDatabase $@
+}
+
+syntheticRecordsBuilder() {
+  cd $WORKING_DIR/docker
+  docker build -t vasdvp/health-apis-synthetic-records-builder:local .
+  cd $WORKING_DIR
 }
 
 createDatabase() {
@@ -28,7 +35,8 @@ createDatabase() {
     -p 1433:1433 \
     -d mcr.microsoft.com/mssql/server:2017-latest
 
-  sleep 5
+  # Needs time to create SA user
+  sleep 10
 }
 
 loadDatabase() {
@@ -37,7 +45,7 @@ loadDatabase() {
     -v $(pwd):/root/synthetic-records \
     -v ~/.m2:/root/.m2 \
     --network host \
-    vasdvp/health-apis-synthetic-records-builder:latest \
+    vasdvp/health-apis-synthetic-records-builder:local \
     ./root/synthetic-records/build.sh $@
 }
 
