@@ -80,7 +80,7 @@ pipeline {
           sendNotifications("shankins")
         }
         if (env.ENVIRONMENT == 'lab') {
-          sendNotifications("api-operations")
+          sendNotifications("api_operations")
         }
       }
     }
