@@ -7,6 +7,12 @@ cd $(readlink -f $(dirname $0))
 BASE_DIR=$(pwd)
 export PATH=$BASE_DIR:$PATH
 
+trap onExit EXIT
+
+onExit() {
+  [ "${ENVIRONMENT}" == "local" ] && [ -d "$JENKINS_DIR" ] && rm -r $JENKINS_DIR
+}
+
 #
 # Set up a mechanism to communicate job descriptions, etc. so that Jenkins provides more meaningful pages
 #
@@ -107,31 +113,7 @@ $FLYWAY migrate \
     -schemas=app
 
 
-#
-# Look for a Java 12 that is nearby. If we find one use it (like in the docker image for Jenkins)
-# Otherwise, just assume 'java' will magically exist.
-#
-JAVA_EXE=java
-JAVA_12=$(find ${EXTRA_JRES:-} -maxdepth 1 -type d -name "jdk-12.*" | head -1)
-if [ -n "${JAVA_12:-}" ]
-then
-  export JAVA_HOME=$JAVA_12
-  JAVA_EXE=$JAVA_HOME/bin/java
-fi
-
 DATAMART_DIR=$BASE_DIR/datamart
-
-
-#
-# Look for a Maven near by
-#
-MVN_EXE=mvn
-LOCAL_MAVEN_HOME=$(find ${EXTRA_MVNS:-} -maxdepth 1 -type d -name "*maven-3.6*" | head -1)
-if [ -n "${LOCAL_MAVEN_HOME:-}" ]
-then
-  export MAVEN_HOME=$LOCAL_MAVEN_HOME
-  MVN_EXE=$LOCAL_MAVEN_HOME/bin/mvn
-fi
 
 #
 # Populate Database
@@ -153,4 +135,4 @@ cat $CONFIG_FILE
 #
 # Run test PopulateDb "test", which will launch the MMM
 #
-$MVN_EXE -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
+mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
