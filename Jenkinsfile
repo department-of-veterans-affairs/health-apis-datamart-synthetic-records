@@ -69,6 +69,7 @@ pipeline {
       }
       steps {
         saunter('./build.sh')
+        sh script: '''echo hello'''
       }
     }
   }
