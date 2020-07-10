@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
-cd $(readlink -f $(dirname $0))
+WORKING_DIR=$(readlink -f $(dirname $0))
+cd $WORKING_DIR
 
-export ENVIRONMENT=local
-if [ "$1" == "clean" ]
-then
-  ./build.sh clean
-  exit
-# If we start we don't need to clean, nothing is in there to begin with.
-elif [ "$1" == "start" ]
-then
+main() {
+  
+  if [ "$1" == "start" ]; then
+    createDatabase
+    shift
+  fi
+
+  loadDatabase $@
+}
+
+createDatabase() {
   # SQL Server Docker Image (You don't have to install anything!!!)
   docker pull mcr.microsoft.com/mssql/server:2017-latest
 
@@ -24,6 +28,17 @@ then
     -p 1433:1433 \
     -d mcr.microsoft.com/mssql/server:2017-latest
 
-   sleep 5
-fi
-./build.sh
+  sleep 5
+}
+
+loadDatabase() {
+  docker run --rm -it \
+    -e ENVIRONMENT="local" \
+    -v $(pwd):/root/synthetic-records \
+    -v /home/jhulbert/.m2:/root/.m2 \
+    --network host \
+    vasdvp/health-apis-synthetic-records-builder:latest \
+    ./root/synthetic-records/build.sh $@
+}
+
+main $@
