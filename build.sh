@@ -105,7 +105,7 @@ $FLYWAY migrate \
 #
 # Now apply migrations
 #
-announce "Migrating database"
+announce "Migrating Database"
 $FLYWAY migrate \
     -url="${FLYWAY_BASE_URL};databaseName=$FLYWAY_PLACEHOLDERS_DB_NAME" \
     -table=flyway_schema_history \
@@ -135,11 +135,13 @@ cat $CONFIG_FILE
 #
 # Run test PopulateDb "test", which will launch the MMM
 #
-mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
+announce "Populating Database Tables"
 
-if [ "$?" != "0" ]; then
- echo -e "\nFAILURE"
+if mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
+then
+  echo -e "\nStage: SUCCESS"
+  exit 0
 else
- echo -e "\nSUCCESS"
- exit 0
+  echo -e "\nStage: FAILURE"
+  exit 1
 fi
