@@ -79,7 +79,7 @@ pipeline {
         if (env.ENVIRONMENT != 'i-cant-even-w-this') {
           sendNotifications("shankins")
         }
-        if (env.ENVIRONMENT != 'lab') {
+        if (env.ENVIRONMENT == 'lab') {
           sendNotifications("api-operations")
         }
       }
