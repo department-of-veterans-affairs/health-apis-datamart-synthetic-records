@@ -12,7 +12,7 @@
   <packaging>jar</packaging>
   <properties>
     <data-query.version>3.0.1</data-query.version>
-    <fall-risk.version>1.0.29</fall-risk.version>
+    <fall-risk.version>2.0.0</fall-risk.version>
     <git.allowedBranchNames><![CDATA[^(dependabot/.*|staging_lab|lab|PR-[0-9]+|(.*/)?[A-Z]{2,10}-[0-9]+-.*)$]]></git.allowedBranchNames>
   </properties>
   <dependencies>
