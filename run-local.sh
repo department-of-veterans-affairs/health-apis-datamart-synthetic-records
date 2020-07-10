@@ -4,7 +4,7 @@ WORKING_DIR=$(readlink -f $(dirname $0))
 cd $WORKING_DIR
 
 main() {
-  
+
   if [ "$1" == "start" ]; then
     createDatabase
     shift
@@ -35,7 +35,7 @@ loadDatabase() {
   docker run --rm -it \
     -e ENVIRONMENT="local" \
     -v $(pwd):/root/synthetic-records \
-    -v /home/jhulbert/.m2:/root/.m2 \
+    -v ~/.m2:/root/.m2 \
     --network host \
     vasdvp/health-apis-synthetic-records-builder:latest \
     ./root/synthetic-records/build.sh $@
