@@ -43,7 +43,7 @@ pipeline {
     }
   }
   environment {
-    ENVIRONMENT = "${["staging_lab", "lab"].contains(env.BRANCH_NAME) ? env.BRANCH_NAME.replaceAll('_','-') : "staging_lab"}"
+    ENVIRONMENT = "${["staging_lab", "lab"].contains(env.BRANCH_NAME) ? env.BRANCH_NAME.replaceAll('_','-') : "staging-lab"}"
   }
   stages {
     stage('Clean') {
