@@ -77,10 +77,10 @@ pipeline {
         def description = sh returnStdout: true, script: '''[ -f .jenkins/description ] && cat .jenkins/description ; exit 0'''
         currentBuild.description = "${description}"
         if (env.ENVIRONMENT != 'i-cant-even-w-this') {
-          sendNotifications("shankins")
+          sendNotifications('shankins')
         }
         if (env.ENVIRONMENT == 'lab') {
-          sendNotifications("api_operations")
+          sendNotifications('api_operations')
         }
       }
     }
