@@ -19,7 +19,7 @@ def saunter(scriptName) {
     usernamePassword(
       credentialsId: 'STGLABUSER_USERNAME_PASSWORD',
       usernameVariable: 'STGLABUSER_USERNAME',
-      passwordVariable: 'STGLABUSER_PASSWORD'),
+      passwordVariable: 'STGLABUSER_PASSWORD')
    ]) {
     sh script: scriptName
   }
