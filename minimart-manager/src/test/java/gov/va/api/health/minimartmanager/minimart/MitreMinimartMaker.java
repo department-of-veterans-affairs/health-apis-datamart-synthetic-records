@@ -153,9 +153,7 @@ public class MitreMinimartMaker {
         .topography(Optional.ofNullable(topography))
         .visit(Optional.ofNullable(visit))
         .orders(
-            report
-                .orders()
-                .stream()
+            report.orders().stream()
                 .map(
                     o ->
                         DatamartReference.builder()
@@ -165,9 +163,7 @@ public class MitreMinimartMaker {
                             .build())
                 .collect(toList()))
         .results(
-            report
-                .results()
-                .stream()
+            report.results().stream()
                 .map(
                     r ->
                         DatamartReference.builder()
