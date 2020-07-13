@@ -139,11 +139,4 @@ cat $CONFIG_FILE
 #
 announce "Populating Database Tables"
 
-if mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
-then
-  echo -e "\nStage: SUCCESS"
-  exit 0
-else
-  echo -e "\nStage: FAILURE"
-  exit 1
-fi
+mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
