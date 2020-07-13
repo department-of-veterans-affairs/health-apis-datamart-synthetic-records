@@ -10,7 +10,9 @@ export PATH=$BASE_DIR:$PATH
 trap onExit EXIT
 
 onExit() {
-  [ "${ENVIRONMENT}" == "local" ] && [ -d "$JENKINS_DIR" ] && rm -r $JENKINS_DIR
+  local status=$?
+  if [ "${ENVIRONMENT}" == "local" -a -d "$JENKINS_DIR" ]; then rm -r $JENKINS_DIR; fi
+  return $status
 }
 
 #
@@ -19,7 +21,7 @@ onExit() {
 JENKINS_DIR=$BASE_DIR/.jenkins
 JENKINS_DESCRIPTION=$JENKINS_DIR/description
 JENKINS_BUILD_NAME=$JENKINS_DIR/build-name
-[ -d "$JENKINS_DIR" ] && rm -rf "$JENKINS_DIR"
+if [ -d "$JENKINS_DIR" ]; then rm -rf "$JENKINS_DIR"; fi
 mkdir "$JENKINS_DIR"
 
 #
