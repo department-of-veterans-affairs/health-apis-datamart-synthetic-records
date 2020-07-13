@@ -68,7 +68,9 @@ pipeline {
         expression { return env.ENVIRONMENT != 'i-cant-even-w-this' }
       }
       steps {
-        System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL", "300")
+        script {
+          System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL", "300")
+        }
         saunter('./build.sh')
         sh script: '''echo hello'''
       }
