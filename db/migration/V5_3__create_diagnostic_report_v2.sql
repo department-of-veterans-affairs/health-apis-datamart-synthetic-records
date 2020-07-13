@@ -13,5 +13,11 @@ GO
 CREATE INDEX [IX_DiagnosticReport_V2_PatientFullICN] on [App].[DiagnosticReport_V2]([PatientFullICN])
 GO
 
+CREATE INDEX [IX_DiagnosticReport_V2_Category] on [App].[DiagnosticReport_V2]([Category])
+GO
+
+CREATE INDEX [IX_DiagnosticReport_V2_Code] on [App].[DiagnosticReport_V2]([Code])
+GO
+
 CREATE INDEX [IX_DiagnosticReport_V2_DateUTC] on [App].[DiagnosticReport_V2]([DateUTC])
 GO
