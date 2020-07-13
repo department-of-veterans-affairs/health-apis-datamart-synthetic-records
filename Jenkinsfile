@@ -62,7 +62,7 @@ pipeline {
     }
     stage('Build') {
       when {
-        expression { return env.CLEAN != 'true'}
+        expression { return env.CLEAN != 'true' }
         expression { return env.ENVIRONMENT != 'i-cant-even-w-this' }
       }
       steps {
