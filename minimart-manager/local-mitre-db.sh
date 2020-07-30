@@ -64,7 +64,7 @@ LOCAL_DB=$BASE_DIR/target/mitre
 
 case $1 in
   export-fall-risk) exportLocalMitreDb "FallRisk";;
-  export-data-query) exportLocalMitreDb "AllergyIntolerance,Condition,Datamart,DiagnosticReportCross,DiagnosticReports,Immunization,Location,Medication,MedicationOrder,MedicationStatement,Observation,Organization,PatientV2,Practitioner,Procedure";;
+  export-data-query) exportLocalMitreDb "AllergyIntolerance,Condition,Datamart,DiagnosticReportCross,DiagnosticReports,DiagnosticReport,Immunization,Location,Medication,MedicationOrder,MedicationStatement,Observation,Organization,PatientV2,Practitioner,Procedure";;
   open) openLocalMitreDb;;
   *) usage;;
 esac
