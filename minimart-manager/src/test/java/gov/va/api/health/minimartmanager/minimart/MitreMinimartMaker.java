@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
@@ -124,7 +125,6 @@ public class MitreMinimartMaker {
             .reference(Optional.of(wrapper.fullIcn()))
             .display(Optional.ofNullable(wrapper.patientName()))
             .build();
-
     DatamartReference accessionInstitution =
         report.accessionInstitutionSid() == null
             ? null
@@ -133,7 +133,6 @@ public class MitreMinimartMaker {
                 .reference(Optional.of(report.accessionInstitutionSid()))
                 .display(Optional.ofNullable(report.accessionInstitutionName()))
                 .build();
-
     // staff, topography, and visit are not present in source data
     checkState(report.verifyingStaffSid() == null);
     DatamartReference verifyingStaff = null;
@@ -141,7 +140,6 @@ public class MitreMinimartMaker {
     DatamartReference topography = null;
     checkState(report.visitSid() == null);
     DatamartReference visit = null;
-
     return DatamartDiagnosticReport.builder()
         .cdwId(report.identifier())
         .patient(patient)
@@ -230,8 +228,8 @@ public class MitreMinimartMaker {
         ConditionEntity.builder()
             .cdwId(dm.cdwId())
             .icn(patientIcn(dm.patient()))
-            .category(dm.category().toString())
-            .clinicalStatus(dm.clinicalStatus().toString())
+            .category(jsonValue(dm.category()))
+            .clinicalStatus(jsonValue(dm.clinicalStatus()))
             .payload(fileToString(file))
             .build();
     save(entity);
@@ -308,8 +306,6 @@ public class MitreMinimartMaker {
                   DiagnosticReportEntity.builder()
                       .cdwId(report.identifier())
                       .icn(dm.fullIcn())
-                      // DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
-                      // All currently existing data for LAB translates to CH
                       .category("CH")
                       .code(null)
                       .dateUtc(Instant.parse(report.issuedDateTime()))
@@ -433,7 +429,7 @@ public class MitreMinimartMaker {
             .cdwId(dm.cdwId())
             .icn(dm.subject().isPresent() ? patientIcn(dm.subject().get()) : null)
             .payload(fileToString(file))
-            .category(dm.category().name())
+            .category(jsonValue(dm.category()))
             .code(
                 dm.code().isPresent() && dm.code().get().coding().isPresent()
                     ? dm.code().get().coding().get().code().orElse(null)
@@ -512,6 +508,15 @@ public class MitreMinimartMaker {
   private void insertResourceByPattern(
       File dmDirectory, String filePattern, Consumer<File> fileWriter) {
     findUniqueFiles(dmDirectory, filePattern).parallel().forEach(fileWriter);
+  }
+
+  @SneakyThrows
+  <E extends Enum<E>> String jsonValue(E e) {
+    JsonProperty jsonProperty = e.getClass().getField(e.name()).getAnnotation(JsonProperty.class);
+    if (jsonProperty != null && jsonProperty.value() != null) {
+      return jsonProperty.value();
+    }
+    return e.toString();
   }
 
   @SneakyThrows
