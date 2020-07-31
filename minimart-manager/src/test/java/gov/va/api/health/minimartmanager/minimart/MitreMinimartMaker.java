@@ -528,7 +528,10 @@ public class MitreMinimartMaker {
   private List<File> listDiagnosticReportFiles(File dmDirectory) {
     return Arrays.stream(dmDirectory.listFiles())
         .filter(File::isFile)
-        .filter(f -> f.getName().matches("^dmDiaRep.*json$"))
+        .filter(
+            f ->
+                f.getName()
+                    .matches(DatamartFilenamePatterns.get().json(DatamartDiagnosticReport.class)))
         .collect(toList());
   }
 
@@ -547,47 +550,89 @@ public class MitreMinimartMaker {
     }
     switch (resourceToSync) {
       case "AllergyIntolerance":
-        insertResourceByPattern(dmDirectory, "^dmAllInt.*json$", this::insertByAllergyIntolerance);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartAllergyIntolerance.class),
+            this::insertByAllergyIntolerance);
         break;
       case "Condition":
-        insertResourceByPattern(dmDirectory, "^dmCon.*json$", this::insertByCondition);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartCondition.class),
+            this::insertByCondition);
         break;
       case "DiagnosticReport":
         insertByDiagnosticReport(dmDirectory);
         break;
       case "FallRisk":
-        insertResourceByPattern(dmDirectory, "^dmFalRis.*json$", this::insertByFallRisk);
-        insertResourceByPattern(dmDirectory, "^dmFalRis.*ndjson$", this::insertByFallRiskNd);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartFallRisk.class),
+            this::insertByFallRisk);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().ndjson(DatamartFallRisk.class),
+            this::insertByFallRiskNd);
         break;
       case "Immunization":
-        insertResourceByPattern(dmDirectory, "^dmImm.*json$", this::insertByImmunization);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartImmunization.class),
+            this::insertByImmunization);
         break;
       case "Location":
-        insertResourceByPattern(dmDirectory, "^dmLoc.*json$", this::insertByLocation);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartLocation.class),
+            this::insertByLocation);
         break;
       case "Medication":
-        insertResourceByPattern(dmDirectory, "^dmMed(?!Sta|Ord).*json$", this::insertByMedication);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartMedication.class),
+            this::insertByMedication);
         break;
       case "MedicationOrder":
-        insertResourceByPattern(dmDirectory, "^dmMedOrd.*json$", this::insertByMedicationOrder);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartMedicationOrder.class),
+            this::insertByMedicationOrder);
         break;
       case "MedicationStatement":
-        insertResourceByPattern(dmDirectory, "^dmMedSta.*json$", this::insertByMedicationStatement);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartMedicationStatement.class),
+            this::insertByMedicationStatement);
         break;
       case "Observation":
-        insertResourceByPattern(dmDirectory, "^dmObs.*json$", this::insertByObservation);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartObservation.class),
+            this::insertByObservation);
         break;
       case "Organization":
-        insertResourceByPattern(dmDirectory, "^dmOrg.*json$", this::insertByOrganization);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartOrganization.class),
+            this::insertByOrganization);
         break;
       case "Patient":
-        insertResourceByPattern(dmDirectory, "^dmPat.*json$", this::insertByPatient);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartPatient.class),
+            this::insertByPatient);
         break;
       case "Practitioner":
-        insertResourceByPattern(dmDirectory, "^dmPra.*json$", this::insertByPractitioner);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartPractitioner.class),
+            this::insertByPractitioner);
         break;
       case "Procedure":
-        insertResourceByPattern(dmDirectory, "^dmPro.*json$", this::insertByProcedure);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartProcedure.class),
+            this::insertByProcedure);
         break;
       default:
         throw new RuntimeException("Couldnt determine resource type for file: " + resourceToSync);
