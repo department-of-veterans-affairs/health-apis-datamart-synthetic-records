@@ -9,10 +9,6 @@ transformFhirToDatamart() {
   local workingDir="$REPO/datamart-exporter"
   [ -z "$DIRECTORY" ] && usage "Directory is a Required Option." && exit 1
   [ -z "$RESOURCE_TYPE" ] && usage "Resource Type is a Required Option." && exit 1
-  [ -z "$CONFIG_FILE" ] \
-    && [ ! -d "$REPO/health-apis-data-query-synthetic-records" ] \
-    && usage 'Either `health-apis-data-query-sythetic-records` needs to be cloned in parent directory or config file needs to be defined.' \
-    && exit 1
   [ "$COMPILE" == 'true' ] && mvn -f "$workingDir" test-compile
   mvn -f "$workingDir" \
     -P'!standard' \
@@ -20,7 +16,7 @@ transformFhirToDatamart() {
     generate-resources \
     -DresourceType="$RESOURCE_TYPE" \
     -DinputDirectory="$DIRECTORY" \
-    -DidsConfig=${CONFIG_FILE:-"$REPO/health-apis-data-query-synthetic-records/identity-service.properties"}
+    -DidsConfig=${CONFIG_FILE:-"identity-service.properties"}
 }
 
 usage() {
