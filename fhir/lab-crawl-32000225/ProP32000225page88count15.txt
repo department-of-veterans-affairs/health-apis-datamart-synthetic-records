@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/api/Procedure?patient=32000225&page=88&_count=15
-TIMESTAMP: 2019-09-18T14:32:26.158016Z
-HTTP_STATUS: 200
-OUTCOME: OK

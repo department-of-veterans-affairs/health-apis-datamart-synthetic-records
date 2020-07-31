@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/api/Medication/b5ef4ab9-0e62-5d8d-8ddd-015a45bfabba
-TIMESTAMP: 2019-09-24T13:44:01.692667Z
-HTTP_STATUS: 200
-OUTCOME: OK

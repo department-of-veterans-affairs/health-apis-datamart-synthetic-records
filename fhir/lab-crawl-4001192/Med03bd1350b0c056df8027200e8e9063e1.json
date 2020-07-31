@@ -1,1 +1,0 @@
-{"id":"3be6badc-2be5-4bd9-bb6a-9a82cd21ba82","resourceType":"OperationOutcome","text":{"status":"additional","div":"<div>Failure: /Medication/03bd1350-b0c0-56df-8027-200e8e9063e1</div>"},"issue":[{"severity":"fatal","code":"exception","diagnostics":"Error: SearchFailed Timestamp:2019-09-14T22:05:14.544169Z"}]}

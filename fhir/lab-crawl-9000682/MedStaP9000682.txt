@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/MedicationStatement?patient=9000682
-TIMESTAMP: 2019-09-23T19:47:24.174728Z
-HTTP_STATUS: 200
-OUTCOME: OK

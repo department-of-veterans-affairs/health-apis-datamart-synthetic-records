@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/AllergyIntolerance?patient=43000334
-TIMESTAMP: 2019-09-14T04:21:38.597816Z
-HTTP_STATUS: 200
-OUTCOME: OK

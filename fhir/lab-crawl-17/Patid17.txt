@@ -1,4 +1,0 @@
-QUERY: https://dev-api.va.gov/services/argonaut/v0/Patient?_id=17
-TIMESTAMP: 2019-08-28T23:36:47.836164Z
-HTTP_STATUS: 200
-OUTCOME: OK

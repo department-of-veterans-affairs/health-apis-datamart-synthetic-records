@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/api/DiagnosticReport?patient=32000225&page=6&_count=15
-TIMESTAMP: 2019-09-18T14:15:20.659641Z
-HTTP_STATUS: 200
-OUTCOME: OK

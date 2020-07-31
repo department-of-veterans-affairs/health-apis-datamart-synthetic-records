@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/MedicationOrder?patient=18000027&page=3&_count=15
-TIMESTAMP: 2019-09-13T10:22:18.523482Z
-HTTP_STATUS: 200
-OUTCOME: OK

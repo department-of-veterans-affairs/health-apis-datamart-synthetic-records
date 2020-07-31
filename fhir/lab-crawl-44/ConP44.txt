@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Condition?patient=44
-TIMESTAMP: 2019-09-14T06:34:43.189863Z
-HTTP_STATUS: 200
-OUTCOME: OK

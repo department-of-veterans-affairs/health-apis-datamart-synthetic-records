@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/api/Observation?patient=32000225&page=182&_count=15
-TIMESTAMP: 2019-09-18T14:47:27.649893Z
-HTTP_STATUS: 200
-OUTCOME: OK

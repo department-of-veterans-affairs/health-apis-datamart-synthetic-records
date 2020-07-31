@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/DiagnosticReport?patient=2000163
-TIMESTAMP: 2019-09-23T18:51:34.386612Z
-HTTP_STATUS: 200
-OUTCOME: OK

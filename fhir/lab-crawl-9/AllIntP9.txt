@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/AllergyIntolerance?patient=9
-TIMESTAMP: 2019-09-24T13:43:39.369007Z
-HTTP_STATUS: 200
-OUTCOME: OK

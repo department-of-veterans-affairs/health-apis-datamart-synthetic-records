@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Medication/be6d0394-9489-5f26-a3f1-bc49eda1e3e7
-TIMESTAMP: 2019-09-15T01:29:31.062996Z
-HTTP_STATUS: 200
-OUTCOME: OK

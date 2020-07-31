@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/MedicationStatement?patient=4000399
-TIMESTAMP: 2019-09-14T22:30:40.667170Z
-HTTP_STATUS: 200
-OUTCOME: OK

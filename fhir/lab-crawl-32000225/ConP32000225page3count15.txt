@@ -1,4 +1,0 @@
-QUERY: http://localhost:8090/api/Condition?patient=32000225&page=3&_count=15
-TIMESTAMP: 2019-09-18T14:12:17.562899Z
-HTTP_STATUS: 200
-OUTCOME: OK

@@ -1,1 +1,0 @@
-{"resourceType":"Bundle","type":"searchset","total":0,"link":[{"relation":"first","url":"http://localhost:8090/api/AllergyIntolerance?patient=9&page=1&_count=15"},{"relation":"self","url":"http://localhost:8090/api/AllergyIntolerance?patient=9&page=1&_count=15"},{"relation":"last","url":"http://localhost:8090/api/AllergyIntolerance?patient=9&page=0&_count=15"}],"entry":[]}

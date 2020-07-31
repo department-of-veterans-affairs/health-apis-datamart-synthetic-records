@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Condition?patient=4001192&page=3&_count=15
-TIMESTAMP: 2019-09-14T21:58:30.179420Z
-HTTP_STATUS: 200
-OUTCOME: OK

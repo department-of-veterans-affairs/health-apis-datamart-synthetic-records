@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Procedure?patient=35000422&page=12&_count=15
-TIMESTAMP: 2019-09-13T05:52:37.556796Z
-HTTP_STATUS: 200
-OUTCOME: OK

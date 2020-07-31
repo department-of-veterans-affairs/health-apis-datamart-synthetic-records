@@ -1,4 +1,0 @@
-QUERY: https://blue.lab.lighthouse.va.gov/fhir/v0/dstu2/Immunization?patient=17000151
-TIMESTAMP: 2019-09-14T20:37:39.515802Z
-HTTP_STATUS: 200
-OUTCOME: OK
