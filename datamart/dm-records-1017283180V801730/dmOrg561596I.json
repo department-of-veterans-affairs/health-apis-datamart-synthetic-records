@@ -34,9 +34,5 @@
     "city" : "NEW AMSTERDAM",
     "state" : "OH",
     "postalCode" : "44444-4160"
-  },
-  "partOf" : {
-    "reference" : "568060:I",
-    "display" : "NEW AMSTERDAM VAMC"
   }
 }

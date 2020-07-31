@@ -2,33 +2,37 @@
   "objectType" : "Organization",
   "objectVersion" : "1",
   "cdwId" : "568060:I",
-  "stationIdentifier" : "244",
+  "stationIdentifier" : "688",
   "npi" : "8223895021",
-  "providerId" : "0000000000400",
+  "providerId" : "0000000000500",
   "ediId" : "37263",
   "agencyId" : "other",
   "active" : true,
   "type" : {
     "system" : "institution",
-    "code" : "CBOC",
-    "display" : "COMMUNITY BASED OUTPATIENT CLINIC"
+    "code" : "VAMC",
+    "display" : "VA MEDICAL CENTER"
   },
-  "name" : "NEW AMSTERDAM VAMC",
+  "name" : "WASHINGTON VA MEDICAL CENTER",
   "telecom" : [
     {
       "system" : "phone",
-      "value" : "800 555-7740"
+      "value" : "202-745-8000"
     },
     {
       "system" : "phone",
-      "value" : "800 555-7750"
+      "value" : "202-745-8588"
+    },
+    {
+      "system" : "fax",
+      "value" : "202-745-8530"
     }
   ],
   "address" : {
-    "line1" : "100 MONROE AVE, SUITE 9C",
-    "line2" : "PO BOX 614",
-    "city" : "NEW AMSTERDAM",
-    "state" : "OH",
-    "postalCode" : "06144-4444"
+    "line1" : "50 IRVING STREET",
+    "line2" : "NORTHWEST",
+    "city" : "WASHINGTON",
+    "state" : "DC",
+    "postalCode" : "20422-0001"
   }
 }
