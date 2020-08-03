@@ -6,6 +6,8 @@ import gov.va.api.health.minimartmanager.minimart.DatamartFilenamePatterns;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.SecureRandom;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -66,6 +68,7 @@ class Augmentation<T> {
         .count(count.incrementAndGet())
         .path(path)
         .resource(mapper.readValue(path.toFile(), datamartResourceType))
+        .random(new SecureRandom())
         .build();
   }
 
@@ -87,6 +90,8 @@ class Augmentation<T> {
     int count;
 
     Path path;
+
+    Random random;
   }
 
   @Value
