@@ -3,19 +3,20 @@
   "objectVersion" : "1",
   "cdwId" : "43817:L",
   "status" : "active",
-  "name" : "TEM MH PSO TRS IND93EH 1",
-  "description" : "BLDG 146, RM W01",
-  "type" : "PSYCHIATRY CLINIC",
-  "telecom" : "254-743-2867 x0001",
+  "name" : "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)",
+  "description" : "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)",
+  "type" : "OUTPATIENT CLINIC",
+  "telecom" : "908-647-0180 EXT 4437",
   "address" : {
-    "line1" : "1901 VETERANS MEMORIAL DRIVE",
-    "city" : "TEMPLE",
-    "state" : "TEXAS",
-    "postalCode" : 76504
+    "line1" : "151 KNOLLCROFT ROAD",
+    "city" : "LYONS",
+    "state" : "NJ",
+    "postalCode" : "07939"
   },
-  "physicalType" : "BLDG 146, RM W01",
+  "physicalType" : "BUILDING 7",
   "managingOrganization" : {
-    "reference" : "568060:I",
-    "display" : "NEW AMSTERDAM VAMC"
+    "type": "Organization",
+    "reference" : "457959:I",
+    "display" : "LYONS VA MEDICAL CENTER"
   }
 }
