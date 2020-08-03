@@ -11,10 +11,11 @@
     "line1" : "1901 VETERANS MEMORIAL DRIVE",
     "city" : "TEMPLE",
     "state" : "TEXAS",
-    "postalCode" : 76504
+    "postalCode" : "76504"
   },
   "physicalType" : "BLDG 146, RM W02",
   "managingOrganization" : {
+    "type": "Organization",
     "reference" : "561596:I",
     "display" : "CHEYENNE VA MEDICAL"
   }

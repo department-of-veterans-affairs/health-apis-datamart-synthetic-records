@@ -3,19 +3,20 @@
   "objectVersion" : "1",
   "cdwId" : "43841:L",
   "status" : "active",
-  "name" : "TEM MH PSO TRS IND93EH 3",
-  "description" : "BLDG 146, RM W03",
+  "name" : "MENTAL HEALTH SERVICES",
+  "description" : "MENTAL HEALTH SERVICES",
   "type" : "PSYCHIATRY CLINIC",
-  "telecom" : "254-743-2867 x0003",
+  "telecom" : "202-745-8267",
   "address" : {
-    "line1" : "1901 VETERANS MEMORIAL DRIVE",
-    "city" : "TEMPLE",
-    "state" : "TEXAS",
-    "postalCode" : 76504
+    "line1" : "50 IRVING STREET, NORTHWEST",
+    "city" : "WASHINGTON",
+    "state" : "DC",
+    "postalCode" : "20422"
   },
-  "physicalType" : "BLDG 146, RM W03",
+  "physicalType" : "1ST FLOOR, 1D107",
   "managingOrganization" : {
-    "reference" : "561596:I",
-    "display" : "CHEYENNE VA MEDICAL"
+    "type": "Organization",
+    "reference" : "568060:I",
+    "display" : "WASHINGTON VA MEDICAL CENTER"
   }
 }

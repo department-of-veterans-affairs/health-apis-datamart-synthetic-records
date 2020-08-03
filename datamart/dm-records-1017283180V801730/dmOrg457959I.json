@@ -1,0 +1,37 @@
+{
+  "objectType" : "Organization",
+  "objectVersion" : "1",
+  "cdwId" : "457959:I",
+  "stationIdentifier" : "561A4",
+  "npi" : "7112784910",
+  "providerId" : "0000000000300",
+  "ediId" : "26152",
+  "agencyId" : "other",
+  "active" : true,
+  "type" : {
+    "system" : "institution",
+    "code" : "VAMC",
+    "display" : "VA MEDICAL CENTER"
+  },
+  "name" : "LYONS VA MEDICAL CENTER",
+  "telecom" : [
+    {
+      "system" : "phone",
+      "value" : "908 647-0180"
+    },
+    {
+      "system" : "phone",
+      "value" : "800 480-5590"
+    },
+    {
+      "system" : "fax",
+      "value" : "908 647-3452"
+    }
+  ],
+  "address" : {
+    "line1" : "151 KNOLLCROFT ROAD",
+    "city" : "LYONS",
+    "state" : "NJ",
+    "postalCode" : "07939-5001"
+  }
+}
