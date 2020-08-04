@@ -1,50 +1,50 @@
 {
   "objectType" : "Practitioner",
   "objectVersion" : "1",
-  "cdwId" : "416704",
-  "npi" : "1932127842",
+  "cdwId" : "305693",
+  "npi" : "0821016731",
   "active" : true,
   "name" : {
-    "family" : "DOE922",
-    "given" : "JANE460",
+    "family" : "REYNOLDS206",
+    "given" : "THOMAS359",
     "prefix" : "DR.",
-    "suffix" : "MD"
+    "suffix" : "PHD"
   },
   "telecom" : [
     {
       "system" : "phone",
-      "value" : "555-555-1137",
+      "value" : "444-444-0026",
       "use" : "work"
     },
     {
       "system" : "phone",
-      "value" : "555-4055",
+      "value" : "444-3944",
       "use" : "home"
     },
     {
       "system" : "pager",
-      "value" : "5-541",
+      "value" : "4-430",
       "use" : "mobile"
     }
   ],
   "address" : [
     {
       "temp" : false,
-      "line1" : "555 E 5TH ST",
-      "line2" : "SUITE B",
-      "line3" : null,
-      "city" : "CHEYENNE",
-      "state" : "WYOMING",
-      "postalCode" : "82001"
+      "line1" : "50 IRVING STREET",
+      "line2" : "NORTHWEST",
+      "line3" : "1ST FLOOR, 1D107",
+      "city" : "WASHINGTON",
+      "state" : "DC",
+      "postalCode" : "20422"
     }
   ],
-  "gender" : "female",
-  "birthDate" : "1964-02-23",
+  "gender" : "male",
+  "birthDate" : "1928-03-14",
   "practitionerRole" : {
     "managingOrganization" : {
       "type": "Organization",
-      "reference" : "561596:I",
-      "display" : "CHEYENNE VA MEDICAL"
+      "reference" : "568060:I",
+      "display" : "WASHINGTON VA MEDICAL CENTER"
     },
     "role" : {
       "system" : "rpcmm",
@@ -89,8 +89,8 @@
     "location" : [
       {
         "type": "Location",
-        "reference" : "43829:L",
-        "display" : "ZZCHY LASTNAME MEDICAL"
+        "reference" : "43841:L",
+        "display" : "MENTAL HEALTH SERVICES"
       }
     ],
     "healthCareService" : "MEDICAL SERVICE"

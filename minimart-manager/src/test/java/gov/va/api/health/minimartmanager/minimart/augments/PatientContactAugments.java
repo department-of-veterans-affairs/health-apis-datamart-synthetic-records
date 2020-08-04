@@ -105,7 +105,7 @@ public class PatientContactAugments {
           .name(name())
           .address(address())
           .phone(phone())
-          .type(relationshipType())
+          .type(ctx.random(RELATIONSHIPS))
           .build();
     }
 
@@ -131,10 +131,6 @@ public class PatientContactAugments {
       return "555"
           + String.format("%03d", ctx.random().nextInt(1000))
           + String.format("%04d", ctx.random().nextInt(10000));
-    }
-
-    private String relationshipType() {
-      return RELATIONSHIPS.get(ctx.random().nextInt(RELATIONSHIPS.size()));
     }
   }
 }

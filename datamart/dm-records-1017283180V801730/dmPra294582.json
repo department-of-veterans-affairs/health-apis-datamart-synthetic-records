@@ -1,55 +1,55 @@
 {
   "objectType" : "Practitioner",
   "objectVersion" : "1",
-  "cdwId" : "416704",
-  "npi" : "1932127842",
+  "cdwId" : "294582",
+  "npi" : "0821016731",
   "active" : true,
   "name" : {
-    "family" : "DOE922",
-    "given" : "JANE460",
+    "family" : "SMITH811",
+    "given" : "JOHN248",
     "prefix" : "DR.",
     "suffix" : "MD"
   },
   "telecom" : [
     {
       "system" : "phone",
-      "value" : "555-555-1137",
+      "value" : "333-333-9915",
       "use" : "work"
     },
     {
       "system" : "phone",
-      "value" : "555-4055",
+      "value" : "333-2833",
       "use" : "home"
     },
     {
       "system" : "pager",
-      "value" : "5-541",
+      "value" : "3-329",
       "use" : "mobile"
     }
   ],
   "address" : [
     {
       "temp" : false,
-      "line1" : "555 E 5TH ST",
-      "line2" : "SUITE B",
+      "line1" : "151 KNOLLCROFT ROAD",
+      "line2" : "BUILDING 7",
       "line3" : null,
-      "city" : "CHEYENNE",
-      "state" : "WYOMING",
-      "postalCode" : "82001"
+      "city" : "LYONS",
+      "state" : "NJ",
+      "postalCode" : "07939"
     }
   ],
-  "gender" : "female",
-  "birthDate" : "1964-02-23",
+  "gender" : "male",
+  "birthDate" : "1959-06-11",
   "practitionerRole" : {
     "managingOrganization" : {
       "type": "Organization",
-      "reference" : "561596:I",
-      "display" : "CHEYENNE VA MEDICAL"
+      "reference" : "457959:I",
+      "display" : "LYONS VA MEDICAL CENTER"
     },
     "role" : {
       "system" : "rpcmm",
-      "code" : "37",
-      "display" : "PSYCHOLOGIST"
+      "code" : "15",
+      "display" : "OPTOMETRIST"
     },
     "specialty" : [
       {
@@ -89,8 +89,8 @@
     "location" : [
       {
         "type": "Location",
-        "reference" : "43829:L",
-        "display" : "ZZCHY LASTNAME MEDICAL"
+        "reference" : "43817:L",
+        "display" : "VISUAL IMPAIRMENT SERVICES OUTPATIENT REHABILITATION (VISOR)"
       }
     ],
     "healthCareService" : "MEDICAL SERVICE"
