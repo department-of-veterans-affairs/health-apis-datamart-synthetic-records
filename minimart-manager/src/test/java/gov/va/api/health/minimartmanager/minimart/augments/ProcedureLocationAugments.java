@@ -15,21 +15,17 @@ import java.util.stream.Collectors;
 import lombok.SneakyThrows;
 
 public class ProcedureLocationAugments {
-  private static final List<DatamartReference> LOCATION_REFERENCES = locationReferences();
+  private static final List<Optional<DatamartReference>> LOCATION_REFERENCES = locationReferences();
 
   static DatamartProcedure addLocation(Augmentation.Context<DatamartProcedure> ctx) {
-    DatamartReference r;
-    var indexOf = ctx.random().nextInt(LOCATION_REFERENCES.size());
-    r = LOCATION_REFERENCES.get(indexOf);
-    ctx.resource().location(Optional.ofNullable(r));
-    return ctx.resource();
+    return ctx.resource().location(ctx.random(LOCATION_REFERENCES));
   }
 
   /* Will scale if new locations are ever added.
    * Will update if any location is changed. */
   @SneakyThrows
-  private static List<DatamartReference> locationReferences() {
-    List<DatamartReference> references =
+  private static List<Optional<DatamartReference>> locationReferences() {
+    List<Optional<DatamartReference>> references =
         Files.walk(Path.of("../datamart"))
             .map(Path::toFile)
             .filter(File::isFile)
@@ -45,9 +41,10 @@ public class ProcedureLocationAugments {
                         .reference(Optional.ofNullable(loc.cdwId()))
                         .display(Optional.ofNullable(loc.name()))
                         .build())
+            .map(Optional::ofNullable)
             .collect(Collectors.toList());
     // has an equal chance to be one of three locations or null
-    references.add(null);
+    references.add(Optional.empty());
     return references;
   }
 
