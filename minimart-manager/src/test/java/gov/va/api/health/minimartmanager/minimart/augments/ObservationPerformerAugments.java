@@ -36,13 +36,13 @@ public class ObservationPerformerAugments {
             DatamartPractitioner.class,
             dm -> {
               String whoDis =
-                  dm.name().prefix()
+                  dm.name().prefix().orElse("")
                       + " "
                       + dm.name().given()
                       + " "
                       + dm.name().family()
                       + " "
-                      + dm.name().suffix();
+                      + dm.name().suffix().orElse("");
               return DatamartReference.builder()
                   .type(Optional.of("Practitioner"))
                   .reference(Optional.ofNullable(dm.cdwId()))
