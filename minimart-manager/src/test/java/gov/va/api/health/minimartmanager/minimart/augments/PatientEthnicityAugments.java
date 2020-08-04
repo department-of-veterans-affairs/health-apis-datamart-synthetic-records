@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PatientEthnicityAugments {
 
-  private static final List<DatamartPatient.Ethnicity> datamartEthnicities =
+  private static final List<DatamartPatient.Ethnicity> DATAMART_ETHNICITIES =
       List.of(
           DatamartPatient.Ethnicity.builder()
               .display("*Missing*")
@@ -39,11 +39,7 @@ public class PatientEthnicityAugments {
               .build());
 
   static DatamartPatient addEthnicity(Augmentation.Context<DatamartPatient> ctx) {
-    DatamartPatient.Ethnicity e;
-    var indexOf = ctx.random().nextInt(datamartEthnicities.size());
-    e = datamartEthnicities.get(indexOf);
-    ctx.resource().ethnicity(e);
-    return ctx.resource();
+    return ctx.resource().ethnicity(ctx.random(DATAMART_ETHNICITIES));
   }
 
   public static void main(String[] args) {
