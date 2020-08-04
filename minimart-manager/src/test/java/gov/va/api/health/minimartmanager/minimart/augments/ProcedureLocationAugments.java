@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 import lombok.SneakyThrows;
 
 public class ProcedureLocationAugments {
-  private static final List<DatamartReference> locationReferences = locationReferences();
+  private static final List<DatamartReference> LOCATION_REFERENCES = locationReferences();
 
   static DatamartProcedure addLocation(Augmentation.Context<DatamartProcedure> ctx) {
     DatamartReference r;
-    var indexOf = ctx.random().nextInt(locationReferences.size());
-    r = locationReferences.get(indexOf);
+    var indexOf = ctx.random().nextInt(LOCATION_REFERENCES.size());
+    r = LOCATION_REFERENCES.get(indexOf);
     ctx.resource().location(Optional.ofNullable(r));
     return ctx.resource();
   }
