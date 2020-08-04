@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
@@ -92,6 +93,10 @@ class Augmentation<T> {
     Path path;
 
     Random random;
+
+    <T> T random(List<T> choices) {
+      return choices.get(random.nextInt(choices.size()));
+    }
   }
 
   @Value
