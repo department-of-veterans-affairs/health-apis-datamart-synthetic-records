@@ -24,7 +24,7 @@ public class AllergyIntoleranceRecorderAugments {
                       + " "
                       + dm.name().family()
                       + " "
-                      + dm.name().suffix().orElse("");;
+                      + dm.name().suffix().orElse("");
               return DatamartReference.builder()
                   .type(Optional.of("Practitioner"))
                   .reference(Optional.ofNullable(dm.cdwId()))
@@ -45,6 +45,7 @@ public class AllergyIntoleranceRecorderAugments {
 
   static DatamartAllergyIntolerance recorderReferences(
       Augmentation.Context<DatamartAllergyIntolerance> ctx) {
-    return ctx.resource().recorder(Optional.ofNullable(ctx.random(PRACTITIONER_REFERENCES).orElse(null)));
+    return ctx.resource()
+        .recorder(Optional.ofNullable(ctx.random(PRACTITIONER_REFERENCES).orElse(null)));
   }
 }
