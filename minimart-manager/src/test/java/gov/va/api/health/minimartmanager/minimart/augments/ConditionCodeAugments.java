@@ -157,11 +157,11 @@ public class ConditionCodeAugments {
           .build();
 
   static DatamartCondition code(Augmentation.Context<DatamartCondition> ctx) {
-    if(!ctx.resource().hasSnomedCode()) {
-      System.out.println("No snomed code exists for condition.cdwId: "  + ctx.resource().cdwId());
+    if (!ctx.resource().hasSnomedCode()) {
+      System.out.println("No snomed code exists for condition.cdwId: " + ctx.resource().cdwId());
       return ctx.resource();
     }
-    if(SNOMED_TO_ICD_MAPPINGS.containsKey(ctx.resource().snomed().get().code())) {
+    if (SNOMED_TO_ICD_MAPPINGS.containsKey(ctx.resource().snomed().get().code())) {
       return convertSnomedCodeToIcd(ctx.resource());
     }
     return ctx.resource();
