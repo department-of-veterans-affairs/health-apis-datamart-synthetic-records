@@ -1,24 +1,26 @@
 package gov.va.api.health.minimartmanager.minimart.augments;
 
-import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
+import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
-import java.io.File;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.SneakyThrows;
 
-public class ProcedureLocationAugments {
+public class LocationReferenceAugments {
   private static final List<Optional<DatamartReference>> LOCATION_REFERENCES = locationReferences();
 
-  static DatamartProcedure addLocation(Augmentation.Context<DatamartProcedure> ctx) {
+  static DatamartImmunization addLocationToImmunization(
+      Augmentation.Context<DatamartImmunization> ctx) {
     return ctx.resource().location(ctx.random(LOCATION_REFERENCES));
   }
 
-  /* Will scale if new locations are ever added.
-   * Will update if any location is changed. */
+  static DatamartProcedure addLocationToProcedure(Augmentation.Context<DatamartProcedure> ctx) {
+    return ctx.resource().location(ctx.random(LOCATION_REFERENCES));
+  }
+
   @SneakyThrows
   private static List<Optional<DatamartReference>> locationReferences() {
     List<Optional<DatamartReference>> references =
@@ -36,15 +38,15 @@ public class ProcedureLocationAugments {
   }
 
   public static void main(String[] args) {
-    Augmentation.forResources(DatamartProcedure.class)
+    Augmentation.forResources(DatamartImmunization.class)
         .whenMatching(Objects::nonNull)
-        .transform(ProcedureLocationAugments::addLocation)
+        .transform(LocationReferenceAugments::addLocationToImmunization)
         .build()
         .rewriteFiles();
-  }
-
-  @SneakyThrows
-  private static DatamartLocation toLocation(File file) {
-    return JacksonConfig.createMapper().readValue(file, DatamartLocation.class);
+    Augmentation.forResources(DatamartProcedure.class)
+        .whenMatching(Objects::nonNull)
+        .transform(LocationReferenceAugments::addLocationToProcedure)
+        .build()
+        .rewriteFiles();
   }
 }

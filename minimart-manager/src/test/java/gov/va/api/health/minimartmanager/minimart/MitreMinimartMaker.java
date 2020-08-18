@@ -526,12 +526,10 @@ public class MitreMinimartMaker {
 
   @SneakyThrows
   private List<File> listDiagnosticReportFiles(File dmDirectory) {
+    String drFilePattern = DatamartFilenamePatterns.get().json(DatamartDiagnosticReports.class);
     return Arrays.stream(dmDirectory.listFiles())
         .filter(File::isFile)
-        .filter(
-            f ->
-                f.getName()
-                    .matches(DatamartFilenamePatterns.get().json(DatamartDiagnosticReport.class)))
+        .filter(f -> f.getName().matches(drFilePattern))
         .collect(toList());
   }
 

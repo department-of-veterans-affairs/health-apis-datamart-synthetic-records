@@ -2,7 +2,7 @@ package gov.va.api.health.minimartmanager.minimart;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
 import gov.va.api.health.dataquery.service.controller.medication.DatamartMedication;
@@ -16,7 +16,9 @@ import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedur
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class DatamartFilenamePatterns {
   private static final DatamartFilenamePatterns INSTANCE = new DatamartFilenamePatterns();
 
@@ -30,7 +32,8 @@ public class DatamartFilenamePatterns {
     jsonFileRegex = new HashMap<>();
     jsonFileRegex.put(DatamartAllergyIntolerance.class, "^dmAllInt.*json$");
     jsonFileRegex.put(DatamartCondition.class, "^dmCon.*json$");
-    jsonFileRegex.put(DatamartDiagnosticReport.class, "^dmDiaRep.*json$");
+    // Diagnostic Report files are currently using the v1 Datamart objects
+    jsonFileRegex.put(DatamartDiagnosticReports.class, "^dmDiaRep.*json$");
     jsonFileRegex.put(DatamartFallRisk.class, "^dmFalRis.*json$");
     jsonFileRegex.put(DatamartImmunization.class, "^dmImm.*json$");
     jsonFileRegex.put(DatamartLocation.class, "^dmLoc.*json$");
@@ -53,6 +56,7 @@ public class DatamartFilenamePatterns {
     if (pattern == null) {
       throw new IllegalArgumentException(datamartResource.getName());
     }
+    log.info("Finding files with pattern: {}", pattern);
     return pattern;
   }
 
