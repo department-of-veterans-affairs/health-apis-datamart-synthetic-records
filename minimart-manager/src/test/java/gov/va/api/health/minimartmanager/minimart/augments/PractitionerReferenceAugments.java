@@ -4,9 +4,7 @@ import gov.va.api.health.dataquery.service.controller.allergyintolerance.Datamar
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dataquery.service.controller.medicationorder.DatamartMedicationOrder;
-import gov.va.api.health.dataquery.service.controller.observation.DatamartObservation;
 import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPractitioner;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
