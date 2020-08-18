@@ -16,7 +16,6 @@ import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedur
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
 
 public class DatamartFilenamePatterns {
   private static final DatamartFilenamePatterns INSTANCE = new DatamartFilenamePatterns();

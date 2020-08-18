@@ -36,12 +36,6 @@ public class PractitionerReferenceAugments {
     return ctx.resource().prescriber(ctx.random(PRACTITIONER_REFERENCES).orElse(null));
   }
 
-  static DatamartObservation addPractitionerToObservation(
-      Augmentation.Context<DatamartObservation> ctx) {
-    DatamartReference ref = ctx.random(PRACTITIONER_REFERENCES).orElse(null);
-    return ctx.resource().performer(ref == null ? Collections.emptyList() : List.of(ref));
-  }
-
   private static List<Optional<DatamartReference>> loadPractitioners() {
     List<Optional<DatamartReference>> p =
         ReferenceLoader.loadReferencesFor(
@@ -83,13 +77,6 @@ public class PractitionerReferenceAugments {
         .transform(PractitionerReferenceAugments::addPractitionerToMedicationOrder)
         .build()
         .rewriteFiles();
-    /* See ObservationPerformerAugments
-
-      Augmentation.forResources(DatamartObservation.class)
-        .whenMatching(Objects::nonNull)
-        .transform(PractitionerReferenceAugments::addPractitionerToObservation)
-        .build()
-        .rewriteFiles();
-    */
+    // See ObservationPerformerAugments
   }
 }
