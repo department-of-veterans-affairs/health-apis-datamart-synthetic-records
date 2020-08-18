@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class DatamartFilenamePatterns {
   private static final DatamartFilenamePatterns INSTANCE = new DatamartFilenamePatterns();
 
@@ -56,7 +55,6 @@ public class DatamartFilenamePatterns {
     if (pattern == null) {
       throw new IllegalArgumentException(datamartResource.getName());
     }
-    log.info("Finding files with pattern: {}", pattern);
     return pattern;
   }
 
