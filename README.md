@@ -20,8 +20,8 @@ This repository acts as storage for synthetic data via JSON documents. It also p
 
 An existing database can be repopulated through one of two methods:
 1. Update
-  * `./run-local.sh`
-  * Updating the database will update the already existing records with any changes/new data.
+    * `./run-local.sh`
+    * Updating the database will update the already existing records with any changes/new data.
 2. Clean
-  * `./run-local.sh clean`
-  * Cleaning will drop the cuurently existing tables and do a fresh load of the data.
+    * `./run-local.sh clean`
+    * Cleaning will drop the cuurently existing tables and do a fresh load of the data.
