@@ -50,6 +50,7 @@ public class PopulateDb {
   /** Time to rock'n'roll. */
   @Test
   void pushToDb() {
+
     // per resource, push the datamart records found in the import directory to the database.
     for (String resource : resources) {
       log.info(
@@ -58,8 +59,15 @@ public class PopulateDb {
           importDirectoryPath,
           configFilePath);
       MitreMinimartMaker.sync(importDirectoryPath, resource, configFilePath);
+
+      // create a new ETL Loader and load the current resource data
+      LatestResourceETLStatusLoader latestResourceETLStatusLoader =
+          new LatestResourceETLStatusLoader(resource);
+      latestResourceETLStatusLoader.insertIntoETLTable();
+
       // break;
     }
+
     log.info("DONE");
   }
 
