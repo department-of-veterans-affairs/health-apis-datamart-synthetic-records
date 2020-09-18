@@ -40,8 +40,6 @@ import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedur
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
-import gov.va.api.health.minimartmanager.ExternalDb;
-import gov.va.api.health.minimartmanager.LocalH2;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -97,19 +95,15 @@ public class MitreMinimartMaker {
 
   private AtomicInteger addedCount = new AtomicInteger(0);
 
-  private MitreMinimartMaker(String resourceToSync, String configFile) {
+  private MitreMinimartMaker(String resourceToSync, EntityManagerFactory entityManagerFactory) {
     this.resourceToSync = resourceToSync;
-    if (configFile == null || configFile.isBlank()) {
-      log.info("No config file was specified... Defaulting to local h2 database...");
-      entityManagerFactory = new LocalH2("./target/minimart", MANAGED_CLASSES).get();
-    } else {
-      entityManagerFactory = new ExternalDb(configFile, MANAGED_CLASSES).get();
-    }
+    this.entityManagerFactory = entityManagerFactory;
     entityManagers = Collections.synchronizedList(new ArrayList<>());
   }
 
-  public static void sync(String directory, String resourceToSync, String configFile) {
-    MitreMinimartMaker mmm = new MitreMinimartMaker(resourceToSync, configFile);
+  public static void sync(
+      String directory, String resourceToSync, EntityManagerFactory entityManagerFactory) {
+    MitreMinimartMaker mmm = new MitreMinimartMaker(resourceToSync, entityManagerFactory);
     log.info("Syncing {} files in {} to db", mmm.resourceToSync, directory);
     mmm.pushToDatabaseByResourceType(directory);
     log.info("{} sync complete", mmm.resourceToSync);

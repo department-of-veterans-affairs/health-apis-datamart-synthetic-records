@@ -1,55 +1,60 @@
 package gov.va.api.health.minimartmanager;
 
-import java.io.FileInputStream;
-import java.sql.DriverManager;
-import java.text.SimpleDateFormat;
-import java.time.Clock;
-import java.time.Instant;
-import java.util.Date;
-import java.util.Properties;
+import java.text.MessageFormat;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-public class LatestResourceETLStatusLoader {
-  final String sqlDriverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+@RequiredArgsConstructor(staticName = "create")
+public class LatestResourceEtlStatusLoader {
+  private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
-  String resource;
+  @NonNull private EntityManagerFactory entityManagerFactory;
+  // "SELECT row FROM app.Latest_Resource_ETL_Status WHERE row.ResourceName LIKE :resourceName"
 
-  public LatestResourceETLStatusLoader(String resource) {
-    this.resource = resource;
+  private boolean checkExists(String resource, EntityManager entityManager) {
+    Query q =
+        entityManager
+            .createNativeQuery(
+                "SELECT ResourceName FROM dq.app.Latest_Resource_ETL_Status WHERE ResourceName = ?1")
+            .setParameter(1, resource);
+
+    if (q.getResultList().size() > 0) {
+      return true;
+    }
+    return false;
   }
 
-  public void insertIntoETLTable() {
-    try {
-      Class.forName(sqlDriverClass);
-      var properties = new Properties(System.getProperties());
-      properties.load(new FileInputStream("sqlserver.properties"));
-      var url = properties.getProperty("spring.datasource.url");
-      var username = properties.getProperty("spring.datasource.username");
-      var password = properties.getProperty("spring.datasource.password");
-      var conn = DriverManager.getConnection(url, username, password);
-      // Inserts value if nonexistent, updates it otherwise
-      var sql =
-          "IF EXISTS (SELECT * FROM [dq].[app].[Latest_Resource_ETL_Status] WHERE ResourceName = ?)\n"
-              + "BEGIN\n"
-              + "UPDATE [dq].[app].[Latest_Resource_ETL_Status] SET EndDateTimeUTC = ? WHERE ResourceName = ?\n"
-              + "END\n"
-              + "ELSE\n"
-              + "INSERT INTO [dq].[app].[Latest_Resource_ETL_Status] VALUES (?, ?)";
-      var statement = conn.prepareStatement(sql);
-      Clock cl = Clock.systemUTC();
-      Instant now = Instant.now(cl);
-      Date dateNow = Date.from(now);
-      SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-      String smalldatetime = formatter.format(dateNow);
-      statement.setString(1, resource);
-      statement.setString(2, smalldatetime);
-      statement.setString(3, resource);
-      statement.setString(4, resource);
-      statement.setString(5, smalldatetime);
-      var result = statement.executeUpdate();
-      conn.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-      return;
+  private EntityManager getEntityManager() {
+    if (LOCAL_ENTITY_MANAGER.get() == null) {
+      LOCAL_ENTITY_MANAGER.set(entityManagerFactory.createEntityManager());
+      LOCAL_ENTITY_MANAGER.get().getTransaction().begin();
     }
+    return LOCAL_ENTITY_MANAGER.get();
+  }
+
+  public void insertIntoEtlTable(String resource) {
+    EntityManager entityManager = getEntityManager();
+    boolean exists = checkExists(resource, entityManager);
+    java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
+    String query;
+    if (exists) {
+      query =
+          MessageFormat.format(
+              "UPDATE [dq].[app].[Latest_Resource_ETL_Status] SET EndDateTimeUTC = {} WHERE ResourceName = {}",
+              now.toString(),
+              resource);
+    } else {
+      query =
+          MessageFormat.format(
+              "INSERT INTO [dq].[app].[Latest_Resource_ETL_Status] VALUES ({}, {})", resource, now.toString());
+    }
+    entityManager.getTransaction().begin();
+    entityManager.createNativeQuery(query);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    LOCAL_ENTITY_MANAGER.remove();
   }
 }
