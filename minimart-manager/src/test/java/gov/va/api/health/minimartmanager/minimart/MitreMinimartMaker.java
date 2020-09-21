@@ -79,6 +79,7 @@ public class MitreMinimartMaker {
           DiagnosticReportsEntity.class,
           FallRiskEntity.class,
           ImmunizationEntity.class,
+          LatestResourceEtlStatusEntity.class,
           LocationEntity.class,
           MedicationOrderEntity.class,
           MedicationEntity.class,
@@ -87,8 +88,7 @@ public class MitreMinimartMaker {
           OrganizationEntity.class,
           PatientEntityV2.class,
           PractitionerEntity.class,
-          ProcedureEntity.class,
-          LatestResourceEtlStatusEntity.class);
+          ProcedureEntity.class);
 
   private int totalRecords;
 
