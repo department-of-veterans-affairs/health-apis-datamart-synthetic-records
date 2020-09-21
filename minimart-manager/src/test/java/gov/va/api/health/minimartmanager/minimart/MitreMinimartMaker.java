@@ -14,10 +14,10 @@ import gov.va.api.health.dataquery.service.controller.condition.DatamartConditio
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartEntity;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportCrossEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;

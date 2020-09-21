@@ -1,8 +1,5 @@
 package gov.va.api.health.minimartmanager.minimart.transformers;
 
-import gov.va.api.health.argonaut.api.resources.Immunization;
-import gov.va.api.health.argonaut.api.resources.Immunization.Reaction;
-import gov.va.api.health.argonaut.api.resources.Immunization.VaccinationProtocol;
 import gov.va.api.health.dataquery.service.controller.EnumSearcher;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization.Status;
@@ -12,6 +9,9 @@ import gov.va.api.health.dstu2.api.datatypes.Annotation;
 import gov.va.api.health.dstu2.api.datatypes.CodeableConcept;
 import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.dstu2.api.elements.Reference;
+import gov.va.api.health.dstu2.api.resources.Immunization;
+import gov.va.api.health.dstu2.api.resources.Immunization.Reaction;
+import gov.va.api.health.dstu2.api.resources.Immunization.VaccinationProtocol;
 import gov.va.api.health.minimartmanager.minimart.*;
 import java.time.Instant;
 import java.util.List;
