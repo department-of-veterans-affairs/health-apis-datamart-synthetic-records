@@ -18,6 +18,7 @@ import gov.va.api.health.dataquery.service.controller.diagnosticreport.Diagnosti
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
@@ -86,7 +87,8 @@ public class MitreMinimartMaker {
           OrganizationEntity.class,
           PatientEntityV2.class,
           PractitionerEntity.class,
-          ProcedureEntity.class);
+          ProcedureEntity.class,
+          LatestResourceEtlStatusEntity.class);
 
   private int totalRecords;
 
@@ -642,9 +644,9 @@ public class MitreMinimartMaker {
      */
     LatestResourceEtlStatusLoader etlLoader = LatestResourceEtlStatusLoader.create();
     for (EntityManager entityManager : entityManagers) {
+      etlLoader.insertIntoEtlTable(resourceToSync, entityManager);
       entityManager.getTransaction().commit();
       entityManager.close();
-      etlLoader.insertIntoEtlTable(resourceToSync, entityManager);
       // HACK
       LOCAL_ENTITY_MANAGER.remove();
     }
