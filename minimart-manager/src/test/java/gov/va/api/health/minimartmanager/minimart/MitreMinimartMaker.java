@@ -638,13 +638,13 @@ public class MitreMinimartMaker {
       default:
         throw new RuntimeException("Couldnt determine resource type for file: " + resourceToSync);
     }
+    LatestResourceEtlStatusLoader etlLoader = LatestResourceEtlStatusLoader.create();
+    etlLoader.insertIntoEtlTable(resourceToSync, LOCAL_ENTITY_MANAGER.get());
     /*
      * Commit and clean up the transactions for the entity managers from
      * the various threads.
      */
-    LatestResourceEtlStatusLoader etlLoader = LatestResourceEtlStatusLoader.create();
     for (EntityManager entityManager : entityManagers) {
-      etlLoader.insertIntoEtlTable(resourceToSync, entityManager);
       entityManager.getTransaction().commit();
       entityManager.close();
       // HACK
