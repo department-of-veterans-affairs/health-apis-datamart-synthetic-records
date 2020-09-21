@@ -14,10 +14,10 @@ import gov.va.api.health.dataquery.service.controller.condition.DatamartConditio
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartEntity;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportCrossEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
@@ -41,6 +41,7 @@ import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.minimartmanager.ExternalDb;
+import gov.va.api.health.minimartmanager.LatestResourceEtlStatusLoader;
 import gov.va.api.health.minimartmanager.LocalH2;
 import java.io.File;
 import java.io.IOException;
@@ -639,9 +640,11 @@ public class MitreMinimartMaker {
      * Commit and clean up the transactions for the entity managers from
      * the various threads.
      */
+    LatestResourceEtlStatusLoader etlLoader = LatestResourceEtlStatusLoader.create();
     for (EntityManager entityManager : entityManagers) {
       entityManager.getTransaction().commit();
       entityManager.close();
+      etlLoader.insertIntoEtlTable(resourceToSync, entityManager);
       // HACK
       LOCAL_ENTITY_MANAGER.remove();
     }

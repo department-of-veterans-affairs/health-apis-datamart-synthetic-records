@@ -58,7 +58,6 @@ public class PopulateDb {
           importDirectoryPath,
           configFilePath);
       MitreMinimartMaker.sync(importDirectoryPath, resource, configFilePath);
-      // break;
     }
     log.info("DONE");
   }

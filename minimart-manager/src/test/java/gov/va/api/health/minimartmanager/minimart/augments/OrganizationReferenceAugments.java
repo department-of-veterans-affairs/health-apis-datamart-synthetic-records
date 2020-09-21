@@ -1,7 +1,7 @@
 package gov.va.api.health.minimartmanager.minimart.augments;
 
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.health.dataquery.service.controller.organization.DatamartOrganization;
 import java.util.List;
 import java.util.Objects;

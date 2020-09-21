@@ -2,7 +2,7 @@ package gov.va.api.health.minimartmanager.minimart;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
 import gov.va.api.health.dataquery.service.controller.medication.DatamartMedication;
