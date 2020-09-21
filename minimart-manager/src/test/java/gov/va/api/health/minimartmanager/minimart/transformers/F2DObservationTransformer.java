@@ -2,7 +2,6 @@ package gov.va.api.health.minimartmanager.minimart.transformers;
 
 import static gov.va.api.health.dataquery.service.controller.Transformers.isBlank;
 
-import gov.va.api.health.argonaut.api.resources.Observation;
 import gov.va.api.health.dataquery.service.controller.EnumSearcher;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartCoding;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
@@ -12,6 +11,7 @@ import gov.va.api.health.dstu2.api.datatypes.Coding;
 import gov.va.api.health.dstu2.api.datatypes.Quantity;
 import gov.va.api.health.dstu2.api.datatypes.SimpleQuantity;
 import gov.va.api.health.dstu2.api.elements.Reference;
+import gov.va.api.health.dstu2.api.resources.Observation;
 import gov.va.api.health.minimartmanager.minimart.*;
 import java.time.Instant;
 import java.util.List;
