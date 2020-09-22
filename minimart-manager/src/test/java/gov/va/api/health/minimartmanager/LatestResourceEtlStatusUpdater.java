@@ -3,18 +3,17 @@ package gov.va.api.health.minimartmanager;
 import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import java.time.Instant;
 import javax.persistence.EntityManager;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(staticName = "create")
-public class LatestResourceEtlStatusLoader {
+public class LatestResourceEtlStatusUpdater {
 
-  private boolean checkExists(String resource, EntityManager entityManager) {
-    return entityManager.find(LatestResourceEtlStatusEntity.class, resource) != null;
-  }
+  @NonNull private EntityManager entityManager;
 
-  public void insertIntoEtlTable(String resource, EntityManager entityManager) {
+  public void updateEtlTable(String resource) {
 
-    boolean exists = checkExists(resource, entityManager);
+    boolean exists = entityManager.find(LatestResourceEtlStatusEntity.class, resource) != null;
     Instant now = Instant.now();
     LatestResourceEtlStatusEntity statusEntity =
         LatestResourceEtlStatusEntity.builder().resourceName(resource).endDateTime(now).build();

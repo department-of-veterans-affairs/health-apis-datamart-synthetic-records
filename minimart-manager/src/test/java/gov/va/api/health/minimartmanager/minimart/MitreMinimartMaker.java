@@ -42,7 +42,7 @@ import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.minimartmanager.ExternalDb;
-import gov.va.api.health.minimartmanager.LatestResourceEtlStatusLoader;
+import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
 import gov.va.api.health.minimartmanager.LocalH2;
 import java.io.File;
 import java.io.IOException;
@@ -68,9 +68,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MitreMinimartMaker {
-  private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
-
-  private final List<Class<?>> MANAGED_CLASSES =
+  private static final List<Class<?>> MANAGED_CLASSES =
       Arrays.asList(
           AllergyIntoleranceEntity.class,
           ConditionEntity.class,
@@ -89,6 +87,8 @@ public class MitreMinimartMaker {
           PatientEntityV2.class,
           PractitionerEntity.class,
           ProcedureEntity.class);
+
+  private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
   private int totalRecords;
 
@@ -128,7 +128,6 @@ public class MitreMinimartMaker {
             .reference(Optional.of(wrapper.fullIcn()))
             .display(Optional.ofNullable(wrapper.patientName()))
             .build();
-
     DatamartReference accessionInstitution =
         report.accessionInstitutionSid() == null
             ? null
@@ -137,7 +136,6 @@ public class MitreMinimartMaker {
                 .reference(Optional.of(report.accessionInstitutionSid()))
                 .display(Optional.ofNullable(report.accessionInstitutionName()))
                 .build();
-
     // staff, topography, and visit are not present in source data
     checkState(report.verifyingStaffSid() == null);
     DatamartReference verifyingStaff = null;
@@ -145,7 +143,6 @@ public class MitreMinimartMaker {
     DatamartReference topography = null;
     checkState(report.visitSid() == null);
     DatamartReference visit = null;
-
     return DatamartDiagnosticReport.builder()
         .cdwId(report.identifier())
         .patient(patient)
@@ -312,8 +309,6 @@ public class MitreMinimartMaker {
                   DiagnosticReportEntity.builder()
                       .cdwId(report.identifier())
                       .icn(dm.fullIcn())
-                      // DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
-                      // All currently existing data for LAB translates to CH
                       .category("CH")
                       .code(null)
                       .dateUtc(Instant.parse(report.issuedDateTime()))
@@ -638,8 +633,7 @@ public class MitreMinimartMaker {
       default:
         throw new RuntimeException("Couldnt determine resource type for file: " + resourceToSync);
     }
-    LatestResourceEtlStatusLoader etlLoader = LatestResourceEtlStatusLoader.create();
-    etlLoader.insertIntoEtlTable(resourceToSync, LOCAL_ENTITY_MANAGER.get());
+    LatestResourceEtlStatusUpdater.create(getEntityManager()).updateEtlTable(resourceToSync);
     /*
      * Commit and clean up the transactions for the entity managers from
      * the various threads.
