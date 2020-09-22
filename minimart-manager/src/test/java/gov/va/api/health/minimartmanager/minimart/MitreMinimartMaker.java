@@ -309,6 +309,8 @@ public class MitreMinimartMaker {
                   DiagnosticReportEntity.builder()
                       .cdwId(report.identifier())
                       .icn(dm.fullIcn())
+                      // DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
+                      // All currently existing data for LAB translates to CH
                       .category("CH")
                       .code(null)
                       .dateUtc(Instant.parse(report.issuedDateTime()))
