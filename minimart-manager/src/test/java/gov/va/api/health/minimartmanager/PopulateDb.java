@@ -2,9 +2,10 @@ package gov.va.api.health.minimartmanager;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
 import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportCrossEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.LocationEntity;
 import gov.va.api.health.dataquery.service.controller.medication.MedicationEntity;
@@ -70,6 +71,7 @@ public class PopulateDb {
           DiagnosticReportsEntity.class,
           FallRiskEntity.class,
           ImmunizationEntity.class,
+          LatestResourceEtlStatusEntity.class,
           LocationEntity.class,
           MedicationOrderEntity.class,
           MedicationEntity.class,
@@ -97,9 +99,6 @@ public class PopulateDb {
       entityManagerFactory = new ExternalDb(configFilePath, MANAGED_CLASSES).get();
     }
 
-    LatestResourceEtlStatusLoader latestResourceEtlStatusLoader =
-        LatestResourceEtlStatusLoader.create(entityManagerFactory);
-
     // per resource, push the datamart records found in the import directory to the database.
     for (String resource : resources) {
       log.info(
@@ -109,8 +108,6 @@ public class PopulateDb {
           configFilePath);
 
       MitreMinimartMaker.sync(importDirectoryPath, resource, entityManagerFactory);
-
-      latestResourceEtlStatusLoader.insertIntoEtlTable(resource);
     }
     log.info("DONE");
   }

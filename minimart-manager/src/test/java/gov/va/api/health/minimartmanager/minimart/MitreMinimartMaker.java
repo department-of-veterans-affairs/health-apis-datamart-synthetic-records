@@ -41,9 +41,7 @@ import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedur
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
-import gov.va.api.health.minimartmanager.ExternalDb;
 import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
-import gov.va.api.health.minimartmanager.LocalH2;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
