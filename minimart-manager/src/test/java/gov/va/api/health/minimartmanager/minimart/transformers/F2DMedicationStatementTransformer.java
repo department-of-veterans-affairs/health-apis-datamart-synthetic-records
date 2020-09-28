@@ -1,10 +1,10 @@
 package gov.va.api.health.minimartmanager.minimart.transformers;
 
-import gov.va.api.health.argonaut.api.resources.MedicationStatement;
 import gov.va.api.health.dataquery.service.controller.EnumSearcher;
 import gov.va.api.health.dataquery.service.controller.medicationstatement.DatamartMedicationStatement;
 import gov.va.api.health.dataquery.service.controller.medicationstatement.DatamartMedicationStatement.Dosage;
 import gov.va.api.health.dataquery.service.controller.medicationstatement.DatamartMedicationStatement.Status;
+import gov.va.api.health.dstu2.api.resources.MedicationStatement;
 import gov.va.api.health.minimartmanager.minimart.*;
 import java.time.Instant;
 import java.util.List;

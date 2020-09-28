@@ -3,7 +3,6 @@ package gov.va.api.health.minimartmanager.minimart.transformers;
 import static gov.va.api.health.dataquery.service.controller.Transformers.parseInstant;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-import gov.va.api.health.argonaut.api.resources.Patient;
 import gov.va.api.health.dataquery.service.controller.patient.DatamartPatient;
 import gov.va.api.health.dstu2.api.datatypes.Address;
 import gov.va.api.health.dstu2.api.datatypes.CodeableConcept;
@@ -12,6 +11,7 @@ import gov.va.api.health.dstu2.api.datatypes.ContactPoint;
 import gov.va.api.health.dstu2.api.datatypes.HumanName;
 import gov.va.api.health.dstu2.api.datatypes.Identifier;
 import gov.va.api.health.dstu2.api.elements.Extension;
+import gov.va.api.health.dstu2.api.resources.Patient;
 import gov.va.api.health.minimartmanager.minimart.*;
 import java.time.Instant;
 import java.time.LocalDate;

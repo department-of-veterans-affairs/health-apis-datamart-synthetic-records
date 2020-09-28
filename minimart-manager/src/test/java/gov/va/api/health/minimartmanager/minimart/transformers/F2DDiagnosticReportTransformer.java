@@ -2,10 +2,10 @@ package gov.va.api.health.minimartmanager.minimart.transformers;
 
 import static java.util.Arrays.asList;
 
-import gov.va.api.health.argonaut.api.resources.DiagnosticReport;
 import gov.va.api.health.dataquery.service.controller.Transformers;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.health.dstu2.api.elements.Reference;
+import gov.va.api.health.dstu2.api.resources.DiagnosticReport;
 import gov.va.api.health.minimartmanager.minimart.*;
 import java.util.List;
 import java.util.stream.Collectors;

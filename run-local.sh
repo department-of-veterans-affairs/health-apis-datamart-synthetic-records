@@ -5,11 +5,26 @@ set -e
 WORKING_DIR=$(readlink -f $(dirname $0))
 cd $WORKING_DIR
 
+usage() {
+  cat <<EOF
+$1
+
+Usage:
+
+  Commands:
+    help      Opens this menu
+    clean     Drops/Rebuilds the tables in an already existing database
+    start     Creates a brand new database and loads it
+
+EOF
+exit 1
+}
+
 main() {
-  if [ "$1" == "start" ]; then
-    createDatabase
-    shift
-  fi
+  case "$1" in
+    help|[-]*help) usage "I cant even with this...";;
+    start) createDatabase; shift; break;;
+  esac
 
   syntheticRecordsBuilder
 

@@ -14,10 +14,11 @@ import gov.va.api.health.dataquery.service.controller.condition.DatamartConditio
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartEntity;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReports;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportCrossEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
+import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
+import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
@@ -40,6 +41,9 @@ import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedur
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
+import gov.va.api.health.minimartmanager.ExternalDb;
+import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
+import gov.va.api.health.minimartmanager.LocalH2;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -64,9 +68,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MitreMinimartMaker {
-  private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
-
-  private final List<Class<?>> MANAGED_CLASSES =
+  private static final List<Class<?>> MANAGED_CLASSES =
       Arrays.asList(
           AllergyIntoleranceEntity.class,
           ConditionEntity.class,
@@ -75,6 +77,7 @@ public class MitreMinimartMaker {
           DiagnosticReportsEntity.class,
           FallRiskEntity.class,
           ImmunizationEntity.class,
+          LatestResourceEtlStatusEntity.class,
           LocationEntity.class,
           MedicationOrderEntity.class,
           MedicationEntity.class,
@@ -84,6 +87,8 @@ public class MitreMinimartMaker {
           PatientEntityV2.class,
           PractitionerEntity.class,
           ProcedureEntity.class);
+
+  private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
   private int totalRecords;
 
@@ -119,7 +124,6 @@ public class MitreMinimartMaker {
             .reference(Optional.of(wrapper.fullIcn()))
             .display(Optional.ofNullable(wrapper.patientName()))
             .build();
-
     DatamartReference accessionInstitution =
         report.accessionInstitutionSid() == null
             ? null
@@ -128,7 +132,6 @@ public class MitreMinimartMaker {
                 .reference(Optional.of(report.accessionInstitutionSid()))
                 .display(Optional.ofNullable(report.accessionInstitutionName()))
                 .build();
-
     // staff, topography, and visit are not present in source data
     checkState(report.verifyingStaffSid() == null);
     DatamartReference verifyingStaff = null;
@@ -136,7 +139,6 @@ public class MitreMinimartMaker {
     DatamartReference topography = null;
     checkState(report.visitSid() == null);
     DatamartReference visit = null;
-
     return DatamartDiagnosticReport.builder()
         .cdwId(report.identifier())
         .patient(patient)
@@ -629,6 +631,7 @@ public class MitreMinimartMaker {
       default:
         throw new RuntimeException("Couldnt determine resource type for file: " + resourceToSync);
     }
+    LatestResourceEtlStatusUpdater.create(getEntityManager()).updateEtlTable(resourceToSync);
     /*
      * Commit and clean up the transactions for the entity managers from
      * the various threads.

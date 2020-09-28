@@ -1,8 +1,8 @@
 package gov.va.api.health.minimartmanager.minimart.transformers;
 
-import gov.va.api.health.argonaut.api.resources.Medication;
 import gov.va.api.health.dataquery.service.controller.medication.DatamartMedication;
 import gov.va.api.health.dstu2.api.datatypes.CodeableConcept;
+import gov.va.api.health.dstu2.api.resources.Medication;
 import gov.va.api.health.minimartmanager.minimart.*;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
