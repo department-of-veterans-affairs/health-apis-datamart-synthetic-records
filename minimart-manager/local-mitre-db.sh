@@ -38,7 +38,9 @@ EOF
 }
 
 openLocalMitreDb() {
-  java -jar ~/.m2/repository/com/h2database/h2/1.4.200/h2-1.4.200.jar -url jdbc:h2:$LOCAL_DB -user sa -password sa
+  local db="${1:-}"
+  [ -z "${db:-}" ] && db=${LOCAL_DB}
+  java -jar ~/.m2/repository/com/h2database/h2/1.4.200/h2-1.4.200.jar -url jdbc:h2:${db} -user sa -password sa
 }
 
 # ============================================================
@@ -65,6 +67,6 @@ LOCAL_DB=$BASE_DIR/target/mitre
 case $1 in
   export-fall-risk) exportLocalMitreDb "FallRisk";;
   export-data-query) exportLocalMitreDb "AllergyIntolerance,Condition,Datamart,DiagnosticReportCross,DiagnosticReports,DiagnosticReport,Immunization,LatestResourceEtlStatus,Location,Medication,MedicationOrder,MedicationStatement,Observation,Organization,PatientV2,Practitioner,Procedure";;
-  open) openLocalMitreDb;;
+  open) openLocalMitreDb "${2:-}";;
   *) usage;;
 esac
