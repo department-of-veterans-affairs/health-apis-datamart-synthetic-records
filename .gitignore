@@ -10,6 +10,8 @@ transformFailures.txt
 # Have stuff you don't want to commit but still find useful to hang around locally?
 */.private/
 
+minimart-manager/sqlserver.properties
+
 ### STS ###
 .apt_generated
 .checkstyle
