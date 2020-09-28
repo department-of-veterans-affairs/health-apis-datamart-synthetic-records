@@ -107,7 +107,7 @@ public class PopulateDb {
           resource,
           importDirectoryPath,
           configFilePath);
-      
+
       MitreMinimartMaker.sync(importDirectoryPath, resource, entityManagerFactory);
 
       latestResourceEtlStatusLoader.insertIntoEtlTable(resource);
