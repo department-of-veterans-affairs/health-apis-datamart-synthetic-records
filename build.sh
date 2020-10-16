@@ -37,8 +37,8 @@ if [ -f /flyway/flyway ]; then FLYWAY="bash /flyway/flyway"; fi
 #
 LOCAL_INSTALL=$(find -maxdepth 1 -name "flyway-7*" | sort -V | head -1)
 LOCAL_INSTALL_OLD=$(find -maxdepth 1 -name "flyway-6*" | sort -V | head -1)
-if [ -n "$LOCAL_INSTALL"]; then export PATH="$LOCAL_INSTALL:$PATH"; fi
-if [ -z "$LOCAL_INSTALL" && -n "$LOCAL_INSTALL_OLD"]; then 
+if [ -n "$LOCAL_INSTALL" ]; then export PATH="$LOCAL_INSTALL:$PATH"; fi
+if [ -z "$LOCAL_INSTALL" -a -n "$LOCAL_INSTALL_OLD" ]; then 
 export PATH="$LOCAL_INSTALL_OLD:$PATH"
 echo "Flyway v6 detected, please upgrade to Flyway v7"
 fi
