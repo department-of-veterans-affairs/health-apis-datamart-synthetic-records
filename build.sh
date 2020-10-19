@@ -36,7 +36,7 @@ if [ -f /flyway/flyway ]; then FLYWAY="bash /flyway/flyway"; fi
 # To support local testing, add a local install to the front of the path
 #
 LOCAL_INSTALL=$(find -maxdepth 1 -name "flyway-*" | sort -V | head -1)
-if [ "$LOCAL_INSTALL" != "flyway-7*" ]; then echo "WARNING: Upgrade Flyway"; fi
+if [[ $LOCAL_INSTALL == *flyway-6* ]]; then echo "WARNING: Upgrade Flyway"; fi
 if [ -n "$LOCAL_INSTALL" ]; then export PATH="$LOCAL_INSTALL:$PATH"; fi
 
 #
