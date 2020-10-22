@@ -312,7 +312,9 @@ public class MitreMinimartMaker {
                       // DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
                       // All currently existing data for LAB translates to CH
                       .category("CH")
-                      .code(null)
+                      // DRs are all 'panel' in production. CDW does not have LOINC codes
+                      // available, so everything is hard coded as panel.
+                      .code("panel")
                       .dateUtc(Instant.parse(report.issuedDateTime()))
                       .lastUpdated(null)
                       .payload(
