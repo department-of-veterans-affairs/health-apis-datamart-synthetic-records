@@ -1,0 +1,27 @@
+{
+	"objectType": "Device",
+	"objectVersion": "1",
+	"cdwId": "800001608621",
+	"patient": {
+		"type": "Patient",
+		"reference": "43000199",
+		"display": "Kautzer186, Carlita746"
+	},
+	"location": {
+		"type": "Location",
+		"reference": "43817:L",
+		"display": "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)"
+	},
+	"type": {
+		"system": "http://snomed.info/sct",
+		"code": "53350007",
+		"display": "Prosthesis, device (physical object)"
+	},
+	"manufacturer": "BOSTON SCIENTIFIC",
+	"model": "L331",
+	"udi": "unsupported",
+	"lotNumber": "A19031",
+	"serialNumber": "819569",
+	"deviceName": "PACEMAKER"
+	}
+}
