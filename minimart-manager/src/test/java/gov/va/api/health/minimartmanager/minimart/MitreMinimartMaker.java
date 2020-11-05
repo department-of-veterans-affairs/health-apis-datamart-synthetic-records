@@ -105,6 +105,15 @@ public class MitreMinimartMaker {
 
   private AtomicInteger addedCount = new AtomicInteger(0);
 
+  private Function<DatamartDevice, DatamartEntity> toDeviceEntity =
+      (dm) ->
+          DeviceEntity.builder()
+              .cdwId(dm.cdwId())
+              .icn(dm.patient().reference().orElse(null))
+              .lastUpdated(Instant.now())
+              .payload(datamartToString(dm))
+              .build();
+
   private MitreMinimartMaker(String resourceToSync, String configFile) {
     this.resourceToSync = resourceToSync;
     if (configFile == null || configFile.isBlank()) {
@@ -324,11 +333,11 @@ public class MitreMinimartMaker {
                   DiagnosticReportEntity.builder()
                       .cdwId(report.identifier())
                       .icn(dm.fullIcn())
-                      // DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
-                      // All currently existing data for LAB translates to CH
+                      /* DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
+                       * All currently existing data for LAB translates to CH. */
                       .category("CH")
-                      // DRs are all 'panel' in production. CDW does not have LOINC codes
-                      // available, so everything is hard coded as panel.
+                      /* DRs are all 'panel' in production. CDW does not have LOINC codes
+                       * available, so everything is hard coded as panel. */
                       .code("panel")
                       .dateUtc(Instant.parse(report.issuedDateTime()))
                       .lastUpdated(null)
@@ -532,18 +541,6 @@ public class MitreMinimartMaker {
     findUniqueFiles(dmDirectory, filePattern).parallel().forEach(fileWriter);
   }
 
-  private <DM extends HasReplaceableId> void insertResourceByPattern(
-      File dmDirectory, Class<DM> datamart, Function<DM, DatamartEntity> entityWriter) {
-    findUniqueFiles(dmDirectory, DatamartFilenamePatterns.get().json(datamart))
-        .parallel()
-        .forEach(
-            f -> {
-              DM dm = fileToDatamart(f, datamart);
-              DatamartEntity entity = entityWriter.apply(dm);
-              save(entity);
-            });
-  }
-
   @SneakyThrows
   <E extends Enum<E>> String jsonValue(E e) {
     JsonProperty jsonProperty = e.getClass().getField(e.name()).getAnnotation(JsonProperty.class);
@@ -571,6 +568,7 @@ public class MitreMinimartMaker {
 
   private void pushToDatabaseByResourceType(String directory) {
     File dmDirectory = new File(directory);
+    DatabaseLoader loader = new DatabaseLoader(dmDirectory);
     if (dmDirectory.listFiles() == null) {
       log.error("No files in directory {}", directory);
       throw new RuntimeException("No files found in directory: " + directory);
@@ -589,16 +587,7 @@ public class MitreMinimartMaker {
             this::insertByCondition);
         break;
       case "Device":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartDevice.class,
-            dm ->
-                DeviceEntity.builder()
-                    .cdwId(dm.cdwId())
-                    .icn(dm.patient().reference().orElse(null))
-                    .lastUpdated(Instant.now())
-                    .payload(datamartToString(dm))
-                    .build());
+        loader.insertResourceByType(DatamartDevice.class, toDeviceEntity);
         break;
       case "DiagnosticReport":
         insertByDiagnosticReport(dmDirectory);
@@ -719,5 +708,25 @@ public class MitreMinimartMaker {
     }
     entityManager.flush();
     entityManager.clear();
+  }
+
+  private class DatabaseLoader {
+    File datamartDirectory;
+
+    DatabaseLoader(File datamartDirectory) {
+      this.datamartDirectory = datamartDirectory;
+    }
+
+    public <DM extends HasReplaceableId> void insertResourceByType(
+        Class<DM> resourceType, Function<DM, DatamartEntity> toDatamartEntity) {
+      findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
+          .parallel()
+          .forEach(
+              f -> {
+                DM dm = fileToDatamart(f, resourceType);
+                DatamartEntity entity = toDatamartEntity.apply(dm);
+                save(entity);
+              });
+    }
   }
 }
