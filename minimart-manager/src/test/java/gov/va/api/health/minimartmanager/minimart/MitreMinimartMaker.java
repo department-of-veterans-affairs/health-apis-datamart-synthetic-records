@@ -13,6 +13,9 @@ import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartEntity;
 import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
+import gov.va.api.health.dataquery.service.controller.datamart.HasReplaceableId;
+import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
+import gov.va.api.health.dataquery.service.controller.device.DeviceEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
@@ -59,6 +62,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -72,6 +76,7 @@ public class MitreMinimartMaker {
       Arrays.asList(
           AllergyIntoleranceEntity.class,
           ConditionEntity.class,
+          DeviceEntity.class,
           DiagnosticReportCrossEntity.class,
           DiagnosticReportEntity.class,
           DiagnosticReportsEntity.class,
@@ -175,6 +180,16 @@ public class MitreMinimartMaker {
                 .collect(toList()))
         .reportStatus(report.reportStatus())
         .build();
+  }
+
+  @SneakyThrows
+  private String datamartToString(HasReplaceableId e) {
+    return JacksonConfig.createMapper().writeValueAsString(e);
+  }
+
+  @SneakyThrows
+  private <R extends HasReplaceableId> R fileToDatamart(File f, Class<R> objectType) {
+    return JacksonConfig.createMapper().readValue(f, objectType);
   }
 
   @SneakyThrows
@@ -517,6 +532,18 @@ public class MitreMinimartMaker {
     findUniqueFiles(dmDirectory, filePattern).parallel().forEach(fileWriter);
   }
 
+  private <DM extends HasReplaceableId> void insertResourceByPattern(
+      File dmDirectory, Class<DM> datamart, Function<DM, DatamartEntity> entityWriter) {
+    findUniqueFiles(dmDirectory, DatamartFilenamePatterns.get().json(datamart))
+        .parallel()
+        .forEach(
+            f -> {
+              DM dm = fileToDatamart(f, datamart);
+              DatamartEntity entity = entityWriter.apply(dm);
+              save(entity);
+            });
+  }
+
   @SneakyThrows
   <E extends Enum<E>> String jsonValue(E e) {
     JsonProperty jsonProperty = e.getClass().getField(e.name()).getAnnotation(JsonProperty.class);
@@ -560,6 +587,18 @@ public class MitreMinimartMaker {
             dmDirectory,
             DatamartFilenamePatterns.get().json(DatamartCondition.class),
             this::insertByCondition);
+        break;
+      case "Device":
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartDevice.class,
+            dm ->
+                DeviceEntity.builder()
+                    .cdwId(dm.cdwId())
+                    .icn(dm.patient().reference().orElse(null))
+                    .lastUpdated(Instant.now())
+                    .payload(datamartToString(dm))
+                    .build());
         break;
       case "DiagnosticReport":
         insertByDiagnosticReport(dmDirectory);
