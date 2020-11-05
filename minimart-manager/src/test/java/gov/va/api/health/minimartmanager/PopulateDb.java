@@ -30,6 +30,7 @@ public class PopulateDb {
       List.of(
           "AllergyIntolerance",
           "Condition",
+          "Device",
           "DiagnosticReport",
           "FallRisk",
           "Immunization",

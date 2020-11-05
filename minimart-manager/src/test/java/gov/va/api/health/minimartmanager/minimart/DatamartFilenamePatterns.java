@@ -2,6 +2,7 @@ package gov.va.api.health.minimartmanager.minimart;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
+import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
@@ -30,6 +31,7 @@ public class DatamartFilenamePatterns {
     jsonFileRegex = new HashMap<>();
     jsonFileRegex.put(DatamartAllergyIntolerance.class, "^dmAllInt.*json$");
     jsonFileRegex.put(DatamartCondition.class, "^dmCon.*json$");
+    jsonFileRegex.put(DatamartDevice.class, "^dmDev.*json$");
     // Diagnostic Report files are currently using the v1 Datamart objects
     jsonFileRegex.put(DatamartDiagnosticReports.class, "^dmDiaRep.*json$");
     jsonFileRegex.put(DatamartFallRisk.class, "^dmFalRis.*json$");
