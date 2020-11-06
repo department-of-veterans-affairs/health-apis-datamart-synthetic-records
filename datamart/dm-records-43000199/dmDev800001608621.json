@@ -14,14 +14,14 @@
 	},
 	"type": {
 		"system": "http://snomed.info/sct",
-		"code": "53350007",
-		"display": "Prosthesis, device (physical object)"
+		"code": "243720009",
+		"display": "Near low vision aid - clip-on eyeglass magnifier"
 	},
 	"manufacturer": "BOSTON SCIENTIFIC",
 	"model": "L331",
 	"udi": "unsupported",
 	"lotNumber": "A19031",
 	"serialNumber": "819569",
-	"deviceName": "PACEMAKER"
+	"deviceName": "MAGNIFIER"
 	}
 }
