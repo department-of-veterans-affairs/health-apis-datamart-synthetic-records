@@ -1,0 +1,27 @@
+{
+	"objectType": "Device",
+	"objectVersion": "1",
+	"cdwId": "800001608620",
+	"patient": {
+		"type": "Patient",
+		"reference": "43000199",
+		"display": "Kautzer186, Carlita746"
+	},
+	"location": {
+		"type": "Location",
+		"reference": "43817:L",
+		"display": "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)"
+	},
+	"type": {
+		"system": "http://snomed.info/sct",
+		"code": "257193001",
+		"display": "Telescopic eyeglasses"
+	},
+	"manufacturer": "BOSTON SCIENTIFIC",
+	"model": "L664",
+	"udi": "unsupported",
+	"lotNumber": "J12095",
+	"serialNumber": "152906",
+	"deviceName": "EYEGLASSES"
+	}
+}
