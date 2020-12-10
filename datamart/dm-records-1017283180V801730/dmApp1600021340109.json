@@ -1,0 +1,36 @@
+{
+  "cdwId": "1600021340109",
+  "status": "NT-CI",
+  "cancelationReason": null,
+  "serviceCategory": "SURGERY",
+  "serviceType": "OTOLARYNGOLOGY/ENT",
+  "specialty": null,
+  "appointmentType": null,
+  "description": "Scheduled Visit",
+  "start": "2020-11-20T13:00:00",
+  "end": "2020-11-20T13:20:00",
+  "minutesDuration": 20,
+  "created": "2020-11-20",
+  "comment": "L/S 11/19/2020 PID 11/20/2020 AURICULAR HEMOTOMA F/U F2F",
+  "basedOn": null,
+  "participant": [
+    {
+      "actor": {
+        "type": "Location",
+        "reference": "43817:L",
+        "display": "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)"
+      },
+      "required": "required",
+      "status": "accepted"
+    },
+    {
+      "actor": {
+        "type": "Patient",
+        "reference": "1017283180V801730",
+        "display": "Frankenpatient, Victor"
+      },
+      "required": "required",
+      "status": "accepted"
+    }
+  ]
+}
