@@ -1,9 +1,9 @@
 package gov.va.api.health.minimartmanager.minimart.augments;
 
-import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.location.DatamartLocation;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
+import gov.va.api.lighthouse.datamart.DatamartReference;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

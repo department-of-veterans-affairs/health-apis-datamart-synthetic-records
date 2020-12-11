@@ -1,8 +1,8 @@
 package gov.va.api.health.minimartmanager.minimart.augments;
 
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
-import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.minimartmanager.minimart.DatamartFilenamePatterns;
+import gov.va.api.lighthouse.datamart.DatamartReference;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;

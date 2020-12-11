@@ -1,6 +1,5 @@
 package gov.va.api.health.minimartmanager.minimart.transformers;
 
-import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dataquery.service.controller.medicationorder.DatamartMedicationOrder;
 import gov.va.api.health.dataquery.service.controller.medicationorder.DatamartMedicationOrder.DispenseRequest;
 import gov.va.api.health.dataquery.service.controller.medicationorder.DatamartMedicationOrder.DosageInstruction;
@@ -12,6 +11,7 @@ import gov.va.api.health.dstu2.api.elements.Extension;
 import gov.va.api.health.dstu2.api.elements.Reference;
 import gov.va.api.health.dstu2.api.resources.MedicationOrder;
 import gov.va.api.health.minimartmanager.minimart.*;
+import gov.va.api.lighthouse.datamart.DatamartReference;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;

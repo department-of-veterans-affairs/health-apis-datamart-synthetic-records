@@ -1,7 +1,7 @@
 package gov.va.api.health.minimartmanager.minimart;
 
-import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
 import gov.va.api.health.dstu2.api.elements.Reference;
+import gov.va.api.lighthouse.datamart.DatamartReference;
 import java.io.FileInputStream;
 import java.util.Optional;
 import java.util.Properties;
