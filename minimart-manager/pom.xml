@@ -11,12 +11,19 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <properties>
-    <data-query.version>3.0.59</data-query.version>
+    <datamart-starter.version>1.0.0</datamart-starter.version>
+    <data-query.version>3.0.77</data-query.version>
+    <scheduling.version>0.0.13</scheduling.version>
     <fall-risk.version>2.0.0</fall-risk.version>
     <git.allowedBranchNames><![CDATA[^(dependabot/.*|staging_lab|lab|PR-[0-9]+|(.*/)?[A-Z]{2,10}-[0-9]+-.*)$]]></git.allowedBranchNames>
     <javafaker.version>1.0.2</javafaker.version>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>gov.va.api.lighthouse</groupId>
+      <artifactId>lighthouse-starter-datamart</artifactId>
+      <version>${datamart-starter.version}</version>
+    </dependency>
     <dependency>
       <groupId>com.github.javafaker</groupId>
       <artifactId>javafaker</artifactId>
@@ -26,6 +33,12 @@
       <groupId>gov.va.api.health</groupId>
       <artifactId>data-query</artifactId>
       <version>${data-query.version}</version>
+      <classifier>library</classifier>
+    </dependency>
+    <dependency>
+      <groupId>gov.va.api.lighthouse</groupId>
+      <artifactId>scheduling</artifactId>
+      <version>${scheduling.version}</version>
       <classifier>library</classifier>
     </dependency>
     <dependency>

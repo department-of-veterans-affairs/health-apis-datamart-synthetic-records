@@ -29,6 +29,7 @@ public class PopulateDb {
   private static List<String> resources =
       List.of(
           "AllergyIntolerance",
+          "Appointment",
           "Condition",
           "Device",
           "DiagnosticReport",

@@ -15,6 +15,7 @@ import gov.va.api.health.dataquery.service.controller.patient.DatamartPatient;
 import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPractitioner;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
+import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class DatamartFilenamePatterns {
     ndjsonFileRegex.put(DatamartFallRisk.class, "^dmFalRis.*ndjson$");
     jsonFileRegex = new HashMap<>();
     jsonFileRegex.put(DatamartAllergyIntolerance.class, "^dmAllInt.*json$");
+    jsonFileRegex.put(DatamartAppointment.class, "^dmApp.*json$");
     jsonFileRegex.put(DatamartCondition.class, "^dmCon.*json$");
     jsonFileRegex.put(DatamartDevice.class, "^dmDev.*json$");
     // Diagnostic Report files are currently using the v1 Datamart objects

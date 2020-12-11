@@ -11,9 +11,6 @@ import gov.va.api.health.dataquery.service.controller.allergyintolerance.Allergy
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
 import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
-import gov.va.api.health.dataquery.service.controller.datamart.DatamartEntity;
-import gov.va.api.health.dataquery.service.controller.datamart.DatamartReference;
-import gov.va.api.health.dataquery.service.controller.datamart.HasReplaceableId;
 import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
 import gov.va.api.health.dataquery.service.controller.device.DeviceEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
@@ -47,6 +44,11 @@ import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.minimartmanager.ExternalDb;
 import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
 import gov.va.api.health.minimartmanager.LocalH2;
+import gov.va.api.lighthouse.datamart.DatamartEntity;
+import gov.va.api.lighthouse.datamart.DatamartReference;
+import gov.va.api.lighthouse.datamart.HasReplaceableId;
+import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
+import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -63,6 +65,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -75,6 +78,7 @@ public class MitreMinimartMaker {
   private static final List<Class<?>> MANAGED_CLASSES =
       Arrays.asList(
           AllergyIntoleranceEntity.class,
+          AppointmentEntity.class,
           ConditionEntity.class,
           DeviceEntity.class,
           DiagnosticReportCrossEntity.class,
@@ -110,6 +114,21 @@ public class MitreMinimartMaker {
           DeviceEntity.builder()
               .cdwId(dm.cdwId())
               .icn(dm.patient().reference().orElse(null))
+              .lastUpdated(Instant.now())
+              .payload(datamartToString(dm))
+              .build();
+
+  // Based on the assumption that every appointment has a single patient participant
+  private Function<DatamartAppointment, DatamartEntity> toAppointmentEntity =
+      (dm) ->
+          AppointmentEntity.builder()
+              .cdwId(dm.cdwId())
+              .icn(
+                  dm.participant().stream()
+                      .filter(p -> "PATIENT".equalsIgnoreCase(p.actor().type().orElse(null)))
+                      .map(p -> patientIcn(p.actor()))
+                      .collect(Collectors.toList())
+                      .get(0))
               .lastUpdated(Instant.now())
               .payload(datamartToString(dm))
               .build();
@@ -579,6 +598,9 @@ public class MitreMinimartMaker {
             dmDirectory,
             DatamartFilenamePatterns.get().json(DatamartAllergyIntolerance.class),
             this::insertByAllergyIntolerance);
+        break;
+      case "Appointment":
+        loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
         break;
       case "Condition":
         insertResourceByPattern(

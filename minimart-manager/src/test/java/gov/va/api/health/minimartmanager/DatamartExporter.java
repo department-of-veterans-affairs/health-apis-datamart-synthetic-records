@@ -20,6 +20,7 @@ import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
+import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +48,7 @@ public class DatamartExporter {
   private static final List<ExportCriteria> EXPORT_CRITERIA =
       Arrays.asList(
           ExportForPatientCriteria.of(AllergyIntoleranceEntity.class),
+          ExportForPatientCriteria.of(AppointmentEntity.class),
           ExportForPatientCriteria.of(ConditionEntity.class),
           ExportForPatientCriteria.of(DeviceEntity.class),
           ExportForPatientCriteria.of(DiagnosticReportCrossEntity.class),
