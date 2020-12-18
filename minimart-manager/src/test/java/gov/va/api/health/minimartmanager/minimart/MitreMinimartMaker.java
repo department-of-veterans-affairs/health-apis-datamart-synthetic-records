@@ -1,5 +1,9 @@
 package gov.va.api.health.minimartmanager.minimart;
 
+import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
@@ -41,11 +45,6 @@ import gov.va.api.lighthouse.datamart.DatamartReference;
 import gov.va.api.lighthouse.datamart.HasReplaceableId;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -62,10 +61,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
-import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import static org.apache.commons.lang3.StringUtils.trimToNull;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MitreMinimartMaker {
@@ -91,22 +90,40 @@ public class MitreMinimartMaker {
 
   private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
-  private int totalRecords;
+  // Based on the assumption that every appointment has a single patient participant
+  private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
+      (dm) ->
+          AppointmentEntity.builder()
+              .cdwId(dm.cdwId())
+              .icn(
+                  dm.participant().stream()
+                      .filter(p -> "PATIENT".equalsIgnoreCase(p.actor().type().orElse(null)))
+                      .map(p -> patientIcn(p.actor()))
+                      .collect(Collectors.toList())
+                      .get(0))
+              .lastUpdated(Instant.now())
+              .payload(datamartToString(dm))
+              .build();
 
-  private String resourceToSync;
-
-  private EntityManagerFactory entityManagerFactory;
-
-  private List<EntityManager> entityManagers;
-
-  private AtomicInteger addedCount = new AtomicInteger(0);
-
-  private Function<DatamartDevice, DatamartEntity> toDeviceEntity =
+  private final Function<DatamartDevice, DeviceEntity> toDeviceEntity =
       (dm) ->
           DeviceEntity.builder()
               .cdwId(dm.cdwId())
               .icn(dm.patient().reference().orElse(null))
               .lastUpdated(Instant.now())
+              .payload(datamartToString(dm))
+              .build();
+
+  private final Function<DatamartPatient, PatientEntityV2> toPatientEntity =
+      (dm) ->
+          PatientEntityV2.builder()
+              .icn(dm.fullIcn())
+              .fullName(dm.name())
+              .lastName(dm.lastName())
+              .firstName(dm.firstName())
+              .birthDate(Instant.parse(dm.birthDateTime()))
+              .gender(dm.gender())
+              .ssn(dm.ssn())
               .payload(datamartToString(dm))
               .build();
 
@@ -122,20 +139,15 @@ public class MitreMinimartMaker {
               .payload(datamartToString(dm))
               .build();
 
-  // Based on the assumption that every appointment has a single patient participant
-  private Function<DatamartAppointment, DatamartEntity> toAppointmentEntity =
-      (dm) ->
-          AppointmentEntity.builder()
-              .cdwId(dm.cdwId())
-              .icn(
-                  dm.participant().stream()
-                      .filter(p -> "PATIENT".equalsIgnoreCase(p.actor().type().orElse(null)))
-                      .map(p -> patientIcn(p.actor()))
-                      .collect(Collectors.toList())
-                      .get(0))
-              .lastUpdated(Instant.now())
-              .payload(datamartToString(dm))
-              .build();
+  private int totalRecords;
+
+  private String resourceToSync;
+
+  private EntityManagerFactory entityManagerFactory;
+
+  private List<EntityManager> entityManagers;
+
+  private AtomicInteger addedCount = new AtomicInteger(0);
 
   private MitreMinimartMaker(String resourceToSync, String configFile) {
     this.resourceToSync = resourceToSync;
@@ -226,7 +238,6 @@ public class MitreMinimartMaker {
     save(entity);
   }
 
-  @SneakyThrows
   private void insertByFallRisk(File file) {
     insertByFallRiskPayload(fileToString(file));
   }
@@ -363,22 +374,6 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
-  private void insertByPatient(File file) {
-    DatamartPatient dm = JacksonConfig.createMapper().readValue(file, DatamartPatient.class);
-    PatientEntityV2 patientEntityV2 =
-        PatientEntityV2.builder()
-            .icn(dm.fullIcn())
-            .fullName(dm.name())
-            .lastName(dm.lastName())
-            .firstName(dm.firstName())
-            .birthDate(Instant.parse(dm.birthDateTime()))
-            .gender(dm.gender())
-            .payload(fileToString(file))
-            .build();
-    save(patientEntityV2);
-  }
-
-  @SneakyThrows
   private void insertByPractitioner(File file) {
     DatamartPractitioner dm =
         JacksonConfig.createMapper().readValue(file, DatamartPractitioner.class);
@@ -512,10 +507,7 @@ public class MitreMinimartMaker {
             this::insertByOrganization);
         break;
       case "Patient":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartPatient.class),
-            this::insertByPatient);
+        loader.insertResourceByType(DatamartPatient.class, toPatientEntity);
         break;
       case "Practitioner":
         insertResourceByPattern(
@@ -580,8 +572,8 @@ public class MitreMinimartMaker {
       this.datamartDirectory = datamartDirectory;
     }
 
-    public <DM extends HasReplaceableId> void insertResourceByType(
-        Class<DM> resourceType, Function<DM, DatamartEntity> toDatamartEntity) {
+    public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
+        Class<DM> resourceType, Function<DM, E> toDatamartEntity) {
       findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
           .parallel()
           .forEach(
