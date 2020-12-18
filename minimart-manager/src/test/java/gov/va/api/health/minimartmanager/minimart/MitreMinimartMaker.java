@@ -1,6 +1,5 @@
 package gov.va.api.health.minimartmanager.minimart;
 
-import static com.google.common.base.Preconditions.checkState;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
@@ -15,9 +14,7 @@ import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
 import gov.va.api.health.dataquery.service.controller.device.DeviceEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
 import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
@@ -50,7 +47,6 @@ import gov.va.api.lighthouse.datamart.HasReplaceableId;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -60,7 +56,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -69,7 +64,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -81,9 +75,7 @@ public class MitreMinimartMaker {
           AppointmentEntity.class,
           ConditionEntity.class,
           DeviceEntity.class,
-          DiagnosticReportCrossEntity.class,
           DiagnosticReportEntity.class,
-          DiagnosticReportsEntity.class,
           FallRiskEntity.class,
           ImmunizationEntity.class,
           LatestResourceEtlStatusEntity.class,
@@ -149,65 +141,6 @@ public class MitreMinimartMaker {
     log.info("Syncing {} files in {} to db", mmm.resourceToSync, directory);
     mmm.pushToDatabaseByResourceType(directory);
     log.info("{} sync complete", mmm.resourceToSync);
-  }
-
-  private static DatamartDiagnosticReport toDatamartDiagnosticReportV2(
-      @NonNull DatamartDiagnosticReports wrapper,
-      @NonNull DatamartDiagnosticReports.DiagnosticReport report) {
-    checkState(wrapper.fullIcn() != null);
-    DatamartReference patient =
-        DatamartReference.builder()
-            .type(Optional.of("Patient"))
-            .reference(Optional.of(wrapper.fullIcn()))
-            .display(Optional.ofNullable(wrapper.patientName()))
-            .build();
-    DatamartReference accessionInstitution =
-        report.accessionInstitutionSid() == null
-            ? null
-            : DatamartReference.builder()
-                .type(Optional.of("Organization"))
-                .reference(Optional.of(report.accessionInstitutionSid()))
-                .display(Optional.ofNullable(report.accessionInstitutionName()))
-                .build();
-    // staff, topography, and visit are not present in source data
-    checkState(report.verifyingStaffSid() == null);
-    DatamartReference verifyingStaff = null;
-    checkState(report.topographySid() == null);
-    DatamartReference topography = null;
-    checkState(report.visitSid() == null);
-    DatamartReference visit = null;
-    return DatamartDiagnosticReport.builder()
-        .cdwId(report.identifier())
-        .patient(patient)
-        .sta3n(report.sta3n())
-        .effectiveDateTime(report.effectiveDateTime())
-        .issuedDateTime(report.issuedDateTime())
-        .accessionInstitution(Optional.ofNullable(accessionInstitution))
-        .verifyingStaff(Optional.ofNullable(verifyingStaff))
-        .topography(Optional.ofNullable(topography))
-        .visit(Optional.ofNullable(visit))
-        .orders(
-            report.orders().stream()
-                .map(
-                    o ->
-                        DatamartReference.builder()
-                            .type(Optional.of("DiagnosticOrder"))
-                            .reference(Optional.of(o.sid()))
-                            .display(Optional.ofNullable(o.display()))
-                            .build())
-                .collect(toList()))
-        .results(
-            report.results().stream()
-                .map(
-                    r ->
-                        DatamartReference.builder()
-                            .type(Optional.of("Observation"))
-                            .reference(Optional.of(r.result()))
-                            .display(Optional.ofNullable(r.display()))
-                            .build())
-                .collect(toList()))
-        .reportStatus(report.reportStatus())
-        .build();
   }
 
   @SneakyThrows
@@ -306,9 +239,9 @@ public class MitreMinimartMaker {
   private void insertByDiagnosticReport(List<File> files) {
     // Set the icn and other values using the first file, then reset the payload before loading all
     // the files.
-    DatamartDiagnosticReports dm =
+    DatamartDiagnosticReport dm =
         files.size() > 0
-            ? JacksonConfig.createMapper().readValue(files.get(0), DatamartDiagnosticReports.class)
+            ? JacksonConfig.createMapper().readValue(files.get(0), DatamartDiagnosticReport.class)
             : null;
     if (dm == null) {
       /*
@@ -319,57 +252,12 @@ public class MitreMinimartMaker {
        */
       return;
     }
-    dm.reports(new ArrayList<>());
-    // Crosswalk Entities are dealt with below
-    files.forEach(
-        file -> {
-          try {
-            DatamartDiagnosticReports tmpDr =
-                JacksonConfig.createMapper().readValue(file, DatamartDiagnosticReports.class);
-            for (DatamartDiagnosticReports.DiagnosticReport report : tmpDr.reports()) {
-              saveDrCrosswalkEntity(dm.fullIcn(), report.identifier());
-              dm.reports().add(report);
-            }
-          } catch (IOException e) {
-            log.error("Couldnt process file {}", file.getName());
-            throw new RuntimeException("Couldnt process file as Diagnostic Report... Quitting...");
-          }
-        });
     // DR Entity
     save(
-        DiagnosticReportsEntity.builder()
-            .icn(dm.fullIcn())
+        DiagnosticReportEntity.builder()
+            .icn(dm.patient().reference().get())
             .payload(JacksonConfig.createMapper().writeValueAsString(dm))
             .build());
-    // Diagnostic report V2
-    files.forEach(
-        file -> {
-          try {
-            DatamartDiagnosticReports wrapper =
-                JacksonConfig.createMapper().readValue(file, DatamartDiagnosticReports.class);
-            for (DatamartDiagnosticReports.DiagnosticReport report : wrapper.reports()) {
-              save(
-                  DiagnosticReportEntity.builder()
-                      .cdwId(report.identifier())
-                      .icn(dm.fullIcn())
-                      /* DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
-                       * All currently existing data for LAB translates to CH. */
-                      .category("CH")
-                      /* DRs are all 'panel' in production. CDW does not have LOINC codes
-                       * available, so everything is hard coded as panel. */
-                      .code("panel")
-                      .dateUtc(Instant.parse(report.issuedDateTime()))
-                      .lastUpdated(null)
-                      .payload(
-                          JacksonConfig.createMapper()
-                              .writeValueAsString(toDatamartDiagnosticReportV2(wrapper, report)))
-                      .build());
-            }
-          } catch (IOException e) {
-            log.error("Couldnt process file {}", file.getName());
-            throw new RuntimeException("Couldnt process file as Diagnostic Report... Quitting...");
-          }
-        });
   }
 
   @SneakyThrows
@@ -571,7 +459,7 @@ public class MitreMinimartMaker {
 
   @SneakyThrows
   private List<File> listDiagnosticReportFiles(File dmDirectory) {
-    String drFilePattern = DatamartFilenamePatterns.get().json(DatamartDiagnosticReports.class);
+    String drFilePattern = DatamartFilenamePatterns.get().json(DatamartDiagnosticReport.class);
     return Arrays.stream(dmDirectory.listFiles())
         .filter(File::isFile)
         .filter(f -> f.getName().matches(drFilePattern))

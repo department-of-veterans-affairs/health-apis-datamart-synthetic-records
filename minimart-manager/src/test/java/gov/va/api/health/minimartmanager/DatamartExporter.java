@@ -6,8 +6,6 @@ import gov.va.api.health.dataquery.service.controller.allergyintolerance.Allergy
 import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
 import gov.va.api.health.dataquery.service.controller.device.DeviceEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportsEntity;
 import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
 import gov.va.api.health.dataquery.service.controller.location.LocationEntity;
@@ -51,9 +49,7 @@ public class DatamartExporter {
           ExportForPatientCriteria.of(AppointmentEntity.class),
           ExportForPatientCriteria.of(ConditionEntity.class),
           ExportForPatientCriteria.of(DeviceEntity.class),
-          ExportForPatientCriteria.of(DiagnosticReportCrossEntity.class),
           ExportForPatientCriteria.of(DiagnosticReportEntity.class),
-          ExportForPatientCriteria.of(DiagnosticReportsEntity.class),
           ExportAllCriteria.of(FallRiskEntity.class),
           ExportForPatientCriteria.of(ImmunizationEntity.class),
           ExportAllCriteria.of(LatestResourceEtlStatusEntity.class),

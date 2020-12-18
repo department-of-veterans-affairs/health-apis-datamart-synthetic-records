@@ -3,11 +3,6 @@ package gov.va.api.health.minimartmanager.minimart.transformation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.minimartmanager.minimart.DatamartFilenamePatterns;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.SneakyThrows;
-import lombok.Value;
-
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,6 +13,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.SneakyThrows;
+import lombok.Value;
 
 @Value
 @AllArgsConstructor
@@ -35,10 +34,11 @@ class Transformer<T, S> {
 
   Configuration configuration;
 
-  static <R, P> TransformerBuilder<R, P> forResources(Class<R> oldDatamartResourceType, Class<P> newDatamartResourceType) {
+  static <R, P> TransformerBuilder<R, P> forResources(
+      Class<R> oldDatamartResourceType, Class<P> newDatamartResourceType) {
     return Transformer.<R, P>builder()
         .oldDatamartResourceType(oldDatamartResourceType)
-            .newDatamartResourceType(newDatamartResourceType)
+        .newDatamartResourceType(newDatamartResourceType)
         .configuration(Configuration.fromSystemProperties());
   }
 
@@ -63,7 +63,8 @@ class Transformer<T, S> {
         .parallel()
         .map(path -> toContext(count, path))
         .filter(ctx -> whenMatching().test(ctx.resource()))
-        .map(ctx -> Transformation.<T, S>builder().context(ctx).result(transform.apply(ctx)).build())
+        .map(
+            ctx -> Transformation.<T, S>builder().context(ctx).result(transform.apply(ctx)).build())
         .forEach(t -> rewrite(t));
   }
 
