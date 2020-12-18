@@ -1,13 +1,14 @@
 package gov.va.api.health.minimartmanager.minimart.transformation;
 
-import static com.google.common.base.Preconditions.checkState;
-import static java.util.stream.Collectors.toList;
-
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.lighthouse.datamart.DatamartReference;
+
 import java.util.Objects;
 import java.util.Optional;
+
+import static com.google.common.base.Preconditions.checkState;
+import static java.util.stream.Collectors.toList;
 
 public class DiagnosticReportTransformation {
 
