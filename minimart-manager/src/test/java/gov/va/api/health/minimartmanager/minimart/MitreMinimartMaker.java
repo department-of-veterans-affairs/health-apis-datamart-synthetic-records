@@ -99,27 +99,8 @@ public class MitreMinimartMaker {
 
   private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
-  private int totalRecords;
-
-  private String resourceToSync;
-
-  private EntityManagerFactory entityManagerFactory;
-
-  private List<EntityManager> entityManagers;
-
-  private AtomicInteger addedCount = new AtomicInteger(0);
-
-  private Function<DatamartDevice, DatamartEntity> toDeviceEntity =
-      (dm) ->
-          DeviceEntity.builder()
-              .cdwId(dm.cdwId())
-              .icn(dm.patient().reference().orElse(null))
-              .lastUpdated(Instant.now())
-              .payload(datamartToString(dm))
-              .build();
-
   // Based on the assumption that every appointment has a single patient participant
-  private Function<DatamartAppointment, DatamartEntity> toAppointmentEntity =
+  private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
       (dm) ->
           AppointmentEntity.builder()
               .cdwId(dm.cdwId())
@@ -132,6 +113,38 @@ public class MitreMinimartMaker {
               .lastUpdated(Instant.now())
               .payload(datamartToString(dm))
               .build();
+
+  private final Function<DatamartDevice, DeviceEntity> toDeviceEntity =
+      (dm) ->
+          DeviceEntity.builder()
+              .cdwId(dm.cdwId())
+              .icn(dm.patient().reference().orElse(null))
+              .lastUpdated(Instant.now())
+              .payload(datamartToString(dm))
+              .build();
+
+  private final Function<DatamartPatient, PatientEntityV2> toPatientEntity =
+      (dm) ->
+          PatientEntityV2.builder()
+              .icn(dm.fullIcn())
+              .fullName(dm.name())
+              .lastName(dm.lastName())
+              .firstName(dm.firstName())
+              .birthDate(Instant.parse(dm.birthDateTime()))
+              .gender(dm.gender())
+              .ssn(dm.ssn())
+              .payload(datamartToString(dm))
+              .build();
+
+  private int totalRecords;
+
+  private String resourceToSync;
+
+  private EntityManagerFactory entityManagerFactory;
+
+  private List<EntityManager> entityManagers;
+
+  private AtomicInteger addedCount = new AtomicInteger(0);
 
   private MitreMinimartMaker(String resourceToSync, String configFile) {
     this.resourceToSync = resourceToSync;
@@ -352,11 +365,7 @@ public class MitreMinimartMaker {
                   DiagnosticReportEntity.builder()
                       .cdwId(report.identifier())
                       .icn(dm.fullIcn())
-                      /* DRs are sorted by ChemPanel (CH) and Microbiology (MB) in CDW
-                       * All currently existing data for LAB translates to CH. */
                       .category("CH")
-                      /* DRs are all 'panel' in production. CDW does not have LOINC codes
-                       * available, so everything is hard coded as panel. */
                       .code("panel")
                       .dateUtc(Instant.parse(report.issuedDateTime()))
                       .lastUpdated(null)
@@ -509,22 +518,6 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
-  private void insertByPatient(File file) {
-    DatamartPatient dm = JacksonConfig.createMapper().readValue(file, DatamartPatient.class);
-    PatientEntityV2 patientEntityV2 =
-        PatientEntityV2.builder()
-            .icn(dm.fullIcn())
-            .fullName(dm.name())
-            .lastName(dm.lastName())
-            .firstName(dm.firstName())
-            .birthDate(Instant.parse(dm.birthDateTime()))
-            .gender(dm.gender())
-            .payload(fileToString(file))
-            .build();
-    save(patientEntityV2);
-  }
-
-  @SneakyThrows
   private void insertByPractitioner(File file) {
     DatamartPractitioner dm =
         JacksonConfig.createMapper().readValue(file, DatamartPractitioner.class);
@@ -667,10 +660,7 @@ public class MitreMinimartMaker {
             this::insertByOrganization);
         break;
       case "Patient":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartPatient.class),
-            this::insertByPatient);
+        loader.insertResourceByType(DatamartPatient.class, toPatientEntity);
         break;
       case "Practitioner":
         insertResourceByPattern(
@@ -739,8 +729,8 @@ public class MitreMinimartMaker {
       this.datamartDirectory = datamartDirectory;
     }
 
-    public <DM extends HasReplaceableId> void insertResourceByType(
-        Class<DM> resourceType, Function<DM, DatamartEntity> toDatamartEntity) {
+    public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
+        Class<DM> resourceType, Function<DM, E> toDatamartEntity) {
       findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
           .parallel()
           .forEach(
