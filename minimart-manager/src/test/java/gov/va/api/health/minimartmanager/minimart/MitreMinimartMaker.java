@@ -1,9 +1,5 @@
 package gov.va.api.health.minimartmanager.minimart;
 
-import static java.util.stream.Collectors.toList;
-import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import static org.apache.commons.lang3.StringUtils.trimToNull;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
@@ -14,7 +10,6 @@ import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
 import gov.va.api.health.dataquery.service.controller.device.DeviceEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
-import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DiagnosticReportCrossEntity;
 import gov.va.api.health.dataquery.service.controller.etlstatus.LatestResourceEtlStatusEntity;
 import gov.va.api.health.dataquery.service.controller.immunization.DatamartImmunization;
 import gov.va.api.health.dataquery.service.controller.immunization.ImmunizationEntity;
@@ -46,6 +41,11 @@ import gov.va.api.lighthouse.datamart.DatamartReference;
 import gov.va.api.lighthouse.datamart.HasReplaceableId;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -62,10 +62,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+
+import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 @Slf4j
 public class MitreMinimartMaker {
@@ -600,10 +600,6 @@ public class MitreMinimartMaker {
     EntityManager entityManager = getEntityManager();
     boolean exists = entityManager.find(entity.getClass(), identifier) != null;
     updateOrAddEntity(exists, entityManager, entity);
-  }
-
-  private void saveDrCrosswalkEntity(String icn, String reportIdentifier) {
-    save(DiagnosticReportCrossEntity.builder().icn(icn).reportId(reportIdentifier).build());
   }
 
   private <T> void updateOrAddEntity(boolean exists, EntityManager entityManager, T entity) {
