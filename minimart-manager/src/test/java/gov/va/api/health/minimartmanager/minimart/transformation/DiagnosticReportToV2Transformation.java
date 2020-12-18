@@ -8,7 +8,7 @@ import gov.va.api.lighthouse.datamart.DatamartReference;
 import java.util.Objects;
 import java.util.Optional;
 
-public class DiagnosticReportTransformation {
+public class DiagnosticReportToV2Transformation {
 
   static DatamartDiagnosticReport convert(Transformer.Context<DatamartDiagnosticReports> ctx) {
     DatamartDiagnosticReports.DiagnosticReport report = ctx.resource().reports().get(0);
@@ -78,7 +78,7 @@ public class DiagnosticReportTransformation {
   public static void main(String[] args) {
     Transformer.forResources(DatamartDiagnosticReports.class)
         .whenMatching(Objects::nonNull)
-        .transform(DiagnosticReportTransformation::convert)
+        .transform(DiagnosticReportToV2Transformation::convert)
         .build()
         .rewriteFiles();
   }
