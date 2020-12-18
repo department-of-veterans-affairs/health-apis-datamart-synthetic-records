@@ -1,14 +1,12 @@
 package gov.va.api.health.minimartmanager.minimart.transformation;
 
+import static java.util.stream.Collectors.toList;
+
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.v1.DatamartDiagnosticReports;
 import gov.va.api.lighthouse.datamart.DatamartReference;
-
 import java.util.Objects;
 import java.util.Optional;
-
-import static com.google.common.base.Preconditions.checkState;
-import static java.util.stream.Collectors.toList;
 
 public class DiagnosticReportTransformation {
 
@@ -28,13 +26,21 @@ public class DiagnosticReportTransformation {
                 .reference(Optional.of(report.accessionInstitutionSid()))
                 .display(Optional.ofNullable(report.accessionInstitutionName()))
                 .build();
-    // staff, topography, and visit are not present in source data
-    checkState(report.verifyingStaffSid() == null);
-    DatamartReference verifyingStaff = null;
-    checkState(report.topographySid() == null);
-    DatamartReference topography = null;
-    checkState(report.visitSid() == null);
-    DatamartReference visit = null;
+    DatamartReference verifyingStaff =
+        DatamartReference.builder()
+            .display(Optional.ofNullable(report.verifyingStaffName()))
+            .reference(Optional.ofNullable(report.verifyingStaffSid()))
+            .build();
+    DatamartReference topography =
+        DatamartReference.builder()
+            .display(Optional.ofNullable(report.topographyName()))
+            .reference(Optional.ofNullable(report.topographySid()))
+            .build();
+    DatamartReference visit =
+        DatamartReference.builder()
+            .display(Optional.ofNullable(report.visitCategory()))
+            .reference(Optional.ofNullable(report.visitSid()))
+            .build();
     return DatamartDiagnosticReport.builder()
         .cdwId(report.identifier())
         .patient(patient)

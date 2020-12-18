@@ -16,7 +16,6 @@ import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPract
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
 import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +34,8 @@ public class DatamartFilenamePatterns {
     jsonFileRegex.put(DatamartAppointment.class, "^dmApp.*json$");
     jsonFileRegex.put(DatamartCondition.class, "^dmCon.*json$");
     jsonFileRegex.put(DatamartDevice.class, "^dmDev.*json$");
-    jsonFileRegex.put(DatamartDiagnosticReports.class, "^dmDiaRep.*json$"); //temp, before running Transformation
+    jsonFileRegex.put(
+        DatamartDiagnosticReports.class, "^dmDiaRep.*json$"); // temp, before running Transformation
     jsonFileRegex.put(DatamartFallRisk.class, "^dmFalRis.*json$");
     jsonFileRegex.put(DatamartImmunization.class, "^dmImm.*json$");
     jsonFileRegex.put(DatamartLocation.class, "^dmLoc.*json$");

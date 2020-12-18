@@ -127,7 +127,7 @@ public class MitreMinimartMaker {
               .payload(datamartToString(dm))
               .build();
 
-  private Function<DatamartDiagnosticReport, DatamartEntity> toDiagnosticReportEntity =
+  private Function<DatamartDiagnosticReport, DiagnosticReportEntity> toDiagnosticReportEntity =
       (dm) ->
           DiagnosticReportEntity.builder()
               .cdwId(dm.cdwId())
