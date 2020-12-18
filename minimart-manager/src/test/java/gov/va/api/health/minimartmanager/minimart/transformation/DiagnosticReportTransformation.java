@@ -70,7 +70,7 @@ public class DiagnosticReportTransformation {
   }
 
   public static void main(String[] args) {
-    Transformer.forResources(DatamartDiagnosticReports.class, DatamartDiagnosticReport.class)
+    Transformer.forResources(DatamartDiagnosticReports.class)
         .whenMatching(Objects::nonNull)
         .transform(DiagnosticReportTransformation::convert)
         .build()
