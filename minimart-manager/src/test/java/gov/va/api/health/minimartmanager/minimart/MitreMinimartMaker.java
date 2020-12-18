@@ -110,6 +110,18 @@ public class MitreMinimartMaker {
               .payload(datamartToString(dm))
               .build();
 
+  private Function<DatamartDiagnosticReport, DatamartEntity> toDiagnosticReportEntity =
+      (dm) ->
+          DiagnosticReportEntity.builder()
+              .cdwId(dm.cdwId())
+              .icn(dm.patient().reference().orElse(null))
+              .category("CH")
+              .code("panel")
+              .dateUtc(Instant.parse(dm.issuedDateTime()))
+              .lastUpdated(null)
+              .payload(datamartToString(dm))
+              .build();
+
   // Based on the assumption that every appointment has a single patient participant
   private Function<DatamartAppointment, DatamartEntity> toAppointmentEntity =
       (dm) ->
@@ -212,52 +224,6 @@ public class MitreMinimartMaker {
             .payload(fileToString(file))
             .build();
     save(entity);
-  }
-
-  @SneakyThrows
-  private void insertByDiagnosticReport(File dmDirectory) {
-    /*
-     * Diagnostic reports need to be done by patient, so if we were given a
-     * patient directory, continue processing as normal, if not we were probably
-     * given the parent datamart directory for all patients, so try to process
-     * for each directory.
-     */
-    List<File> files = listDiagnosticReportFiles(dmDirectory);
-    if (files.isEmpty()) {
-      Files.walk(dmDirectory.toPath())
-          .map(Path::toFile)
-          .filter(File::isDirectory)
-          .parallel()
-          .forEach(f -> insertByDiagnosticReport(listDiagnosticReportFiles(f)));
-    } else {
-      insertByDiagnosticReport(files);
-    }
-  }
-
-  /* For the sake of updates, we'll rebuild it each time, this follows the other resources */
-  @SneakyThrows
-  private void insertByDiagnosticReport(List<File> files) {
-    // Set the icn and other values using the first file, then reset the payload before loading all
-    // the files.
-    DatamartDiagnosticReport dm =
-        files.size() > 0
-            ? JacksonConfig.createMapper().readValue(files.get(0), DatamartDiagnosticReport.class)
-            : null;
-    if (dm == null) {
-      /*
-       * NOTHING TO SEE HERE, MOVE ALONG SIR
-       *
-       * Because we are running these in parallel, just return here if no files were given
-       * for this patient.
-       */
-      return;
-    }
-    // DR Entity
-    save(
-        DiagnosticReportEntity.builder()
-            .icn(dm.patient().reference().get())
-            .payload(JacksonConfig.createMapper().writeValueAsString(dm))
-            .build());
   }
 
   @SneakyThrows
@@ -457,15 +423,6 @@ public class MitreMinimartMaker {
     return e.toString();
   }
 
-  @SneakyThrows
-  private List<File> listDiagnosticReportFiles(File dmDirectory) {
-    String drFilePattern = DatamartFilenamePatterns.get().json(DatamartDiagnosticReport.class);
-    return Arrays.stream(dmDirectory.listFiles())
-        .filter(File::isFile)
-        .filter(f -> f.getName().matches(drFilePattern))
-        .collect(toList());
-  }
-
   private String patientIcn(DatamartReference dm) {
     if (dm != null && dm.reference().isPresent()) {
       return dm.reference().get().replaceAll("http.*/fhir/v0/dstu2/Patient/", "");
@@ -500,7 +457,7 @@ public class MitreMinimartMaker {
         loader.insertResourceByType(DatamartDevice.class, toDeviceEntity);
         break;
       case "DiagnosticReport":
-        insertByDiagnosticReport(dmDirectory);
+        loader.insertResourceByType(DatamartDiagnosticReport.class, toDiagnosticReportEntity);
         break;
       case "FallRisk":
         insertResourceByPattern(
