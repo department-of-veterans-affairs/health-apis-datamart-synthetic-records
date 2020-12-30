@@ -124,6 +124,7 @@ public class MitreMinimartMaker {
               .birthDate(Instant.parse(dm.birthDateTime()))
               .gender(dm.gender())
               .ssn(dm.ssn())
+              .managingOrganization(dm.managingOrganization().orElse(null))
               .payload(datamartToString(dm))
               .build();
 
