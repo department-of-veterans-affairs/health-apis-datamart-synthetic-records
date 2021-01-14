@@ -34,5 +34,10 @@
     "city" : "NEW AMSTERDAM",
     "state" : "OH",
     "postalCode" : "44444-4160"
+  },
+  "facilityId" : {
+    "stationNumber" : "442",
+    "type" : "HEALTH"
+
   }
 }

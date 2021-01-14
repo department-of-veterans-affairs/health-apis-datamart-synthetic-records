@@ -34,5 +34,10 @@
     "city" : "WASHINGTON",
     "state" : "DC",
     "postalCode" : "20422-0001"
+  },
+  "facilityId" : {
+    "stationNumber" : "688",
+    "type" : "HEALTH"
+
   }
 }
