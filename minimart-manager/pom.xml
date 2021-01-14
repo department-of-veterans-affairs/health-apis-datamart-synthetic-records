@@ -12,7 +12,7 @@
   <packaging>jar</packaging>
   <properties>
     <datamart-starter.version>1.0.0</datamart-starter.version>
-    <data-query.version>3.0.83</data-query.version>
+    <data-query.version>3.0.89</data-query.version>
     <scheduling.version>0.0.13</scheduling.version>
     <fall-risk.version>2.0.0</fall-risk.version>
     <git.allowedBranchNames><![CDATA[^(dependabot/.*|staging_lab|lab|PR-[0-9]+|(.*/)?[A-Z]{2,10}-[0-9]+-.*)$]]></git.allowedBranchNames>
