@@ -82,8 +82,8 @@ public class F2DImmunizationTransformer {
     }
     return Optional.of(
         VaccinationProtocols.builder()
-            .series(vaccinationProtocol.get(0).series())
-            .seriesDoses(vaccinationProtocol.get(0).seriesDoses())
+            .series(Optional.ofNullable(vaccinationProtocol.get(0).series()))
+            .seriesDoses(Optional.ofNullable(vaccinationProtocol.get(0).seriesDoses()))
             .build());
   }
 
