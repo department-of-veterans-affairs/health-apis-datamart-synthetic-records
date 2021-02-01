@@ -441,7 +441,7 @@ public class MitreMinimartMaker {
             this::insertByAllergyIntolerance);
         break;
       case "Appointment":
-        loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
+        // loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
         break;
       case "Condition":
         insertResourceByPattern(
