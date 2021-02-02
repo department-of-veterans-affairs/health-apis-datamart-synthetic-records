@@ -1,6 +1,7 @@
 package gov.va.api.health.minimartmanager.minimart;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
+import gov.va.api.health.dataquery.service.controller.appointment.DatamartAppointment;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
 import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DatamartDiagnosticReport;
@@ -15,7 +16,6 @@ import gov.va.api.health.dataquery.service.controller.patient.DatamartPatient;
 import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPractitioner;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
-import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +55,8 @@ public class DatamartFilenamePatterns {
   private String getOrDie(Map<Class<?>, String> registry, Class<?> datamartResource) {
     var pattern = registry.get(datamartResource);
     if (pattern == null) {
-      throw new IllegalArgumentException(datamartResource.getName());
+      throw new IllegalArgumentException(
+          "File pattern not found for: " + datamartResource.getName());
     }
     return pattern;
   }

@@ -3,6 +3,7 @@ package gov.va.api.health.minimartmanager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
+import gov.va.api.health.dataquery.service.controller.appointment.AppointmentEntity;
 import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
 import gov.va.api.health.dataquery.service.controller.device.DeviceEntity;
 import gov.va.api.health.dataquery.service.controller.diagnosticreport.DiagnosticReportEntity;
@@ -18,7 +19,6 @@ import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
-import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;

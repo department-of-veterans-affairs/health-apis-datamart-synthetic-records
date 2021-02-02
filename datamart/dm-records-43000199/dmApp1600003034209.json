@@ -1,7 +1,7 @@
 {
   "cdwId": "1600003034209",
   "status": "C",
-  "cancelationReason": "SCHEDULING CONFLICT/ERROR",
+  "cancellationReason": "SCHEDULING CONFLICT/ERROR",
   "serviceCategory": "MEDICINE",
   "serviceType": "CARDIOLOGY",
   "specialty": null,
@@ -15,22 +15,14 @@
   "basedOn": null,
   "participant": [
     {
-      "actor": {
-        "type": "Location",
-        "reference": "43817:L",
-        "display": "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)"
-      },
-      "required": "required",
-      "status": "accepted"
+      "type": "Location",
+      "reference": "43817:L",
+      "display": "VISUAL IMPAIRMENT SVCS OUTPATIENT REHAB (VISOR)"
     },
     {
-      "actor": {
-        "type": "Patient",
-        "reference": "43000199",
-        "display": "Kautzer186, Carlita746"
-      },
-      "required": "required",
-      "status": "accepted"
+      "type": "Patient",
+      "reference": "43000199",
+      "display": "Kautzer186, Carlita746"
     }
   ]
 }

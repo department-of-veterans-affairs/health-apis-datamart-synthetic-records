@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
+import gov.va.api.health.dataquery.service.controller.appointment.AppointmentEntity;
+import gov.va.api.health.dataquery.service.controller.appointment.DatamartAppointment;
 import gov.va.api.health.dataquery.service.controller.condition.ConditionEntity;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
 import gov.va.api.health.dataquery.service.controller.device.DatamartDevice;
@@ -40,12 +42,12 @@ import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.minimartmanager.ExternalDb;
 import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
 import gov.va.api.health.minimartmanager.LocalH2;
+import gov.va.api.lighthouse.datamart.CompositeIdDatamartEntity;
 import gov.va.api.lighthouse.datamart.DatamartEntity;
 import gov.va.api.lighthouse.datamart.DatamartReference;
 import gov.va.api.lighthouse.datamart.HasReplaceableId;
-import gov.va.api.lighthouse.scheduling.service.controller.appointment.AppointmentEntity;
-import gov.va.api.lighthouse.scheduling.service.controller.appointment.DatamartAppointment;
 import java.io.File;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -94,11 +96,11 @@ public class MitreMinimartMaker {
   private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
       (dm) ->
           AppointmentEntity.builder()
-              .cdwId(dm.cdwId())
+              .cdwIdNumber(new BigInteger(dm.cdwId()))
               .icn(
                   dm.participant().stream()
-                      .filter(p -> "PATIENT".equalsIgnoreCase(p.actor().type().orElse(null)))
-                      .map(p -> patientIcn(p.actor()))
+                      .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
+                      .map(this::patientIcn)
                       .collect(Collectors.toList())
                       .get(0))
               .lastUpdated(Instant.now())
@@ -221,6 +223,25 @@ public class MitreMinimartMaker {
             .cdwId(dm.cdwId())
             .icn(patientIcn(dm.patient()))
             .payload(fileToString(file))
+            .build();
+    save(entity);
+  }
+
+  @SneakyThrows
+  private void insertByAppointment(File file) {
+    DatamartAppointment dm =
+        JacksonConfig.createMapper().readValue(file, DatamartAppointment.class);
+    AppointmentEntity entity =
+        AppointmentEntity.builder()
+            .cdwIdNumber(new BigInteger(dm.cdwId()))
+            .icn(
+                dm.participant().stream()
+                    .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
+                    .map(this::patientIcn)
+                    .collect(Collectors.toList())
+                    .get(0))
+            .lastUpdated(Instant.now())
+            .payload(datamartToString(dm))
             .build();
     save(entity);
   }
@@ -407,6 +428,7 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private void insertResourceByPattern(
       File dmDirectory, String filePattern, Consumer<File> fileWriter) {
+    log.info("insert resource by pattern");
     findUniqueFiles(dmDirectory, filePattern).parallel().forEach(fileWriter);
   }
 
@@ -441,7 +463,11 @@ public class MitreMinimartMaker {
             this::insertByAllergyIntolerance);
         break;
       case "Appointment":
-        // loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
+        loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartAppointment.class),
+            this::insertByAppointment);
         break;
       case "Condition":
         insertResourceByPattern(
@@ -540,16 +566,26 @@ public class MitreMinimartMaker {
     log.info("Added {} {} entities", addedCount.get(), resourceToSync);
   }
 
-  private <T extends DatamartEntity> void save(T entity) {
+  private <T extends DatamartEntity> void save(T datamartEntity) {
     EntityManager entityManager = getEntityManager();
-    boolean exists = entityManager.find(entity.getClass(), entity.cdwId()) != null;
-    updateOrAddEntity(exists, entityManager, entity);
+    boolean exists = entityManager.find(datamartEntity.getClass(), datamartEntity.cdwId()) != null;
+    log.info("find");
+    updateOrAddEntity(exists, entityManager, datamartEntity);
   }
 
   private <T> void save(T entity, String identifier) {
     EntityManager entityManager = getEntityManager();
     boolean exists = entityManager.find(entity.getClass(), identifier) != null;
     updateOrAddEntity(exists, entityManager, entity);
+  }
+
+  private <T extends CompositeIdDatamartEntity> void save(T compositeIdDatamartEntity) {
+    EntityManager entityManager = getEntityManager();
+    boolean exists =
+        entityManager.find(
+                compositeIdDatamartEntity.getClass(), compositeIdDatamartEntity.compositeCdwId())
+            != null;
+    updateOrAddEntity(exists, entityManager, compositeIdDatamartEntity);
   }
 
   private <T> void updateOrAddEntity(boolean exists, EntityManager entityManager, T entity) {

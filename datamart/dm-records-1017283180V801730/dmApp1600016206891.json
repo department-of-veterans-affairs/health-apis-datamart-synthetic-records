@@ -1,7 +1,7 @@
 {
   "cdwId": "1600016206891",
   "status": "-CO",
-  "cancelationReason": null,
+  "cancellationReason": null,
   "serviceCategory": "MEDICINE",
   "serviceType": "DERMATOLOGY",
   "specialty": null,
@@ -15,22 +15,14 @@
   "basedOn": null,
   "participant": [
     {
-      "actor": {
-        "type": "Location",
-        "reference": "43829:L",
-        "display": "TEM MH PSO TRS IND93EH 2"
-      },
-      "required": "required",
-      "status": "accepted"
+      "type": "Location",
+      "reference": "43829:L",
+      "display": "TEM MH PSO TRS IND93EH 2"
     },
     {
-      "actor": {
-        "type": "Patient",
-        "reference": "1017283180V801730",
-        "display": "Frankenpatient, Victor"
-      },
-      "required": "required",
-      "status": "accepted"
+      "type": "Patient",
+      "reference": "1017283180V801730",
+      "display": "Frankenpatient, Victor"
     }
   ]
 }
