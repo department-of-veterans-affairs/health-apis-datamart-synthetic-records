@@ -92,6 +92,20 @@ public class MitreMinimartMaker {
 
   private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
+  private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
+      (dm) ->
+          AppointmentEntity.builder()
+              .cdwIdNumber(new BigInteger(dm.cdwId()))
+              .icn(
+                  dm.participant().stream()
+                      .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
+                      .map(this::patientIcn)
+                      .collect(Collectors.toList())
+                      .get(0))
+              .lastUpdated(Instant.now())
+              .payload(datamartToString(dm))
+              .build();
+
   private final Function<DatamartDevice, DeviceEntity> toDeviceEntity =
       (dm) ->
           DeviceEntity.builder()
@@ -208,25 +222,6 @@ public class MitreMinimartMaker {
             .cdwId(dm.cdwId())
             .icn(patientIcn(dm.patient()))
             .payload(fileToString(file))
-            .build();
-    save(entity);
-  }
-
-  @SneakyThrows
-  private void insertByAppointment(File file) {
-    DatamartAppointment dm =
-        JacksonConfig.createMapper().readValue(file, DatamartAppointment.class);
-    AppointmentEntity entity =
-        AppointmentEntity.builder()
-            .cdwIdNumber(new BigInteger(dm.cdwId()))
-            .icn(
-                dm.participant().stream()
-                    .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
-                    .map(this::patientIcn)
-                    .collect(Collectors.toList())
-                    .get(0))
-            .lastUpdated(Instant.now())
-            .payload(datamartToString(dm))
             .build();
     save(entity);
   }
@@ -448,10 +443,7 @@ public class MitreMinimartMaker {
             this::insertByAllergyIntolerance);
         break;
       case "Appointment":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartAppointment.class),
-            this::insertByAppointment);
+        loader.insertCompositeIdResourceByType(DatamartAppointment.class, toAppointmentEntity);
         break;
       case "Condition":
         insertResourceByPattern(
@@ -562,7 +554,7 @@ public class MitreMinimartMaker {
     updateOrAddEntity(exists, entityManager, entity);
   }
 
-  private <T extends CompositeIdDatamartEntity> void save(T compositeIdDatamartEntity) {
+  private <T extends CompositeIdDatamartEntity> void saveCompositeId(T compositeIdDatamartEntity) {
     EntityManager entityManager = getEntityManager();
     boolean exists =
         entityManager.find(
@@ -590,6 +582,18 @@ public class MitreMinimartMaker {
 
     DatabaseLoader(File datamartDirectory) {
       this.datamartDirectory = datamartDirectory;
+    }
+
+    public <DM extends HasReplaceableId, E extends CompositeIdDatamartEntity>
+        void insertCompositeIdResourceByType(
+            Class<DM> resourceType, Function<DM, E> toCompositeIdDatamartEntity) {
+      findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
+          .forEach(
+              f -> {
+                DM dm = fileToDatamart(f, resourceType);
+                CompositeIdDatamartEntity entity = toCompositeIdDatamartEntity.apply(dm);
+                saveCompositeId(entity);
+              });
     }
 
     public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
