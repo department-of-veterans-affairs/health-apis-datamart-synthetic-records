@@ -92,21 +92,6 @@ public class MitreMinimartMaker {
 
   private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
-  // Based on the assumption that every appointment has a single patient participant
-  private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
-      (dm) ->
-          AppointmentEntity.builder()
-              .cdwIdNumber(new BigInteger(dm.cdwId()))
-              .icn(
-                  dm.participant().stream()
-                      .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
-                      .map(this::patientIcn)
-                      .collect(Collectors.toList())
-                      .get(0))
-              .lastUpdated(Instant.now())
-              .payload(datamartToString(dm))
-              .build();
-
   private final Function<DatamartDevice, DeviceEntity> toDeviceEntity =
       (dm) ->
           DeviceEntity.builder()
@@ -463,7 +448,6 @@ public class MitreMinimartMaker {
             this::insertByAllergyIntolerance);
         break;
       case "Appointment":
-        loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
         insertResourceByPattern(
             dmDirectory,
             DatamartFilenamePatterns.get().json(DatamartAppointment.class),
@@ -569,7 +553,6 @@ public class MitreMinimartMaker {
   private <T extends DatamartEntity> void save(T datamartEntity) {
     EntityManager entityManager = getEntityManager();
     boolean exists = entityManager.find(datamartEntity.getClass(), datamartEntity.cdwId()) != null;
-    log.info("find");
     updateOrAddEntity(exists, entityManager, datamartEntity);
   }
 
@@ -589,6 +572,7 @@ public class MitreMinimartMaker {
   }
 
   private <T> void updateOrAddEntity(boolean exists, EntityManager entityManager, T entity) {
+    log.info("{} {}", exists ? "Updating" : "Adding", entity);
     if (!exists) {
       entityManager.persist(entity);
     } else {
