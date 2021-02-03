@@ -572,7 +572,6 @@ public class MitreMinimartMaker {
   }
 
   private <T> void updateOrAddEntity(boolean exists, EntityManager entityManager, T entity) {
-    log.info("{} {}", exists ? "Updating" : "Adding", entity);
     if (!exists) {
       entityManager.persist(entity);
     } else {
