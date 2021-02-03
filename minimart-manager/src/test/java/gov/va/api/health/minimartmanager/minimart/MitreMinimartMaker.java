@@ -408,7 +408,6 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private void insertResourceByPattern(
       File dmDirectory, String filePattern, Consumer<File> fileWriter) {
-    log.info("insert resource by pattern");
     findUniqueFiles(dmDirectory, filePattern).parallel().forEach(fileWriter);
   }
 
