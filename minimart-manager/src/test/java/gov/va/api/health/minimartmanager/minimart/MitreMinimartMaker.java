@@ -543,7 +543,11 @@ public class MitreMinimartMaker {
 
   private <T extends DatamartEntity> void save(T datamartEntity) {
     EntityManager entityManager = getEntityManager();
-    boolean exists = entityManager.find(datamartEntity.getClass(), datamartEntity.cdwId()) != null;
+    Object pk =
+        (datamartEntity instanceof CompositeIdDatamartEntity)
+            ? ((CompositeIdDatamartEntity) datamartEntity).compositeCdwId()
+            : datamartEntity.cdwId();
+    boolean exists = entityManager.find(datamartEntity.getClass(), pk) != null;
     updateOrAddEntity(exists, entityManager, datamartEntity);
   }
 
@@ -551,15 +555,6 @@ public class MitreMinimartMaker {
     EntityManager entityManager = getEntityManager();
     boolean exists = entityManager.find(entity.getClass(), identifier) != null;
     updateOrAddEntity(exists, entityManager, entity);
-  }
-
-  private <T extends CompositeIdDatamartEntity> void saveCompositeId(T compositeIdDatamartEntity) {
-    EntityManager entityManager = getEntityManager();
-    boolean exists =
-        entityManager.find(
-                compositeIdDatamartEntity.getClass(), compositeIdDatamartEntity.compositeCdwId())
-            != null;
-    updateOrAddEntity(exists, entityManager, compositeIdDatamartEntity);
   }
 
   private <T> void updateOrAddEntity(boolean exists, EntityManager entityManager, T entity) {
@@ -591,11 +586,7 @@ public class MitreMinimartMaker {
               f -> {
                 DM dm = fileToDatamart(f, resourceType);
                 DatamartEntity entity = toDatamartEntity.apply(dm);
-                if (entity instanceof CompositeIdDatamartEntity) {
-                  saveCompositeId((CompositeIdDatamartEntity) entity);
-                } else {
-                  save(entity);
-                }
+                save(entity);
               });
     }
   }
