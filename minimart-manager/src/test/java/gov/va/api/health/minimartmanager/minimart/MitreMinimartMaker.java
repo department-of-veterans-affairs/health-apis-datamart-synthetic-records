@@ -588,6 +588,7 @@ public class MitreMinimartMaker {
         void insertCompositeIdResourceByType(
             Class<DM> resourceType, Function<DM, E> toCompositeIdDatamartEntity) {
       findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
+          .parallel()
           .forEach(
               f -> {
                 DM dm = fileToDatamart(f, resourceType);
