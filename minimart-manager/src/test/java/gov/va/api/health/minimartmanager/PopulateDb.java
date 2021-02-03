@@ -53,8 +53,7 @@ public class PopulateDb {
   @Test
   void pushToDb() {
     // per resource, push the datamart records found in the import directory to the database.
-    // for (String resource : resources) {
-    for (String resource : List.of("Appointment")) {
+    for (String resource : resources) {
       log.info(
           "Pushing to database with RESOURCE: {}, IMPORT DIRECTORY: {}, AND CONFIG FILE: {}",
           resource,
