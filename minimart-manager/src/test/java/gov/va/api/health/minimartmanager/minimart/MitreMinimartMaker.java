@@ -95,6 +95,7 @@ public class MitreMinimartMaker {
       (dm) ->
           AppointmentEntity.builder()
               .cdwIdNumber(new BigInteger(dm.cdwId()))
+              .cdwIdResourceCode('A')
               .icn(
                   dm.participant().stream()
                       .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
