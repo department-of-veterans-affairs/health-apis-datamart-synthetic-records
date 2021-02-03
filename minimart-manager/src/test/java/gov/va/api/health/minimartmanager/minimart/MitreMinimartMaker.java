@@ -61,7 +61,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -99,9 +98,10 @@ public class MitreMinimartMaker {
               .icn(
                   dm.participant().stream()
                       .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
+                      .findFirst()
                       .map(this::patientIcn)
-                      .collect(Collectors.toList())
-                      .get(0))
+                      .orElseThrow(
+                          () -> new IllegalStateException("Cannot find PATIENT participant")))
               .lastUpdated(Instant.now())
               .payload(datamartToString(dm))
               .build();
