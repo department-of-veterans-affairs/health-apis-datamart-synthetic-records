@@ -443,7 +443,7 @@ public class MitreMinimartMaker {
             this::insertByAllergyIntolerance);
         break;
       case "Appointment":
-        loader.insertCompositeIdResourceByType(DatamartAppointment.class, toAppointmentEntity);
+        loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
         break;
       case "Condition":
         insertResourceByPattern(
@@ -584,19 +584,6 @@ public class MitreMinimartMaker {
       this.datamartDirectory = datamartDirectory;
     }
 
-    public <DM extends HasReplaceableId, E extends CompositeIdDatamartEntity>
-        void insertCompositeIdResourceByType(
-            Class<DM> resourceType, Function<DM, E> toCompositeIdDatamartEntity) {
-      findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
-          .parallel()
-          .forEach(
-              f -> {
-                DM dm = fileToDatamart(f, resourceType);
-                CompositeIdDatamartEntity entity = toCompositeIdDatamartEntity.apply(dm);
-                saveCompositeId(entity);
-              });
-    }
-
     public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
         Class<DM> resourceType, Function<DM, E> toDatamartEntity) {
       findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
@@ -605,7 +592,11 @@ public class MitreMinimartMaker {
               f -> {
                 DM dm = fileToDatamart(f, resourceType);
                 DatamartEntity entity = toDatamartEntity.apply(dm);
-                save(entity);
+                if (entity instanceof CompositeIdDatamartEntity) {
+                  saveCompositeId((CompositeIdDatamartEntity) entity);
+                } else {
+                  save(entity);
+                }
               });
     }
   }
