@@ -1,8 +1,7 @@
 package gov.va.api.health.minimartmanager.minimart;
 
 import static java.util.stream.Collectors.toList;
-import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import static org.apache.commons.lang3.StringUtils.trimToNull;
+import static org.apache.commons.lang3.StringUtils.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
@@ -92,20 +91,28 @@ public class MitreMinimartMaker {
   private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
 
   private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
-      (dm) ->
-          AppointmentEntity.builder()
-              .cdwIdNumber(new BigInteger(dm.cdwId()))
-              .cdwIdResourceCode('A')
-              .icn(
-                  dm.participant().stream()
-                      .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
-                      .findFirst()
-                      .map(this::patientIcn)
-                      .orElseThrow(
-                          () -> new IllegalStateException("Cannot find PATIENT participant")))
-              .lastUpdated(Instant.now())
-              .payload(datamartToString(dm))
-              .build();
+      (dm) -> {
+        if (isBlank(dm.cdwId())) {
+          throw new IllegalStateException("Cannot find cdwId");
+        }
+        var cdwIdParts = dm.cdwId().split(":");
+        if (cdwIdParts.length != 2) {
+          throw new IllegalStateException("Could not split cdwId into number and code");
+        }
+        return AppointmentEntity.builder()
+            .cdwIdNumber(new BigInteger(cdwIdParts[0]))
+            .cdwIdResourceCode(cdwIdParts[1].charAt(0))
+            .icn(
+                dm.participant().stream()
+                    .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
+                    .findFirst()
+                    .map(this::patientIcn)
+                    .orElseThrow(
+                        () -> new IllegalStateException("Cannot find PATIENT participant")))
+            .lastUpdated(Instant.now())
+            .payload(datamartToString(dm))
+            .build();
+      };
 
   private final Function<DatamartDevice, DeviceEntity> toDeviceEntity =
       (dm) ->
