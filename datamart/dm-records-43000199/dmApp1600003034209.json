@@ -1,7 +1,7 @@
 {
   "cdwId": "1600003034209:A",
   "status": "C",
-  "cancellationReason": "SCHEDULING CONFLICT/ERROR",
+  "cancelationReason": "SCHEDULING CONFLICT/ERROR",
   "serviceCategory": "MEDICINE",
   "serviceType": "CARDIOLOGY",
   "specialty": null,

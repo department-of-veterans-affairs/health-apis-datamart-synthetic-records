@@ -1,7 +1,7 @@
 {
   "cdwId": "1600012953540:A",
   "status": "C",
-  "cancellationReason": "OTHER",
+  "cancelationReason": "OTHER",
   "serviceCategory": "MEDICINE",
   "serviceType": "DERMATOLOGY",
   "specialty": null,

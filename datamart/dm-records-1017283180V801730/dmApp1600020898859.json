@@ -1,7 +1,7 @@
 {
   "cdwId": "1600020898859:A",
   "status": "NT-CO",
-  "cancellationReason": null,
+  "cancelationReason": null,
   "serviceCategory": "MEDICINE",
   "serviceType": "EMERGENCY DEPT",
   "specialty": null,
