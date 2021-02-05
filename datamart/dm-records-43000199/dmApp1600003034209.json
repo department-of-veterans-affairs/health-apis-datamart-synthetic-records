@@ -1,6 +1,6 @@
 {
   "cdwId": "1600003034209:A",
-  "status": "C",
+  "status": "CANCELLED BY PATIENT & AUTO RE-BOOK",
   "cancelationReason": "SCHEDULING CONFLICT/ERROR",
   "serviceCategory": "MEDICINE",
   "serviceType": "CARDIOLOGY",
