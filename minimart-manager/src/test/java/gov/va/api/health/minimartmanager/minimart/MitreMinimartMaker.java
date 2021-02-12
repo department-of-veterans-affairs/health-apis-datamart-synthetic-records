@@ -41,6 +41,7 @@ import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.minimartmanager.ExternalDb;
 import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
 import gov.va.api.health.minimartmanager.LocalH2;
+import gov.va.api.lighthouse.datamart.CompositeCdwId;
 import gov.va.api.lighthouse.datamart.CompositeIdDatamartEntity;
 import gov.va.api.lighthouse.datamart.DatamartEntity;
 import gov.va.api.lighthouse.datamart.DatamartReference;
@@ -109,6 +110,21 @@ public class MitreMinimartMaker {
                     .map(this::patientIcn)
                     .orElseThrow(
                         () -> new IllegalStateException("Cannot find PATIENT participant")))
+            .locationSid(
+                dm.participant().stream()
+                    .filter(p -> "LOCATION".equalsIgnoreCase(p.type().orElse(null)))
+                    .findFirst()
+                    .map(
+                        l -> {
+                          var maybeRef = l.reference();
+                          if (maybeRef.isPresent()) {
+                            return CompositeCdwId.fromCdwId(maybeRef.get())
+                                .cdwIdNumber()
+                                .intValueExact();
+                          }
+                          return null;
+                        })
+                    .orElse(null))
             .lastUpdated(Instant.now())
             .payload(datamartToString(dm))
             .build();
