@@ -43,7 +43,8 @@ public class PopulateDb {
           "Organization",
           "Patient",
           "Practitioner",
-          "Procedure");
+          "Procedure",
+          "VitalVuidMapping");
 
   private String importDirectoryPath;
 

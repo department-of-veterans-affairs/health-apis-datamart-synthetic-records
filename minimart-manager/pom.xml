@@ -12,12 +12,19 @@
   <packaging>jar</packaging>
   <properties>
     <datamart-starter.version>2.0.1</datamart-starter.version>
+    <apache-csv.version>1.8</apache-csv.version>
     <data-query.version>3.0.109</data-query.version>
     <fall-risk.version>2.0.0</fall-risk.version>
     <git.allowedBranchNames><![CDATA[^(dependabot/.*|staging_lab|lab|PR-[0-9]+|(.*/)?[A-Z]{2,10}-[0-9]+-.*)$]]></git.allowedBranchNames>
     <javafaker.version>1.0.2</javafaker.version>
+    <vista-fhir-query.version>0.0.19-SNAPSHOT</vista-fhir-query.version>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+      <version>${apache-csv.version}</version>
+    </dependency>
     <dependency>
       <groupId>gov.va.api.lighthouse</groupId>
       <artifactId>lighthouse-starter-datamart</artifactId>
@@ -45,6 +52,12 @@
       <artifactId>h2</artifactId>
       <version>${h2.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>gov.va.api.health</groupId>
+      <artifactId>vista-fhir-query</artifactId>
+      <version>${vista-fhir-query.version}</version>
+      <classifier>library</classifier>
     </dependency>
   </dependencies>
   <build>

@@ -41,6 +41,8 @@ import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.minimartmanager.ExternalDb;
 import gov.va.api.health.minimartmanager.LatestResourceEtlStatusUpdater;
 import gov.va.api.health.minimartmanager.LocalH2;
+import gov.va.api.health.vistafhirquery.service.controller.observation.VitalVuidMappingCompositeId;
+import gov.va.api.health.vistafhirquery.service.controller.observation.VitalVuidMappingEntity;
 import gov.va.api.lighthouse.datamart.CompositeCdwId;
 import gov.va.api.lighthouse.datamart.CompositeIdDatamartEntity;
 import gov.va.api.lighthouse.datamart.DatamartEntity;
@@ -66,6 +68,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.csv.CSVRecord;
 
 @Slf4j
 public class MitreMinimartMaker {
@@ -87,9 +90,22 @@ public class MitreMinimartMaker {
           OrganizationEntity.class,
           PatientEntityV2.class,
           PractitionerEntity.class,
-          ProcedureEntity.class);
+          ProcedureEntity.class,
+          VitalVuidMappingEntity.class);
 
   private final ThreadLocal<EntityManager> LOCAL_ENTITY_MANAGER = new ThreadLocal<>();
+
+  private final Function<CSVRecord, VitalVuidMappingEntity> toVitalVuidMapping =
+      (csvRecord) -> {
+        // ToDo verify Composite PK's aren't null
+        return VitalVuidMappingEntity.builder()
+            .codingSystemId(Short.valueOf(csvRecord.get("CodingSystemID")))
+            .sourceValue(csvRecord.get("SourceValue"))
+            .code(csvRecord.get("Code"))
+            .display(csvRecord.get("Display"))
+            .uri(csvRecord.get("URI"))
+            .build();
+      };
 
   private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
       (dm) -> {
@@ -547,6 +563,18 @@ public class MitreMinimartMaker {
             DatamartFilenamePatterns.get().json(DatamartProcedure.class),
             this::insertByProcedure);
         break;
+      case "VitalVuidMapping":
+        loader.insertByCsvColumnNames(
+            "db-dumps/VistaVuidVitalsMapping.csv",
+            toVitalVuidMapping,
+            e ->
+                VitalVuidMappingCompositeId.builder()
+                    .sourceValue(e.sourceValue())
+                    .code(e.code())
+                    .codingSystemId(e.codingSystemId())
+                    .uri(e.uri())
+                    .build());
+        break;
       default:
         throw new RuntimeException("Couldnt determine resource type for file: " + resourceToSync);
     }
@@ -566,16 +594,14 @@ public class MitreMinimartMaker {
   }
 
   private <T extends DatamartEntity> void save(T datamartEntity) {
-    EntityManager entityManager = getEntityManager();
     Object pk =
         (datamartEntity instanceof CompositeIdDatamartEntity)
             ? ((CompositeIdDatamartEntity) datamartEntity).compositeCdwId()
             : datamartEntity.cdwId();
-    boolean exists = entityManager.find(datamartEntity.getClass(), pk) != null;
-    updateOrAddEntity(exists, entityManager, datamartEntity);
+    save(datamartEntity, pk);
   }
 
-  private <T> void save(T entity, String identifier) {
+  private <T> void save(T entity, Object identifier) {
     EntityManager entityManager = getEntityManager();
     boolean exists = entityManager.find(entity.getClass(), identifier) != null;
     updateOrAddEntity(exists, entityManager, entity);
@@ -600,6 +626,22 @@ public class MitreMinimartMaker {
 
     DatabaseLoader(File datamartDirectory) {
       this.datamartDirectory = datamartDirectory;
+    }
+
+    public <EntityT> void insertByCsvColumnNames(
+        String fileName,
+        Function<CSVRecord, EntityT> toEntity,
+        Function<EntityT, Object> toIdentifier) {
+      var csvFile = CsvDataFile.builder().directory(datamartDirectory).fileName(fileName).build();
+      totalRecords = csvFile.rows();
+      csvFile
+          .records()
+          .forEach(
+              record -> {
+                EntityT e = toEntity.apply(record);
+                Object identifier = toIdentifier.apply(e);
+                save(e, identifier);
+              });
     }
 
     public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(

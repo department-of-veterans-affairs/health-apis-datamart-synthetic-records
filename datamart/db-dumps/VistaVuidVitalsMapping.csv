@@ -1,0 +1,18 @@
+SourceValue,Code,Display,CodingSystem,URI,CodingSystemID
+4500634,55284-4,Blood pressure systolic and diastolic,LOINC,http://loinc.org,11
+4500635,72514-3,Pain severity - 0-10 verbal numeric rating [#] - Reported,LOINC,http://loinc.org,11
+4500636,8867-4,Heart rate,LOINC,http://loinc.org,11
+4500637,59408-5,Oxygen saturation in Arterial blood by Pulse oximetry,LOINC,http://loinc.org,11
+4500638,8310-5,Body temperature,LOINC,http://loinc.org,11
+4500639,29463-7,Body weight,LOINC,http://loinc.org,11
+4688718,28615-3,Audiology study,LOINC,http://loinc.org,11
+4688719,8591-0,Central venous Mean blood pressure,LOINC,http://loinc.org,11
+4688720,9844-2,Unspecified body region Circumference,LOINC,http://loinc.org,11
+4688721,11616-0,Fetal Heart Narrative Activity US,LOINC,http://loinc.org,11
+4688722,11881-0,Uterus Fundal height Tape measure,LOINC,http://loinc.org,11
+4688723,32437-6,Physical findings of Hearing,LOINC,http://loinc.org,11
+4688724,8302-2,Body height,LOINC,http://loinc.org,11
+4688725,9279-1,Respiratory rate,LOINC,http://loinc.org,11
+4688726,28630-2,Tonometry study,LOINC,http://loinc.org,11
+4688727,70936-0,Vision testing Narrative,LOINC,http://loinc.org,11
+4688728,70936-0,Vision testing Narrative,LOINC,http://loinc.org,11
