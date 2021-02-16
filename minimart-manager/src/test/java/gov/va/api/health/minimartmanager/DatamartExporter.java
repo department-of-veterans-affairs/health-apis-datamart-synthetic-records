@@ -19,6 +19,7 @@ import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
+import gov.va.api.health.vistafhirquery.service.controller.observation.VitalVuidMappingEntity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -61,7 +62,8 @@ public class DatamartExporter {
           ExportAllCriteria.of(OrganizationEntity.class),
           ExportForPatientCriteria.of(PatientEntityV2.class),
           ExportAllCriteria.of(PractitionerEntity.class),
-          ExportForPatientCriteria.of(ProcedureEntity.class));
+          ExportForPatientCriteria.of(ProcedureEntity.class),
+          ExportAllCriteria.of(VitalVuidMappingEntity.class));
 
   EntityManager h2;
 

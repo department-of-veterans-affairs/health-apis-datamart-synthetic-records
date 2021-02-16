@@ -50,9 +50,10 @@ usage() {
 $0 <command>
 
 Commands:
-  export-fall-risk   Make a copy of db in a local h2 database
-  export-data-query  Make a copy of db in a local h2 database
-  open               Open the local mitre database
+  export-fall-risk         Make a copy of db in a local h2 database
+  export-data-query        Make a copy of db in a local h2 database
+  export-vista-fhir-query  Make a copy of db in a local h2 database
+  open                     Open the local mitre database
 
 Local database: $LOCAL_DB
 
@@ -67,6 +68,7 @@ LOCAL_DB=$BASE_DIR/target/mitre
 case $1 in
   export-fall-risk) exportLocalMitreDb "FallRisk";;
   export-data-query) exportLocalMitreDb "AllergyIntolerance,Appointment,Condition,Datamart,Device,DiagnosticReportCross,DiagnosticReports,DiagnosticReport,Immunization,LatestResourceEtlStatus,Location,Medication,MedicationOrder,MedicationStatement,Observation,Organization,PatientV2,Practitioner,Procedure";;
+  export-vista-fhir-query) exportLocalMitreDb "VitalVuidMapping";;
   open) openLocalMitreDb "${2:-}";;
   *) usage;;
 esac
