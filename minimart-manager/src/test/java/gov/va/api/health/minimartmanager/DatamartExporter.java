@@ -25,6 +25,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
+
+import gov.va.api.health.vistafhirquery.service.controller.observation.VitalVuidMappingEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NonNull;
@@ -61,7 +63,8 @@ public class DatamartExporter {
           ExportAllCriteria.of(OrganizationEntity.class),
           ExportForPatientCriteria.of(PatientEntityV2.class),
           ExportAllCriteria.of(PractitionerEntity.class),
-          ExportForPatientCriteria.of(ProcedureEntity.class));
+          ExportForPatientCriteria.of(ProcedureEntity.class),
+          ExportAllCriteria.of(VitalVuidMappingEntity.class));
 
   EntityManager h2;
 
