@@ -97,7 +97,6 @@ public class MitreMinimartMaker {
 
   private final Function<CSVRecord, VitalVuidMappingEntity> toVitalVuidMapping =
       (csvRecord) -> {
-        // ToDo verify Composite PK's aren't null
         return VitalVuidMappingEntity.builder()
             .codingSystemId(Short.valueOf(csvRecord.get("CodingSystemID")))
             .sourceValue(csvRecord.get("SourceValue"))
