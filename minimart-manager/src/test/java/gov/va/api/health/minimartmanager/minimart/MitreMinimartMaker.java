@@ -59,6 +59,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -631,10 +632,13 @@ public class MitreMinimartMaker {
         String fileName,
         Function<CSVRecord, EntityT> toEntity,
         Function<EntityT, Object> toIdentifier) {
-      var csvFile = CsvDataFile.builder().directory(datamartDirectory).fileName(fileName).build();
-      totalRecords = csvFile.rows();
-      csvFile
-          .records()
+      var csvRecords =
+          CsvDataFile.builder().directory(datamartDirectory).fileName(fileName).build().records();
+      totalRecords = csvRecords.size();
+      log.info("Found {} records in {}", totalRecords, fileName);
+      csvRecords.stream()
+          .filter(Objects::nonNull)
+          .distinct()
           .forEach(
               record -> {
                 EntityT e = toEntity.apply(record);
