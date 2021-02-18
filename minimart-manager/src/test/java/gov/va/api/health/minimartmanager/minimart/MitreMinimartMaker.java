@@ -54,6 +54,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -141,7 +142,8 @@ public class MitreMinimartMaker {
                           return null;
                         })
                     .orElse(null))
-            .lastUpdated(Instant.now())
+            .lastUpdated(
+                dm.end().isPresent() ? dm.end().get().plus(30, ChronoUnit.DAYS) : Instant.now())
             .payload(datamartToString(dm))
             .build();
       };
