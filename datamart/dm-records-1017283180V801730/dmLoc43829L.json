@@ -15,8 +15,13 @@
   },
   "physicalType" : "BLDG 146, RM W02",
   "managingOrganization" : {
-    "type": "Organization",
+    "type" : "Organization",
     "reference" : "561596:I",
     "display" : "CHEYENNE VA MEDICAL"
-  }
+  },
+  "facilityId" : {
+    "stationNumber" : "442",
+    "type" : "HEALTH"
+  },
+  "locationIen" : "3049"
 }

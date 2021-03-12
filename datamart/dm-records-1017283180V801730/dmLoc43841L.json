@@ -15,8 +15,13 @@
   },
   "physicalType" : "1ST FLOOR, 1D107",
   "managingOrganization" : {
-    "type": "Organization",
+    "type" : "Organization",
     "reference" : "568060:I",
     "display" : "WASHINGTON VA MEDICAL CENTER"
-  }
+  },
+  "facilityId" : {
+    "stationNumber" : "688",
+    "type" : "HEALTH"
+  },
+  "locationIen" : "3485"
 }
