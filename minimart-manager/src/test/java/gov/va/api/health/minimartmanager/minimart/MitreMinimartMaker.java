@@ -387,6 +387,7 @@ public class MitreMinimartMaker {
         ObservationEntity.builder()
             .cdwId(dm.cdwId())
             .icn(dm.subject().isPresent() ? patientIcn(dm.subject().get()) : null)
+            .dateUtc(dm.effectiveDateTime().orElse(null))
             .payload(fileToString(file))
             .category(jsonValue(dm.category()))
             .code(
