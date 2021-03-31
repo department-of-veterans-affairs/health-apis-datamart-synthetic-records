@@ -142,7 +142,7 @@ public class MitreMinimartMaker {
                           return null;
                         })
                     .orElse(null))
-            .date(dm.start().orElseGet(() -> null))
+            .date(dm.start().orElse(null))
             .lastUpdated(
                 dm.end().isPresent() ? dm.end().get().plus(30, ChronoUnit.DAYS) : Instant.now())
             .payload(datamartToString(dm))
