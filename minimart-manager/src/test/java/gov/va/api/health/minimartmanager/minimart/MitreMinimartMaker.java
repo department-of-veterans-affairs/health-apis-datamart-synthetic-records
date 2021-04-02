@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
+import gov.va.api.health.dataquery.service.controller.FacilityId;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
 import gov.va.api.health.dataquery.service.controller.appointment.AppointmentEntity;
@@ -157,6 +158,26 @@ public class MitreMinimartMaker {
               .lastUpdated(Instant.now())
               .payload(datamartToString(dm))
               .build();
+
+  private final Function<DatamartOrganization, OrganizationEntity> toOrganizationEntity =
+      (dm) -> {
+        var maybeFacilityId = dm.facilityId().orElse(FacilityId.builder().build());
+        return OrganizationEntity.builder()
+            .cdwId(dm.cdwId())
+            .npi(dm.npi().orElse(null))
+            .name(dm.name())
+            .street(
+                trimToNull(
+                    trimToEmpty(dm.address().line1()) + " " + trimToEmpty(dm.address().line2())))
+            .city(dm.address().city())
+            .state(dm.address().state())
+            .postalCode(dm.address().postalCode())
+            .facilityType(maybeFacilityId.type() != null ? maybeFacilityId.type().toString() : null)
+            .stationNumber(maybeFacilityId.stationNumber())
+            .lastUpdated(Instant.now())
+            .payload(datamartToString(dm))
+            .build();
+      };
 
   private final Function<DatamartPatient, PatientEntityV2> toPatientEntity =
       (dm) ->
@@ -400,26 +421,6 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
-  private void insertByOrganization(File file) {
-    DatamartOrganization dm =
-        JacksonConfig.createMapper().readValue(file, DatamartOrganization.class);
-    OrganizationEntity entity =
-        OrganizationEntity.builder()
-            .cdwId(dm.cdwId())
-            .npi(dm.npi().orElse(null))
-            .payload(fileToString(file))
-            .street(
-                trimToNull(
-                    trimToEmpty(dm.address().line1()) + " " + trimToEmpty(dm.address().line2())))
-            .name(dm.name())
-            .city(dm.address().city())
-            .state(dm.address().state())
-            .postalCode(dm.address().postalCode())
-            .build();
-    save(entity);
-  }
-
-  @SneakyThrows
   private void insertByPractitioner(File file) {
     DatamartPractitioner dm =
         JacksonConfig.createMapper().readValue(file, DatamartPractitioner.class);
@@ -547,10 +548,7 @@ public class MitreMinimartMaker {
             this::insertByObservation);
         break;
       case "Organization":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartOrganization.class),
-            this::insertByOrganization);
+        loader.insertResourceByType(DatamartOrganization.class, toOrganizationEntity);
         break;
       case "Patient":
         loader.insertResourceByType(DatamartPatient.class, toPatientEntity);
