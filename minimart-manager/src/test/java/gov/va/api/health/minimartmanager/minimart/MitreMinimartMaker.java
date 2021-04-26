@@ -364,9 +364,7 @@ public class MitreMinimartMaker {
             .postalCode(dm.address().postalCode())
             .stationNumber(dm.facilityId().map(fid -> fid.stationNumber()).orElse(null))
             .facilityType(
-                dm.facilityId()
-                    .map(fid -> fid.type() == null ? null : fid.type().toString())
-                    .orElse(null))
+                dm.facilityId().map(fid -> fid.type()).map(type -> type.toString()).orElse(null))
             .locationIen(dm.locationIen().orElse(null))
             .payload(fileToString(file))
             .build();
