@@ -354,6 +354,7 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private void insertByLocation(File file) {
     DatamartLocation dm = JacksonConfig.createMapper().readValue(file, DatamartLocation.class);
+    var facilityId = dm.facilityId().orElse(null);
     LocationEntity entity =
         LocationEntity.builder()
             .cdwId(dm.cdwId())
@@ -362,6 +363,9 @@ public class MitreMinimartMaker {
             .city(dm.address().city())
             .state(dm.address().state())
             .postalCode(dm.address().postalCode())
+            .stationNumber(facilityId == null ? null : facilityId.stationNumber())
+            .facilityType(dm.type().orElse(null))
+            .locationIen(dm.locationIen().orElse(null))
             .payload(fileToString(file))
             .build();
     save(entity);
@@ -578,7 +582,7 @@ public class MitreMinimartMaker {
                     .build());
         break;
       default:
-        throw new RuntimeException("Couldnt determine resource type for file: " + resourceToSync);
+        throw new RuntimeException("Couldn't determine resource type for file: " + resourceToSync);
     }
     LatestResourceEtlStatusUpdater.create(getEntityManager()).updateEtlTable(resourceToSync);
     /*
