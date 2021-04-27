@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
-import gov.va.api.health.dataquery.service.controller.FacilityId;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.AllergyIntoleranceEntity;
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
 import gov.va.api.health.dataquery.service.controller.appointment.AppointmentEntity;
@@ -62,6 +61,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -160,20 +160,21 @@ public class MitreMinimartMaker {
               .build();
 
   private final Function<DatamartOrganization, OrganizationEntity> toOrganizationEntity =
-      (dm) -> {
-        var maybeFacilityId = dm.facilityId().orElse(FacilityId.builder().build());
+      dm -> {
+        var address =
+            Optional.ofNullable(dm.address())
+                .orElse(DatamartOrganization.Address.builder().build());
         return OrganizationEntity.builder()
             .cdwId(dm.cdwId())
             .npi(dm.npi().orElse(null))
             .name(dm.name())
-            .street(
-                trimToNull(
-                    trimToEmpty(dm.address().line1()) + " " + trimToEmpty(dm.address().line2())))
-            .city(dm.address().city())
-            .state(dm.address().state())
-            .postalCode(dm.address().postalCode())
-            .facilityType(maybeFacilityId.type() != null ? maybeFacilityId.type().toString() : null)
-            .stationNumber(maybeFacilityId.stationNumber())
+            .street(trimToNull(trimToEmpty(address.line1()) + " " + trimToEmpty(address.line2())))
+            .city(address.city())
+            .state(address.state())
+            .postalCode(address.postalCode())
+            .facilityType(
+                dm.facilityId().map(fid -> fid.type()).map(type -> type.toString()).orElse(null))
+            .stationNumber(dm.facilityId().map(fid -> fid.stationNumber()).orElse(null))
             .lastUpdated(Instant.now())
             .payload(datamartToString(dm))
             .build();
