@@ -6,9 +6,9 @@
   "npi" : "1396794293",
   "active" : true,
   "type" : {
-    "system" : "institution",
-    "code" : "CBOC",
-    "display" : "COMMUNITY BASED OUTPATIENT CLINIC"
+    "system" : "Institution",
+    "code" : "VAMC",
+    "display" : "VA MEDICAL CENTER"
   },
   "name" : "LYONS- VA NEW JERSEY HCS",
   "address" : {
