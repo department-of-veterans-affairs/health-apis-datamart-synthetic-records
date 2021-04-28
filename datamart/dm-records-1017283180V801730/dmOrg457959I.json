@@ -2,8 +2,14 @@
   "objectType" : "Organization",
   "objectVersion" : "1",
   "cdwId" : "457959:I",
+  "stationIdentifier" : "544",
   "npi" : "1396794293",
   "active" : true,
+  "type" : {
+    "system" : "institution",
+    "code" : "CBOC",
+    "display" : "COMMUNITY BASED OUTPATIENT CLINIC"
+  },
   "name" : "LYONS- VA NEW JERSEY HCS",
   "address" : {
     "line1" : "151 KNOLLCROFT ROAD",

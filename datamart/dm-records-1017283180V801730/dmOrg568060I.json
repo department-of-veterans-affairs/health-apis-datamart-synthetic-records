@@ -5,6 +5,11 @@
   "stationIdentifier" : "688",
   "npi" : "1124078969",
   "active" : true,
+  "type" : {
+    "system" : "institution",
+    "code" : "VAMC",
+    "display" : "VA MEDICAL CENTER"
+  },
   "name" : "MANN-GRANDSTAFF VAMC",
   "address" : {
     "line1" : "4815 N. ASSEMBLY",

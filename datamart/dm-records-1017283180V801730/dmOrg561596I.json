@@ -5,6 +5,11 @@
   "stationIdentifier" : "442",
   "npi" : "1164471991",
   "active" : true,
+  "type" : {
+    "system" : "institution",
+    "code" : "VAMC",
+    "display" : "VA MEDICAL CENTER"
+  },
   "name" : "CHEYENNE VA MEDICAL",
   "address" : {
     "line1" : "2360 E PERSHING BLVD",
