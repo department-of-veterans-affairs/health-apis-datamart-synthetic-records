@@ -142,4 +142,13 @@ cat $CONFIG_FILE
 #
 announce "Populating Database Tables"
 
-mvn -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
+MVN_ARGS=
+LIGHTHOUSE_SETTINGS=/lighthouse-mvn-settings.xml
+if [ -f $LIGHTHOUSE_SETTINGS ]
+then
+  MVN_ARGS+=" --settings $LIGHTHOUSE_SETTINGS"
+  MVN_ARGS+=" -Dhealth-apis-releases.nexus.user=$NEXUS_USERNAME"
+  MVN_ARGS+=" -Dhealth-apis-releases.nexus.password=$NEXUS_PASSWORD"
+fi
+
+mvn ${MVN_ARGS:-} -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test
