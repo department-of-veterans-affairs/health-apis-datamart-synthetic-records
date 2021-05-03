@@ -69,6 +69,8 @@ buildWithDocker() {
     -e ENVIRONMENT="local" \
     -v $(pwd):/root/synthetic-records \
     -v ~/.m2:/root/.m2 \
+    -e NEXUS_USERNAME="${NEXUS_USERNAME}" \
+    -e NEXUS_PASSWORD="${NEXUS_PASSWORD}" \
     --network host \
     vasdvp/health-apis-synthetic-records-builder:local \
     ./root/synthetic-records/build.sh $@
