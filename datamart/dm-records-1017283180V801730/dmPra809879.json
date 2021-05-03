@@ -1,0 +1,13 @@
+{
+  "objectType" : "Practitioner",
+  "objectVersion" : "1",
+  "cdwId" : "809879",
+  "npi" : "0142039741",
+  "active" : true,
+  "name" : {
+    "family" : "AKAMPA",
+    "given" : "TIM",
+    "prefix" : "DR.",
+    "suffix" : "PHD"
+  }
+}
