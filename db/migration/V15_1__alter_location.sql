@@ -1,2 +1,2 @@
-ALTER TABLE [App].[Location] ADD [ManagingOrgIdNumber] INT NOT NULL, [ManagingOrgResourceCode] [char](1) NOT NULL
+ALTER TABLE [App].[Location] ADD [ManagingOrgIdNumber] INT NULL, [ManagingOrgResourceCode] [char](1) NULL
 GO
