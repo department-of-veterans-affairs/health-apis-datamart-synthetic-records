@@ -151,4 +151,6 @@ then
   MVN_ARGS+=" -Dhealth-apis-releases.nexus.password=$NEXUS_PASSWORD"
 fi
 
+if [ -n "${RESOURCES:-}" ]; then MVN_ARGS+=" -Dresources=$RESOURCES"; fi
+
 mvn ${MVN_ARGS:-} -Dimport.directory=$DATAMART_DIR -Dconfig.file=$CONFIG_FILE -Dtest=PopulateDb test

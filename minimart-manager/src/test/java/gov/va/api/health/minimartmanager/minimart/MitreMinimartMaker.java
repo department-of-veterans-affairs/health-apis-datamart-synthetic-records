@@ -150,6 +150,20 @@ public class MitreMinimartMaker {
             .build();
       };
 
+  private final Function<DatamartCondition, ConditionEntity> toConditionEntity =
+      (dm) -> {
+        CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
+        return ConditionEntity.builder()
+            .cdwId(dm.cdwId())
+            .cdwIdNumber(compositeCdwId.cdwIdNumber())
+            .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
+            .icn(patientIcn(dm.patient()))
+            .category(jsonValue(dm.category()))
+            .clinicalStatus(jsonValue(dm.clinicalStatus()))
+            .payload(datamartToString(dm))
+            .build();
+      };
+
   private final Function<DatamartDevice, DeviceEntity> toDeviceEntity =
       (dm) ->
           DeviceEntity.builder()
@@ -291,20 +305,6 @@ public class MitreMinimartMaker {
     save(entity);
   }
 
-  @SneakyThrows
-  private void insertByCondition(File file) {
-    DatamartCondition dm = JacksonConfig.createMapper().readValue(file, DatamartCondition.class);
-    ConditionEntity entity =
-        ConditionEntity.builder()
-            .cdwId(dm.cdwId())
-            .icn(patientIcn(dm.patient()))
-            .category(jsonValue(dm.category()))
-            .clinicalStatus(jsonValue(dm.clinicalStatus()))
-            .payload(fileToString(file))
-            .build();
-    save(entity);
-  }
-
   private void insertByFallRisk(File file) {
     insertByFallRiskPayload(fileToString(file));
   }
@@ -355,6 +355,14 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private void insertByLocation(File file) {
     DatamartLocation dm = JacksonConfig.createMapper().readValue(file, DatamartLocation.class);
+    Optional<CompositeCdwId> orgCompositeId =
+        Optional.ofNullable(dm.managingOrganization())
+            .map(org -> org.reference().orElse(null))
+            .map(ref -> CompositeCdwId.fromCdwId(ref));
+    Integer managingOrgIdNumber =
+        orgCompositeId.map(id -> id.cdwIdNumber().intValueExact()).orElse(null);
+    Character managingOrgResourceCode =
+        orgCompositeId.map(id -> id.cdwIdResourceCode()).orElse(null);
     LocationEntity entity =
         LocationEntity.builder()
             .cdwId(dm.cdwId())
@@ -366,6 +374,8 @@ public class MitreMinimartMaker {
             .stationNumber(dm.facilityId().map(fid -> fid.stationNumber()).orElse(null))
             .facilityType(
                 dm.facilityId().map(fid -> fid.type()).map(type -> type.toString()).orElse(null))
+            .managingOrgIdNumber(managingOrgIdNumber)
+            .managingOrgResourceCode(managingOrgResourceCode)
             .locationIen(dm.locationIen().orElse(null))
             .payload(fileToString(file))
             .build();
@@ -495,10 +505,7 @@ public class MitreMinimartMaker {
         loader.insertResourceByType(DatamartAppointment.class, toAppointmentEntity);
         break;
       case "Condition":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartCondition.class),
-            this::insertByCondition);
+        loader.insertResourceByType(DatamartCondition.class, toConditionEntity);
         break;
       case "Device":
         loader.insertResourceByType(DatamartDevice.class, toDeviceEntity);
