@@ -1,6 +1,6 @@
 # health-apis-datamart-synthetic-records
 
-This repository acts as storage for synthetic data via JSON documents. It also provides tools for building reproducable (MITRE) databases filled with synthetic data.
+This repository acts as storage for synthetic data via JSON documents. It also provides tools for building reproducible (MITRE) databases filled with synthetic data.
 
 ### Creating a Local Synthetic Records Database
 
