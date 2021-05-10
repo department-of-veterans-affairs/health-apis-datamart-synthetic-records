@@ -1,9 +1,12 @@
 package gov.va.api.health.minimartmanager;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
 import gov.va.api.health.minimartmanager.minimart.MitreMinimartMaker;
+import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +57,14 @@ public class PopulateDb {
   @Test
   void pushToDb() {
     // per resource, push the datamart records found in the import directory to the database.
-    for (String resource : resources) {
+    var resourcesToUpdate = resources;
+    var userSpecifiedResources = System.getProperty("resources");
+    if (isNotBlank(userSpecifiedResources)) {
+      resourcesToUpdate = Arrays.asList(userSpecifiedResources.split(",", -1));
+      log.warn("Overriding default resources.");
+      log.warn("Only synchronizing {}", resourcesToUpdate);
+    }
+    for (String resource : resourcesToUpdate) {
       log.info(
           "Pushing to database with RESOURCE: {}, IMPORT DIRECTORY: {}, AND CONFIG FILE: {}",
           resource,
@@ -70,20 +80,20 @@ public class PopulateDb {
   public void setup() {
     // Load the import data directory. If not provided, fail.
     importDirectoryPath = System.getProperty("import.directory");
-    if (StringUtils.isBlank(importDirectoryPath)) {
+    if (isBlank(importDirectoryPath)) {
       throw new IllegalArgumentException("import.directory not specified");
     }
     // If targeting a patient, use their import data sub-directory.
     // Otherwise, default to all patients.
     String chosenPatient = System.getProperty("patient");
-    if (StringUtils.isNotBlank(chosenPatient)) {
+    if (isNotBlank(chosenPatient)) {
       importDirectoryPath = importDirectoryPath + "/dm-records-" + chosenPatient;
     } else {
       log.info("No patient specifed, defaulting to all patients.");
     }
     // Load the config file path. If not provided, fail.
     configFilePath = System.getProperty("config.file");
-    if (StringUtils.isBlank(configFilePath)) {
+    if (isBlank(configFilePath)) {
       throw new IllegalArgumentException("CONFIG_FILE not specified.");
     }
   }
