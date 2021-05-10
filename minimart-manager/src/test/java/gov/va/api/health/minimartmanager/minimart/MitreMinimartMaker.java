@@ -152,17 +152,11 @@ public class MitreMinimartMaker {
 
   private final Function<DatamartCondition, ConditionEntity> toConditionEntity =
       (dm) -> {
-        if (isBlank(dm.cdwId())) {
-          throw new IllegalStateException("Cannot find cdwId");
-        }
-        var cdwIdParts = dm.cdwId().split(":");
-        if (cdwIdParts.length != 2) {
-          throw new IllegalStateException("Could not split cdwId into number and code");
-        }
+        CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
         return ConditionEntity.builder()
             .cdwId(dm.cdwId())
-            .cdwIdNumber(new BigInteger(cdwIdParts[0]))
-            .cdwIdResourceCode(cdwIdParts[1].charAt(0))
+            .cdwIdNumber(compositeCdwId.cdwIdNumber())
+            .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
             .icn(patientIcn(dm.patient()))
             .category(jsonValue(dm.category()))
             .clinicalStatus(jsonValue(dm.clinicalStatus()))
