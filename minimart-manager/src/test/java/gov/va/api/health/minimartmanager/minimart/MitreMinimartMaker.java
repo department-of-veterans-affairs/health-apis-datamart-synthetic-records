@@ -355,9 +355,14 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private void insertByLocation(File file) {
     DatamartLocation dm = JacksonConfig.createMapper().readValue(file, DatamartLocation.class);
-    var orgCompositeId = CompositeCdwId.fromCdwId(dm.managingOrganization().reference().get());
-    int managingOrgIdNumber = orgCompositeId.cdwIdNumber().intValueExact();
-    char managingOrgResourceCode = orgCompositeId.cdwIdResourceCode();
+    Optional<CompositeCdwId> orgCompositeId =
+        Optional.ofNullable(dm.managingOrganization())
+            .map(org -> org.reference().orElse(null))
+            .map(ref -> CompositeCdwId.fromCdwId(ref));
+    Integer managingOrgIdNumber =
+        orgCompositeId.map(id -> id.cdwIdNumber().intValueExact()).orElse(null);
+    Character managingOrgResourceCode =
+        orgCompositeId.map(id -> id.cdwIdResourceCode()).orElse(null);
     LocationEntity entity =
         LocationEntity.builder()
             .cdwId(dm.cdwId())
