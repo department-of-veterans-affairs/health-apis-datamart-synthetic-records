@@ -111,9 +111,10 @@ public class MitreMinimartMaker {
 
   private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
       dm -> {
+        Instant lastUpdated =
+            dm.end().isPresent() ? dm.end().get().plus(30, ChronoUnit.DAYS) : Instant.now();
         checkState(dm.lastUpdated() == null);
-        dm.lastUpdated(
-            dm.end().isPresent() ? dm.end().get().plus(30, ChronoUnit.DAYS) : Instant.now());
+        dm.lastUpdated(lastUpdated.truncatedTo(ChronoUnit.MILLIS));
         CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
         return AppointmentEntity.builder()
             .cdwIdNumber(compositeCdwId.cdwIdNumber())
