@@ -10,7 +10,6 @@ public class MinimartRowRemover {
         VitalVuidMappingEntity.builder()
             .codingSystemId(Short.valueOf("11"))
             .sourceValue("4500634")
-            .display("Blood pressure systolic and diastolic")
             .code("55284-4")
             .uri("http://loinc.org")
             .build());
