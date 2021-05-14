@@ -1,0 +1,13 @@
+{
+  "objectType" : "Practitioner",
+  "objectVersion" : "1",
+  "cdwId" : "743882",
+  "npi" : "8876129800",
+  "active" : true,
+  "name" : {
+    "family" : "Martin",
+    "given" : "Alexander",
+    "prefix" : "DR.",
+    "suffix" : "PHD"
+  }
+}
