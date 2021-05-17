@@ -57,6 +57,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -241,11 +242,34 @@ public class MitreMinimartMaker {
     entityManagers = Collections.synchronizedList(new ArrayList<>());
   }
 
+  public static void removeOldEntities(
+      String configFile, Collection<Consumer<EntityManager>> entitiesForRemoval) {
+    MitreMinimartMaker mmm = new MitreMinimartMaker(null, configFile);
+    log.info("Removing old entities...");
+    entitiesForRemoval.forEach(r -> r.accept(mmm.getEntityManager()));
+    log.info("Removed.");
+    mmm.cleanUpEntityManagers();
+  }
+
   public static void sync(String directory, String resourceToSync, String configFile) {
     MitreMinimartMaker mmm = new MitreMinimartMaker(resourceToSync, configFile);
     log.info("Syncing {} files in {} to db", mmm.resourceToSync, directory);
     mmm.pushToDatabaseByResourceType(directory);
     log.info("{} sync complete", mmm.resourceToSync);
+  }
+
+  private void cleanUpEntityManagers() {
+    /*
+     * Commit and clean up the transactions for the entity managers from
+     * the various threads.
+     */
+    for (EntityManager entityManager : entityManagers) {
+      entityManager.getTransaction().commit();
+      entityManager.close();
+      // HACK
+      LOCAL_ENTITY_MANAGER.remove();
+    }
+    entityManagers.clear();
   }
 
   @SneakyThrows
@@ -593,17 +617,7 @@ public class MitreMinimartMaker {
         throw new RuntimeException("Couldn't determine resource type for file: " + resourceToSync);
     }
     LatestResourceEtlStatusUpdater.create(getEntityManager()).updateEtlTable(resourceToSync);
-    /*
-     * Commit and clean up the transactions for the entity managers from
-     * the various threads.
-     */
-    for (EntityManager entityManager : entityManagers) {
-      entityManager.getTransaction().commit();
-      entityManager.close();
-      // HACK
-      LOCAL_ENTITY_MANAGER.remove();
-    }
-    entityManagers.clear();
+    cleanUpEntityManagers();
     log.info("Added {} {} entities", addedCount.get(), resourceToSync);
   }
 
