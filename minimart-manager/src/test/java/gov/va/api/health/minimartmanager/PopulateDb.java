@@ -3,6 +3,7 @@ package gov.va.api.health.minimartmanager;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+import gov.va.api.health.minimartmanager.minimart.MinimartRowRemover;
 import gov.va.api.health.minimartmanager.minimart.MitreMinimartMaker;
 import java.util.Arrays;
 import java.util.List;
@@ -64,6 +65,10 @@ public class PopulateDb {
       log.warn("Overriding default resources.");
       log.warn("Only synchronizing {}", resourcesToUpdate);
     }
+
+    MitreMinimartMaker.removeOldEntities(
+        configFilePath, List.of(MinimartRowRemover.removeBloodPressure552844LoincCode()));
+
     for (String resource : resourcesToUpdate) {
       log.info(
           "Pushing to database with RESOURCE: {}, IMPORT DIRECTORY: {}, AND CONFIG FILE: {}",
