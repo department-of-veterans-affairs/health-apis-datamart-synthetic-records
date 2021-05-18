@@ -2,7 +2,8 @@ package gov.va.api.health.minimartmanager.minimart;
 
 import static com.google.common.base.Preconditions.checkState;
 import static java.util.stream.Collectors.toList;
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
