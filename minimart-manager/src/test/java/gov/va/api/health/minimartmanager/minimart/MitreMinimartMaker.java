@@ -1,7 +1,9 @@
 package gov.va.api.health.minimartmanager.minimart;
 
+import static com.google.common.base.Preconditions.checkState;
 import static java.util.stream.Collectors.toList;
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.va.api.health.autoconfig.configuration.JacksonConfig;
@@ -49,7 +51,6 @@ import gov.va.api.lighthouse.datamart.DatamartEntity;
 import gov.va.api.lighthouse.datamart.DatamartReference;
 import gov.va.api.lighthouse.datamart.HasReplaceableId;
 import java.io.File;
-import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -111,17 +112,15 @@ public class MitreMinimartMaker {
       };
 
   private final Function<DatamartAppointment, AppointmentEntity> toAppointmentEntity =
-      (dm) -> {
-        if (isBlank(dm.cdwId())) {
-          throw new IllegalStateException("Cannot find cdwId");
-        }
-        var cdwIdParts = dm.cdwId().split(":");
-        if (cdwIdParts.length != 2) {
-          throw new IllegalStateException("Could not split cdwId into number and code");
-        }
+      dm -> {
+        Instant lastUpdated =
+            dm.end().isPresent() ? dm.end().get().plus(30, ChronoUnit.DAYS) : Instant.now();
+        checkState(dm.lastUpdated() == null);
+        dm.lastUpdated(lastUpdated.truncatedTo(ChronoUnit.MILLIS));
+        CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
         return AppointmentEntity.builder()
-            .cdwIdNumber(new BigInteger(cdwIdParts[0]))
-            .cdwIdResourceCode(cdwIdParts[1].charAt(0))
+            .cdwIdNumber(compositeCdwId.cdwIdNumber())
+            .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
             .icn(
                 dm.participant().stream()
                     .filter(p -> "PATIENT".equalsIgnoreCase(p.type().orElse(null)))
@@ -145,8 +144,7 @@ public class MitreMinimartMaker {
                         })
                     .orElse(null))
             .date(dm.start().orElse(null))
-            .lastUpdated(
-                dm.end().isPresent() ? dm.end().get().plus(30, ChronoUnit.DAYS) : Instant.now())
+            .lastUpdated(dm.lastUpdated())
             .payload(datamartToString(dm))
             .build();
       };
