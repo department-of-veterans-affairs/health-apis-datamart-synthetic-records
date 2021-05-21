@@ -22,4 +22,14 @@ public class MinimartRowRemover {
       em.clear();
     };
   }
+
+  public static Consumer<EntityManager> removeOxygenSaturation594085LoincCode() {
+    return removeEntity(
+        VitalVuidMappingEntity.builder()
+            .codingSystemId(Short.valueOf("11"))
+            .sourceValue("4500637")
+            .code("59408-5")
+            .uri("http://loinc.org")
+            .build());
+  }
 }
