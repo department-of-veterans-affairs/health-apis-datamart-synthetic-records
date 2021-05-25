@@ -67,7 +67,10 @@ public class PopulateDb {
     }
 
     MitreMinimartMaker.removeOldEntities(
-        configFilePath, List.of(MinimartRowRemover.removeBloodPressure552844LoincCode()));
+        configFilePath,
+        List.of(
+            MinimartRowRemover.removeBloodPressure552844LoincCode(),
+            MinimartRowRemover.removeOxygenSaturation594085LoincCode()));
 
     for (String resource : resourcesToUpdate) {
       log.info(

@@ -2,7 +2,7 @@ SourceValue,Code,Display,CodingSystem,URI,CodingSystemID
 4500634,85354-9,Blood pressure systolic and diastolic,LOINC,http://loinc.org,11
 4500635,72514-3,Pain severity - 0-10 verbal numeric rating [#] - Reported,LOINC,http://loinc.org,11
 4500636,8867-4,Heart rate,LOINC,http://loinc.org,11
-4500637,59408-5,Oxygen saturation in Arterial blood by Pulse oximetry,LOINC,http://loinc.org,11
+4500637,2708-6,Oxygen saturation in Arterial blood by Pulse oximetry,LOINC,http://loinc.org,11
 4500638,8310-5,Body temperature,LOINC,http://loinc.org,11
 4500639,29463-7,Body weight,LOINC,http://loinc.org,11
 4688718,28615-3,Audiology study,LOINC,http://loinc.org,11
