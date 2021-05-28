@@ -1,4 +1,4 @@
-FROM vasdvp/health-apis-dev-tools:mvn-3.6-jdk-14
+FROM vasdvp/health-apis-dev-tools:mvn-3.8-jdk-16
 
 ARG flyway_version=7.0.4
 
