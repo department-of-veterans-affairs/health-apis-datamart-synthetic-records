@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS [App].[Practitioner]
+DROP TABLE [App].[Practitioner]
 GO
 
-Create table [App].[Practitioner]
+CREATE TABLE [App].[Practitioner]
 (
   [CDWId] varchar(15) not null,
   [CDWIdNumber] bigint null,
