@@ -36,6 +36,8 @@ import gov.va.api.health.dataquery.service.controller.patient.DatamartPatient;
 import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPractitioner;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.DatamartPractitionerRole;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
@@ -95,6 +97,7 @@ public class MitreMinimartMaker {
           OrganizationEntity.class,
           PatientEntityV2.class,
           PractitionerEntity.class,
+          PractitionerRoleEntity.class,
           ProcedureEntity.class,
           VitalVuidMappingEntity.class);
 
@@ -472,6 +475,34 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
+  private void insertByPractitionerRole(File file) {
+    DatamartPractitionerRole dm =
+        JacksonConfig.createMapper().readValue(file, DatamartPractitionerRole.class);
+    CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
+
+    var specialties = dm.specialty();
+    List<String> specialtyCodes = new ArrayList<>();
+    for (DatamartPractitionerRole.Specialty specialty : specialties) {
+      if (specialty.vaCode().isPresent()) {
+        specialtyCodes.add(specialty.vaCode().get());
+      }
+    }
+
+    PractitionerRoleEntity entity =
+        PractitionerRoleEntity.builder()
+            .cdwIdNumber(compositeCdwId.cdwIdNumber())
+            .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
+            .npi(dm.npi().isPresent() ? dm.npi().get() : null)
+            .specialty(specialtyCodes.toString())
+            .familyName(dm.name() != null ? dm.name().family() : null)
+            .givenName(dm.name() != null ? dm.name().given() : null)
+            .lastUpdated(Instant.now())
+            .payload(fileToString(file))
+            .build();
+    save(entity);
+  }
+
+  @SneakyThrows
   private void insertByProcedure(File file) {
     DatamartProcedure dm = JacksonConfig.createMapper().readValue(file, DatamartProcedure.class);
     Long performedOnEpoch =
@@ -591,6 +622,12 @@ public class MitreMinimartMaker {
             dmDirectory,
             DatamartFilenamePatterns.get().json(DatamartPractitioner.class),
             this::insertByPractitioner);
+        break;
+      case "PractitionerRole":
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartPractitionerRole.class),
+            this::insertByPractitionerRole);
         break;
       case "Procedure":
         insertResourceByPattern(

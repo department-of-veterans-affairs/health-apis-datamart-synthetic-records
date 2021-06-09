@@ -47,6 +47,7 @@ public class PopulateDb {
           "Organization",
           "Patient",
           "Practitioner",
+          "PractitionerRole",
           "Procedure",
           "VitalVuidMapping");
 
