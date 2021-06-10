@@ -3,6 +3,7 @@ package gov.va.api.health.minimartmanager.minimart.augments;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import gov.va.api.health.dataquery.service.controller.allergyintolerance.DatamartAllergyIntolerance;
+import gov.va.api.health.dataquery.service.controller.appointment.DatamartAppointment;
 import gov.va.api.health.dataquery.service.controller.condition.DatamartCondition;
 import gov.va.api.health.dataquery.service.controller.medicationorder.DatamartMedicationOrder;
 import gov.va.api.health.dataquery.service.controller.observation.DatamartObservation;
@@ -36,6 +37,15 @@ public class PractitionerReferenceSuffixAugments {
     return dm;
   }
 
+  static DatamartAppointment addPractitionerIdSuffixToAppointment(
+      Augmentation.Context<DatamartAppointment> ctx) {
+    DatamartAppointment dm = ctx.resource();
+    Optional.ofNullable(dm.participant()).orElse(List.of()).stream()
+        .filter(ref -> "Practitioner".equals(ref.type().orElse(null)))
+        .forEach(ref -> addIdSuffix(ref));
+    return dm;
+  }
+
   static DatamartCondition addPractitionerIdSuffixToCondition(
       Augmentation.Context<DatamartCondition> ctx) {
     DatamartCondition dm = ctx.resource();
@@ -63,6 +73,11 @@ public class PractitionerReferenceSuffixAugments {
     Augmentation.forResources(DatamartAllergyIntolerance.class)
         .whenMatching(Objects::nonNull)
         .transform(PractitionerReferenceSuffixAugments::addPractitionerIdSuffixToAllergyIntolerance)
+        .build()
+        .rewriteFiles();
+    Augmentation.forResources(DatamartAppointment.class)
+        .whenMatching(Objects::nonNull)
+        .transform(PractitionerReferenceSuffixAugments::addPractitionerIdSuffixToAppointment)
         .build()
         .rewriteFiles();
     Augmentation.forResources(DatamartCondition.class)
