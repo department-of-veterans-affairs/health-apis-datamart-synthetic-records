@@ -479,21 +479,11 @@ public class MitreMinimartMaker {
     DatamartPractitionerRole dm =
         JacksonConfig.createMapper().readValue(file, DatamartPractitionerRole.class);
     CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
-
-    var specialties = dm.specialty();
-    List<String> specialtyCodes = new ArrayList<>();
-    for (DatamartPractitionerRole.Specialty specialty : specialties) {
-      if (specialty.vaCode().isPresent()) {
-        specialtyCodes.add(specialty.vaCode().get());
-      }
-    }
-
     PractitionerRoleEntity entity =
         PractitionerRoleEntity.builder()
             .cdwIdNumber(compositeCdwId.cdwIdNumber())
             .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
             .npi(dm.npi().isPresent() ? dm.npi().get() : null)
-            .specialty(specialtyCodes.toString())
             .familyName(dm.name() != null ? dm.name().family() : null)
             .givenName(dm.name() != null ? dm.name().given() : null)
             .lastUpdated(Instant.now())
