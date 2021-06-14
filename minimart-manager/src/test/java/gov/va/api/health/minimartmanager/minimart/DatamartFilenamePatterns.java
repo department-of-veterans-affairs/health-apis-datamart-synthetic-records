@@ -45,8 +45,8 @@ public class DatamartFilenamePatterns {
     jsonFileRegex.put(DatamartObservation.class, "^dmObs.*json$");
     jsonFileRegex.put(DatamartOrganization.class, "^dmOrg.*json$");
     jsonFileRegex.put(DatamartPatient.class, "^dmPat.*json$");
-    jsonFileRegex.put(DatamartPractitioner.class, "^dmPra[^R].*json$");
-    jsonFileRegex.put(DatamartPractitionerRole.class, "^dmPraRole.*json$");
+    jsonFileRegex.put(DatamartPractitioner.class, "^dmPra.*json$");
+    jsonFileRegex.put(DatamartPractitionerRole.class, "^dmPraRol.*json$");
     jsonFileRegex.put(DatamartProcedure.class, "^dmPro.*json$");
   }
 

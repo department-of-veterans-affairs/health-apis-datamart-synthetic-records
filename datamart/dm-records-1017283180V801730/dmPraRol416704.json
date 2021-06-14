@@ -1,0 +1,62 @@
+{
+  "objectType" : "PractitionerRole",
+  "objectVersion" : "1",
+  "cdwId" : "416704:P",
+  "managingOrganization" : {
+    "type": "Organization",
+    "reference" : "561596:I",
+    "display" : "CHEYENNE VA MEDICAL"
+  },
+  "practitioner" : {
+    "type" : "Practitioner",
+    "reference" : "416704:S",
+    "display" :  "DR. JANE460 DOE922 MD"
+  },
+  "role" : {
+    "system" : "http://hl7.org/fhir/practitioner-role",
+    "code" : "PHYSICIAN",
+    "display" : "PSYCHOLOGIST"
+  },
+  "specialty" : [
+    {
+      "providerType" : "Physicians (M.D. and D.O.)",
+      "classification" : "Physician/Osteopath",
+      "areaOfSpecialization" : "Internal Medicine",
+      "vaCode" : "V111500",
+      "x12Code" : null,
+      "specialtyCode" : "66"
+    },
+    {
+      "providerType" : "Physicians (M.D. and D.O.)",
+      "classification" : "Physician/Osteopath",
+      "areaOfSpecialization" : "General Practice",
+      "vaCode" : "V111000",
+      "x12Code" : null,
+      "specialtyCode" : "66"
+    },
+    {
+      "providerType" : "Physicians (M.D. and D.O.)",
+      "classification" : "Physician/Osteopath",
+      "areaOfSpecialization" : "Family Practice",
+      "vaCode" : "V110900",
+      "x12Code" : null,
+      "specialtyCode" : null
+    },
+    {
+      "providerType" : "Allopathic & Osteopathic Physicians",
+      "classification" : "Family Medicine",
+      "areaOfSpecialization" : null,
+      "vaCode" : "V180700",
+      "x12Code" : "207Q00000X",
+      "specialtyCode": null
+    }
+  ],
+  "location" : [
+    {
+      "type": "Location",
+      "reference" : "43829:L",
+      "display" : "ZZCHY LASTNAME MEDICAL"
+    }
+  ],
+  "healthCareService" : "MEDICAL SERVICE"
+}
