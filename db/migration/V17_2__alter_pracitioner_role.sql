@@ -1,4 +1,4 @@
-drop table if exists [App].[PractitionerRole]
+drop table [App].[PractitionerRole]
 go
 
 Create table [App].[PractitionerRole]
