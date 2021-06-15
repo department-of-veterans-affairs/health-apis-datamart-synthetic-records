@@ -10,7 +10,7 @@
   "practitioner" : {
     "type" : "Practitioner",
     "reference" : "416704:S",
-    "display" :  "DR. JANE460 DOE922 MD"
+    "display" :  "DOE922,JANE460"
   },
   "role" : {
     "system" : "http://hl7.org/fhir/practitioner-role",

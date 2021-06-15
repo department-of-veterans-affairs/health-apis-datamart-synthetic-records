@@ -479,16 +479,23 @@ public class MitreMinimartMaker {
     DatamartPractitionerRole dm =
         JacksonConfig.createMapper().readValue(file, DatamartPractitionerRole.class);
     CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
-    PractitionerRoleEntity entity =
+    CompositeCdwId practitionerCdwId =
+        CompositeCdwId.fromCdwId(dm.practitioner().get().reference().get());
+    var practitionerName = dm.practitioner().get().display().get().split(",");
+    PractitionerRoleEntity.PractitionerRoleEntityBuilder entityBuilder =
         PractitionerRoleEntity.builder()
             .cdwIdNumber(compositeCdwId.cdwIdNumber())
             .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
-            .npi(dm.npi().isPresent() ? dm.npi().get() : null)
-            .familyName(dm.name() != null ? dm.name().family() : null)
-            .givenName(dm.name() != null ? dm.name().given() : null)
+            .active(true)
+            .idNumber(practitionerCdwId.cdwIdNumber())
+            .resourceCode(practitionerCdwId.cdwIdResourceCode())
             .lastUpdated(Instant.now())
-            .payload(fileToString(file))
-            .build();
+            .payload(fileToString(file));
+    entityBuilder.familyName(practitionerName[0]);
+    if (practitionerName.length == 2) {
+      entityBuilder.givenName(practitionerName[1]);
+    }
+    PractitionerRoleEntity entity = entityBuilder.build();
     save(entity);
   }
 
