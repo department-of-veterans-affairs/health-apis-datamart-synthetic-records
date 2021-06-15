@@ -1,6 +1,18 @@
-ALTER TABLE [App].[PractitionerRole] ADD [Active] BIT NULL, [PractitionerIdNumber] INT NOT NULL, [PractitionerResourceCode] CHAR(1) NOT NULL
-GO
-ALTER TABLE [App].[PractitionerRole] ALTER COLUMN [CdwIdNumber] BIGINT
-GO
-ALTER TABLE [App].[PractitionerRole] DROP COLUMN [Specialty]
-GO
+drop table if exists [App].[PractitionerRole]
+go
+
+Create table [App].[PractitionerRole]
+(
+  [CDWIdNumber] [bigint] not null,
+  [CDWIdResourceCode] [char](1) not null,
+  [PractitionerIdNumber] [int] not null,
+  [PractitionerResourceCode] [char](1) not null,
+  [PractitionerGivenName] [varchar](50) null,
+  [PractitionerFamilyName] [varchar](50) null,
+  [PractitionerNPI] [varchar](50) null,
+  --JSON Payload
+  [Active] [bit] null,
+  [LastUpdated] [date] not null,
+  [PractitionerRole] [varchar](MAX) not null
+)
+go
