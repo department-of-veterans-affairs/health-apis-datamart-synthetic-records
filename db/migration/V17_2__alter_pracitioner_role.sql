@@ -10,7 +10,6 @@ Create table [App].[PractitionerRole]
   [PractitionerGivenName] [varchar](50) null,
   [PractitionerFamilyName] [varchar](50) null,
   [PractitionerNPI] [varchar](50) null,
-  --JSON Payload
   [Active] [bit] null,
   [LastUpdated] [date] not null,
   [PractitionerRole] [varchar](MAX) not null
