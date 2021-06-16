@@ -213,7 +213,6 @@ public class MitreMinimartMaker {
       dm -> {
         CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
         return PractitionerEntity.builder()
-            .cdwId(dm.cdwId())
             .cdwIdNumber(compositeCdwId.cdwIdNumber())
             .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
             .npi(dm.npi().orElse(null))
@@ -222,6 +221,30 @@ public class MitreMinimartMaker {
             .payload(datamartToString(dm))
             .build();
       };
+
+  private final Function<DatamartPractitionerRole, PractitionerRoleEntity>
+      toPractitionerRoleEntity =
+          dm -> {
+            CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
+            CompositeCdwId practitionerCdwId =
+                CompositeCdwId.fromCdwId(dm.practitioner().get().reference().get());
+            var practitionerName = dm.practitioner().get().display().get().split(",");
+            PractitionerRoleEntity.PractitionerRoleEntityBuilder entityBuilder =
+                PractitionerRoleEntity.builder()
+                    .cdwIdNumber(compositeCdwId.cdwIdNumber())
+                    .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
+                    .active(true)
+                    .idNumber(practitionerCdwId.cdwIdNumber())
+                    .resourceCode(practitionerCdwId.cdwIdResourceCode())
+                    .lastUpdated(Instant.now())
+                    .payload(datamartToString(dm));
+            entityBuilder.familyName(practitionerName[0]);
+            if (practitionerName.length == 2) {
+              entityBuilder.givenName(practitionerName[1]);
+            }
+            PractitionerRoleEntity entity = entityBuilder.build();
+            return entity;
+          };
 
   private Function<DatamartDiagnosticReport, DiagnosticReportEntity> toDiagnosticReportEntity =
       (dm) ->
@@ -617,10 +640,7 @@ public class MitreMinimartMaker {
         loader.insertResourceByType(DatamartPractitioner.class, toPractitionerEntity);
         break;
       case "PractitionerRole":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartPractitionerRole.class),
-            this::insertByPractitionerRole);
+        loader.insertResourceByType(DatamartPractitionerRole.class, toPractitionerRoleEntity);
         break;
       case "Procedure":
         insertResourceByPattern(
