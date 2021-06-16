@@ -209,6 +209,20 @@ public class MitreMinimartMaker {
               .payload(datamartToString(dm))
               .build();
 
+  private final Function<DatamartPractitioner, PractitionerEntity> toPractitionerEntity =
+      dm -> {
+        CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
+        return PractitionerEntity.builder()
+            .cdwId(dm.cdwId())
+            .cdwIdNumber(compositeCdwId.cdwIdNumber())
+            .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
+            .npi(dm.npi().orElse(null))
+            .familyName(dm.name().family())
+            .givenName(dm.name().given())
+            .payload(datamartToString(dm))
+            .build();
+      };
+
   private Function<DatamartDiagnosticReport, DiagnosticReportEntity> toDiagnosticReportEntity =
       (dm) ->
           DiagnosticReportEntity.builder()
@@ -460,21 +474,6 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
-  private void insertByPractitioner(File file) {
-    DatamartPractitioner dm =
-        JacksonConfig.createMapper().readValue(file, DatamartPractitioner.class);
-    PractitionerEntity entity =
-        PractitionerEntity.builder()
-            .cdwId(dm.cdwId())
-            .npi(dm.npi().orElse(null))
-            .familyName(dm.name().family())
-            .givenName(dm.name().given())
-            .payload(fileToString(file))
-            .build();
-    save(entity);
-  }
-
-  @SneakyThrows
   private void insertByPractitionerRole(File file) {
     DatamartPractitionerRole dm =
         JacksonConfig.createMapper().readValue(file, DatamartPractitionerRole.class);
@@ -615,10 +614,7 @@ public class MitreMinimartMaker {
         loader.insertResourceByType(DatamartPatient.class, toPatientEntity);
         break;
       case "Practitioner":
-        insertResourceByPattern(
-            dmDirectory,
-            DatamartFilenamePatterns.get().json(DatamartPractitioner.class),
-            this::insertByPractitioner);
+        loader.insertResourceByType(DatamartPractitioner.class, toPractitionerEntity);
         break;
       case "PractitionerRole":
         insertResourceByPattern(
