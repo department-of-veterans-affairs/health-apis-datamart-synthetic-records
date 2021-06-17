@@ -3,14 +3,14 @@
   "objectVersion" : "1",
   "cdwId" : "416704:P",
   "managingOrganization" : {
-    "type": "Organization",
+    "type" : "Organization",
     "reference" : "561596:I",
     "display" : "CHEYENNE VA MEDICAL"
   },
   "practitioner" : {
     "type" : "Practitioner",
     "reference" : "416704:S",
-    "display" :  "DOE922,JANE460"
+    "display" : "DOE922,JANE460"
   },
   "role" : {
     "system" : "http://hl7.org/fhir/practitioner-role",
@@ -48,12 +48,12 @@
       "areaOfSpecialization" : null,
       "vaCode" : "V180700",
       "x12Code" : "207Q00000X",
-      "specialtyCode": null
+      "specialtyCode" : null
     }
   ],
   "location" : [
     {
-      "type": "Location",
+      "type" : "Location",
       "reference" : "43829:L",
       "display" : "ZZCHY LASTNAME MEDICAL"
     }

@@ -3,14 +3,14 @@
   "objectVersion" : "1",
   "cdwId" : "305693:P",
   "managingOrganization" : {
-    "type": "Organization",
+    "type" : "Organization",
     "reference" : "568060:I",
     "display" : "WASHINGTON VA MEDICAL CENTER"
   },
   "practitioner" : {
     "type" : "Practitioner",
     "reference" : "305693:S",
-    "display" :  "REYNOLDS206,THOMAS359"
+    "display" : "REYNOLDS206,THOMAS359"
   },
   "role" : {
     "system" : "http://hl7.org/fhir/practitioner-role",
@@ -45,15 +45,15 @@
       "areaOfSpecialization" : null,
       "vaCode" : "V180700",
       "x12Code" : "207Q00000X",
-      "specialtyCode": null
+      "specialtyCode" : null
     }
   ],
   "location" : [
     {
-      "type": "Location",
+      "type" : "Location",
       "reference" : "43841:L",
       "display" : "MENTAL HEALTH SERVICES"
     }
   ],
-    "healthCareService" : "MEDICAL SERVICE"
+  "healthCareService" : "MEDICAL SERVICE"
 }

@@ -3,14 +3,14 @@
   "objectVersion" : "1",
   "cdwId" : "294582:P",
   "managingOrganization" : {
-    "type": "Organization",
+    "type" : "Organization",
     "reference" : "457959:I",
     "display" : "LYONS VA MEDICAL CENTER"
   },
   "practitioner" : {
     "type" : "Practitioner",
     "reference" : "294582:S",
-    "display" :  "SMITH811,JOHN248"
+    "display" : "SMITH811,JOHN248"
   },
   "role" : {
     "system" : "rpcmm",
@@ -45,17 +45,15 @@
       "areaOfSpecialization" : null,
       "vaCode" : "V180700",
       "x12Code" : "207Q00000X",
-      "specialtyCode": null
+      "specialtyCode" : null
     }
   ],
   "location" : [
     {
-      "type": "Location",
+      "type" : "Location",
       "reference" : "43817:L",
       "display" : "VISUAL IMPAIRMENT SERVICES OUTPATIENT REHABILITATION (VISOR)"
     }
   ],
   "healthCareService" : "MEDICAL SERVICE"
 }
-
-    
