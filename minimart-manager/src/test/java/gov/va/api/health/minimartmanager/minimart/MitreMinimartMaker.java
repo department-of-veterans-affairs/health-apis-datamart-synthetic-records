@@ -498,31 +498,6 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
-  private void insertByPractitionerRole(File file) {
-    DatamartPractitionerRole dm =
-        JacksonConfig.createMapper().readValue(file, DatamartPractitionerRole.class);
-    CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
-    CompositeCdwId practitionerCdwId =
-        CompositeCdwId.fromCdwId(dm.practitioner().get().reference().get());
-    var practitionerName = dm.practitioner().get().display().get().split(",");
-    PractitionerRoleEntity.PractitionerRoleEntityBuilder entityBuilder =
-        PractitionerRoleEntity.builder()
-            .cdwIdNumber(compositeCdwId.cdwIdNumber())
-            .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
-            .active(true)
-            .idNumber(practitionerCdwId.cdwIdNumber())
-            .resourceCode(practitionerCdwId.cdwIdResourceCode())
-            .lastUpdated(Instant.now())
-            .payload(fileToString(file));
-    entityBuilder.familyName(practitionerName[0]);
-    if (practitionerName.length == 2) {
-      entityBuilder.givenName(practitionerName[1]);
-    }
-    PractitionerRoleEntity entity = entityBuilder.build();
-    save(entity);
-  }
-
-  @SneakyThrows
   private void insertByProcedure(File file) {
     DatamartProcedure dm = JacksonConfig.createMapper().readValue(file, DatamartProcedure.class);
     Long performedOnEpoch =

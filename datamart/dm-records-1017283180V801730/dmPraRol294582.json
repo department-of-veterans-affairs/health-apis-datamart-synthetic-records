@@ -12,11 +12,13 @@
     "reference" : "294582:S",
     "display" : "SMITH811,JOHN248"
   },
-  "role" : {
-    "system" : "rpcmm",
-    "code" : "15",
-    "display" : "OPTOMETRIST"
-  },
+  "role" : [
+    {
+      "system" : "rpcmm",
+      "code" : "15",
+      "display" : "OPTOMETRIST"
+    }
+  ],
   "specialty" : [
     {
       "providerType" : "Physicians (M.D. and D.O.)",

@@ -12,11 +12,13 @@
     "reference" : "416704:S",
     "display" : "DOE922,JANE460"
   },
-  "role" : {
-    "system" : "http://hl7.org/fhir/practitioner-role",
-    "code" : "PHYSICIAN",
-    "display" : "PSYCHOLOGIST"
-  },
+  "role" : [
+    {
+      "system" : "http://hl7.org/fhir/practitioner-role",
+      "code" : "PHYSICIAN",
+      "display" : "PSYCHOLOGIST"
+    }
+  ],
   "specialty" : [
     {
       "providerType" : "Physicians (M.D. and D.O.)",
