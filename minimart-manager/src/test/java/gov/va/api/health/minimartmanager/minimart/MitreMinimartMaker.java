@@ -76,6 +76,7 @@ import javax.persistence.EntityManagerFactory;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public class MitreMinimartMaker {
@@ -229,22 +230,23 @@ public class MitreMinimartMaker {
             CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
             CompositeCdwId practitionerCdwId =
                 CompositeCdwId.fromCdwId(dm.practitioner().get().reference().get());
-            var practitionerName = dm.practitioner().get().display().get().split(",");
-            PractitionerRoleEntity.PractitionerRoleEntityBuilder entityBuilder =
-                PractitionerRoleEntity.builder()
-                    .cdwIdNumber(compositeCdwId.cdwIdNumber())
-                    .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
-                    .active(true)
-                    .idNumber(practitionerCdwId.cdwIdNumber())
-                    .resourceCode(practitionerCdwId.cdwIdResourceCode())
-                    .lastUpdated(Instant.now())
-                    .payload(datamartToString(dm));
-            entityBuilder.familyName(practitionerName[0]);
-            if (practitionerName.length == 2) {
-              entityBuilder.givenName(practitionerName[1]);
-            }
-            PractitionerRoleEntity entity = entityBuilder.build();
-            return entity;
+            List<String> names =
+                Arrays.stream(dm.practitioner().get().display().get().split(",", -1))
+                    .map(StringUtils::trimToNull)
+                    .filter(Objects::nonNull)
+                    .collect(toList());
+            checkState(names.size() == 2);
+            return PractitionerRoleEntity.builder()
+                .cdwIdNumber(compositeCdwId.cdwIdNumber())
+                .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
+                .practitionerIdNumber(practitionerCdwId.cdwIdNumber())
+                .practitionerResourceCode(practitionerCdwId.cdwIdResourceCode())
+                .givenName(names.get(1))
+                .familyName(names.get(0))
+                .active(true)
+                .lastUpdated(Instant.now())
+                .payload(datamartToString(dm))
+                .build();
           };
 
   private Function<DatamartDiagnosticReport, DiagnosticReportEntity> toDiagnosticReportEntity =
