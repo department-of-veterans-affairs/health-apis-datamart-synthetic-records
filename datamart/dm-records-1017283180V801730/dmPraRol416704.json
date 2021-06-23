@@ -12,6 +12,7 @@
     "reference" : "416704:S",
     "display" : "DOE922,JANE460"
   },
+  "npi" : "1932127842",
   "role" : [
     {
       "system" : "http://hl7.org/fhir/practitioner-role",

@@ -12,6 +12,7 @@
     "reference" : "305693:S",
     "display" : "REYNOLDS206,THOMAS359"
   },
+  "npi" : "0821016731",
   "role" : [
     {
       "system" : "http://hl7.org/fhir/practitioner-role",

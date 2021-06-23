@@ -12,6 +12,7 @@
     "reference" : "294582:S",
     "display" : "SMITH811,JOHN248"
   },
+  "npi" : "0821016731",
   "role" : [
     {
       "system" : "rpcmm",
