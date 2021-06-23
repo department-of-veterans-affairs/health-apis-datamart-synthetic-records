@@ -243,6 +243,7 @@ public class MitreMinimartMaker {
                 .practitionerResourceCode(practitionerCdwId.cdwIdResourceCode())
                 .givenName(names.get(1))
                 .familyName(names.get(0))
+                .npi(dm.npi().orElse(null))
                 .active(true)
                 .lastUpdated(Instant.now())
                 .payload(datamartToString(dm))
