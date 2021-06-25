@@ -12,6 +12,7 @@
     "reference" : "416704:S",
     "display" : "DOE922,JANE460"
   },
+  "active" : true,
   "npi" : "1932127842",
   "role" : [
     {
