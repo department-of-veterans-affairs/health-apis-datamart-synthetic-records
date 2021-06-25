@@ -62,5 +62,22 @@
       "display" : "ZZCHY LASTNAME MEDICAL"
     }
   ],
+  "telecom" : [
+    {
+      "system" : "phone",
+      "value" : "555-555-1137",
+      "use" : "work"
+    },
+    {
+      "system" : "phone",
+      "value" : "555-4055",
+      "use" : "home"
+    },
+    {
+      "system" : "pager",
+      "value" : "5-541",
+      "use" : "mobile"
+    }
+  ],
   "healthCareService" : "MEDICAL SERVICE"
 }

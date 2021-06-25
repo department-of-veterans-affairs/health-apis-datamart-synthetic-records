@@ -59,5 +59,22 @@
       "display" : "VISUAL IMPAIRMENT SERVICES OUTPATIENT REHABILITATION (VISOR)"
     }
   ],
+  "telecom" : [
+    {
+      "system" : "phone",
+      "value" : "333-333-9915",
+      "use" : "work"
+    },
+    {
+      "system" : "phone",
+      "value" : "333-2833",
+      "use" : "home"
+    },
+    {
+      "system" : "pager",
+      "value" : "3-329",
+      "use" : "mobile"
+    }
+  ],
   "healthCareService" : "MEDICAL SERVICE"
 }

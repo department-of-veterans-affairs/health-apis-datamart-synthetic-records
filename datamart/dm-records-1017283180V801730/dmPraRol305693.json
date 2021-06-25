@@ -59,5 +59,22 @@
       "display" : "MENTAL HEALTH SERVICES"
     }
   ],
+  "telecom" : [
+    {
+      "system" : "phone",
+      "value" : "444-444-0026",
+      "use" : "work"
+    },
+    {
+      "system" : "phone",
+      "value" : "444-3944",
+      "use" : "home"
+    },
+    {
+      "system" : "pager",
+      "value" : "4-430",
+      "use" : "mobile"
+    }
+  ],
   "healthCareService" : "MEDICAL SERVICE"
 }
