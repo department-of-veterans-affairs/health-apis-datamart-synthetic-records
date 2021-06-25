@@ -244,7 +244,7 @@ public class MitreMinimartMaker {
                 .givenName(names.get(1))
                 .familyName(names.get(0))
                 .npi(dm.npi().orElse(null))
-                .active(true)
+                .active(dm.active())
                 .lastUpdated(Instant.now())
                 .payload(datamartToString(dm))
                 .build();
