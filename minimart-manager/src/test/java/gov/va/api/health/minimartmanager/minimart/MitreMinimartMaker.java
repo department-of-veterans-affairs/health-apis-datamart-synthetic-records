@@ -1,6 +1,7 @@
 package gov.va.api.health.minimartmanager.minimart;
 
 import static com.google.common.base.Preconditions.checkState;
+import static gov.va.api.health.dataquery.service.controller.Transformers.isBlank;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
@@ -38,6 +39,7 @@ import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPract
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
 import gov.va.api.health.dataquery.service.controller.practitionerrole.DatamartPractitionerRole;
 import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleEntity;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleSpecialtyMapEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
@@ -73,6 +75,8 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVRecord;
@@ -99,6 +103,7 @@ public class MitreMinimartMaker {
           PatientEntityV2.class,
           PractitionerEntity.class,
           PractitionerRoleEntity.class,
+          PractitionerRoleSpecialtyMapEntity.class,
           ProcedureEntity.class,
           VitalVuidMappingEntity.class);
 
@@ -250,6 +255,33 @@ public class MitreMinimartMaker {
                 .build();
           };
 
+  private final Function<DatamartPractitionerRole, List<PractitionerRoleSpecialtyMapEntity>>
+      toPractitionerRoleSpecialtyMapEntities =
+          dm -> {
+            CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
+            return dm.specialty().stream()
+                .map(
+                    datamartSpecialty -> {
+                      if (!isBlank(datamartSpecialty.x12Code())) {
+                        return datamartSpecialty.x12Code().get();
+                      } else if (!isBlank(datamartSpecialty.vaCode())) {
+                        return datamartSpecialty.vaCode().get();
+                      } else if (!isBlank(datamartSpecialty.specialtyCode())) {
+                        return datamartSpecialty.specialtyCode().get();
+                      }
+                      return null;
+                    })
+                .filter(Objects::nonNull)
+                .map(
+                    specialtyCode ->
+                        PractitionerRoleSpecialtyMapEntity.builder()
+                            .practitionerRoleIdNumber(compositeCdwId.cdwIdNumber())
+                            .practitionerRoleResourceCode(compositeCdwId.cdwIdResourceCode())
+                            .specialtyCode(specialtyCode)
+                            .build())
+                .collect(toList());
+          };
+
   private Function<DatamartDiagnosticReport, DiagnosticReportEntity> toDiagnosticReportEntity =
       (dm) ->
           DiagnosticReportEntity.builder()
@@ -316,6 +348,20 @@ public class MitreMinimartMaker {
   @SneakyThrows
   private String datamartToString(HasReplaceableId e) {
     return JacksonConfig.createMapper().writeValueAsString(e);
+  }
+
+  public int deleteAllSpecialtiesByPraRole(CompositeCdwId praRolCdwId) {
+    EntityManager em = getEntityManager();
+    CriteriaBuilder builder = em.getCriteriaBuilder();
+    CriteriaDelete<PractitionerRoleSpecialtyMapEntity> query =
+        builder.createCriteriaDelete(PractitionerRoleSpecialtyMapEntity.class);
+    var rootEntry = query.from(PractitionerRoleSpecialtyMapEntity.class);
+    query.where(
+        builder.and(
+            builder.equal(rootEntry.get("practitionerRoleIdNumber"), praRolCdwId.cdwIdNumber()),
+            builder.equal(
+                rootEntry.get("practitionerRoleResourceCode"), praRolCdwId.cdwIdResourceCode())));
+    return em.createQuery(query).executeUpdate();
   }
 
   @SneakyThrows
@@ -537,6 +583,11 @@ public class MitreMinimartMaker {
     return null;
   }
 
+  private <T> void postPractitionerRole(PractitionerRoleEntity entity) {
+    var pk = entity.compositeCdwId();
+    deleteAllSpecialtiesByPraRole(pk);
+  }
+
   private void pushToDatabaseByResourceType(String directory) {
     File dmDirectory = new File(directory);
     DatabaseLoader loader = new DatabaseLoader(dmDirectory);
@@ -619,7 +670,12 @@ public class MitreMinimartMaker {
         loader.insertResourceByType(DatamartPractitioner.class, toPractitionerEntity);
         break;
       case "PractitionerRole":
-        loader.insertResourceByType(DatamartPractitionerRole.class, toPractitionerRoleEntity);
+        loader.insertResourceByType(
+            DatamartPractitionerRole.class, toPractitionerRoleEntity, this::postPractitionerRole);
+        break;
+      case "PractitionerRoleSpecialtyMap":
+        loader.insertManyResourcesByType(
+            DatamartPractitionerRole.class, toPractitionerRoleSpecialtyMapEntities);
         break;
       case "Procedure":
         insertResourceByPattern(
@@ -647,11 +703,17 @@ public class MitreMinimartMaker {
     log.info("Added {} {} entities", addedCount.get(), resourceToSync);
   }
 
-  private <T extends DatamartEntity> void save(T datamartEntity) {
-    Object pk =
-        (datamartEntity instanceof CompositeIdDatamartEntity)
-            ? ((CompositeIdDatamartEntity) datamartEntity).compositeCdwId()
-            : datamartEntity.cdwId();
+  private <T> void save(T datamartEntity) {
+    Object pk;
+    if (datamartEntity instanceof PractitionerRoleSpecialtyMapEntity) {
+      pk = ((PractitionerRoleSpecialtyMapEntity) datamartEntity).specialtyId();
+    } else if (datamartEntity instanceof CompositeIdDatamartEntity) {
+      pk = ((CompositeIdDatamartEntity) datamartEntity).compositeCdwId();
+    } else if (datamartEntity instanceof DatamartEntity) {
+      pk = ((DatamartEntity) datamartEntity).cdwId();
+    } else {
+      throw new IllegalArgumentException("cannot determine primary key");
+    }
     save(datamartEntity, pk);
   }
 
@@ -701,16 +763,34 @@ public class MitreMinimartMaker {
               });
     }
 
-    public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
-        Class<DM> resourceType, Function<DM, E> toDatamartEntity) {
+    public <DM extends HasReplaceableId, E> void insertManyResourcesByType(
+        Class<DM> resourceType, Function<DM, List<E>> toDatamartEntity) {
       findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
           .parallel()
           .forEach(
               f -> {
                 DM dm = fileToDatamart(f, resourceType);
-                DatamartEntity entity = toDatamartEntity.apply(dm);
-                save(entity);
+                List<E> entities = toDatamartEntity.apply(dm);
+                entities.stream().parallel().forEach(MitreMinimartMaker.this::save);
               });
+    }
+
+    public <DM extends HasReplaceableId, E> void insertResourceByType(
+        Class<DM> resourceType, Function<DM, E> toDatamartEntity, Consumer<E> post) {
+      findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
+          .parallel()
+          .forEach(
+              f -> {
+                DM dm = fileToDatamart(f, resourceType);
+                E entity = toDatamartEntity.apply(dm);
+                save(entity);
+                post.accept(entity);
+              });
+    }
+
+    public <DM extends HasReplaceableId, E> void insertResourceByType(
+        Class<DM> resourceType, Function<DM, E> toDatamartEntity) {
+      insertResourceByType(resourceType, toDatamartEntity, (noop) -> {});
     }
   }
 }
