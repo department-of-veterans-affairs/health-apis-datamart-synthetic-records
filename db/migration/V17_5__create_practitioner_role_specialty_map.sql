@@ -4,6 +4,5 @@ CREATE TABLE [App].[PractitionerRole_Specialty_Map] (
 	[PractitionerRoleResourceCode] [char](1) NOT NULL,
 	[SpecialtyCode] [varchar](50) NOT NULL,
     CONSTRAINT PK_PractitionerRole_Specialty_Map PRIMARY KEY CLUSTERED (PractitionerRoleIdNumber, PractitionerRoleResourceCode, SpecialtyCode)
-    -- OID [varchar](100) NULL,
 )
 GO
