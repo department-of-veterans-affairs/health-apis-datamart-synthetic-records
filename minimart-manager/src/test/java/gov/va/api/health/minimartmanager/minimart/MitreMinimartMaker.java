@@ -40,6 +40,7 @@ import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerE
 import gov.va.api.health.dataquery.service.controller.practitionerrole.DatamartPractitionerRole;
 import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleEntity;
 import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleSpecialtyMapEntity;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.SpecialtyMapCompositeId;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
@@ -350,7 +351,7 @@ public class MitreMinimartMaker {
     return JacksonConfig.createMapper().writeValueAsString(e);
   }
 
-  public int deleteAllSpecialtiesByPraRole(CompositeCdwId praRolCdwId) {
+  public int deleteAllSpecialtiesByPractitionerRole(CompositeCdwId praRolCdwId) {
     EntityManager em = getEntityManager();
     CriteriaBuilder builder = em.getCriteriaBuilder();
     CriteriaDelete<PractitionerRoleSpecialtyMapEntity> query =
@@ -547,6 +548,25 @@ public class MitreMinimartMaker {
   }
 
   @SneakyThrows
+  private void insertByPractitionerRoleSpecialtyMapping(File file) {
+    DatamartPractitionerRole dm =
+        JacksonConfig.createMapper().readValue(file, DatamartPractitionerRole.class);
+    var entities = toPractitionerRoleSpecialtyMapEntities.apply(dm);
+    entities.stream()
+        .parallel()
+        .forEach(
+            entity -> {
+              var pk =
+                  SpecialtyMapCompositeId.builder()
+                      .practitionerRoleIdNumber(entity.practitionerRoleIdNumber())
+                      .practitionerRoleResourceCode(entity.practitionerRoleResourceCode())
+                      .specialtyCode(entity.specialtyCode())
+                      .build();
+              save(entity, pk);
+            });
+  }
+
+  @SneakyThrows
   private void insertByProcedure(File file) {
     DatamartProcedure dm = JacksonConfig.createMapper().readValue(file, DatamartProcedure.class);
     Long performedOnEpoch =
@@ -585,7 +605,7 @@ public class MitreMinimartMaker {
 
   private <T> void postPractitionerRole(PractitionerRoleEntity entity) {
     var pk = entity.compositeCdwId();
-    deleteAllSpecialtiesByPraRole(pk);
+    deleteAllSpecialtiesByPractitionerRole(pk);
   }
 
   private void pushToDatabaseByResourceType(String directory) {
@@ -674,8 +694,10 @@ public class MitreMinimartMaker {
             DatamartPractitionerRole.class, toPractitionerRoleEntity, this::postPractitionerRole);
         break;
       case "PractitionerRoleSpecialtyMap":
-        loader.insertManyResourcesByType(
-            DatamartPractitionerRole.class, toPractitionerRoleSpecialtyMapEntities);
+        insertResourceByPattern(
+            dmDirectory,
+            DatamartFilenamePatterns.get().json(DatamartPractitionerRole.class),
+            this::insertByPractitionerRoleSpecialtyMapping);
         break;
       case "Procedure":
         insertResourceByPattern(
@@ -703,17 +725,11 @@ public class MitreMinimartMaker {
     log.info("Added {} {} entities", addedCount.get(), resourceToSync);
   }
 
-  private <T> void save(T datamartEntity) {
-    Object pk;
-    if (datamartEntity instanceof PractitionerRoleSpecialtyMapEntity) {
-      pk = ((PractitionerRoleSpecialtyMapEntity) datamartEntity).specialtyId();
-    } else if (datamartEntity instanceof CompositeIdDatamartEntity) {
-      pk = ((CompositeIdDatamartEntity) datamartEntity).compositeCdwId();
-    } else if (datamartEntity instanceof DatamartEntity) {
-      pk = ((DatamartEntity) datamartEntity).cdwId();
-    } else {
-      throw new IllegalArgumentException("cannot determine primary key");
-    }
+  private <T extends DatamartEntity> void save(T datamartEntity) {
+    Object pk =
+        (datamartEntity instanceof CompositeIdDatamartEntity)
+            ? ((CompositeIdDatamartEntity) datamartEntity).compositeCdwId()
+            : datamartEntity.cdwId();
     save(datamartEntity, pk);
   }
 
@@ -763,19 +779,7 @@ public class MitreMinimartMaker {
               });
     }
 
-    public <DM extends HasReplaceableId, E> void insertManyResourcesByType(
-        Class<DM> resourceType, Function<DM, List<E>> toDatamartEntity) {
-      findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
-          .parallel()
-          .forEach(
-              f -> {
-                DM dm = fileToDatamart(f, resourceType);
-                List<E> entities = toDatamartEntity.apply(dm);
-                entities.stream().parallel().forEach(MitreMinimartMaker.this::save);
-              });
-    }
-
-    public <DM extends HasReplaceableId, E> void insertResourceByType(
+    public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
         Class<DM> resourceType, Function<DM, E> toDatamartEntity, Consumer<E> post) {
       findUniqueFiles(datamartDirectory, DatamartFilenamePatterns.get().json(resourceType))
           .parallel()
@@ -788,7 +792,7 @@ public class MitreMinimartMaker {
               });
     }
 
-    public <DM extends HasReplaceableId, E> void insertResourceByType(
+    public <DM extends HasReplaceableId, E extends DatamartEntity> void insertResourceByType(
         Class<DM> resourceType, Function<DM, E> toDatamartEntity) {
       insertResourceByType(resourceType, toDatamartEntity, (noop) -> {});
     }
