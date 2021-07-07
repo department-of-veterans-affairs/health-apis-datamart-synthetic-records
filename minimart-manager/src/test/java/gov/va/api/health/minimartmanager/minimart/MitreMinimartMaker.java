@@ -36,6 +36,8 @@ import gov.va.api.health.dataquery.service.controller.patient.DatamartPatient;
 import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.practitioner.DatamartPractitioner;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.DatamartPractitionerRole;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.DatamartProcedure;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.DatamartFallRisk;
@@ -74,6 +76,7 @@ import javax.persistence.EntityManagerFactory;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public class MitreMinimartMaker {
@@ -95,6 +98,7 @@ public class MitreMinimartMaker {
           OrganizationEntity.class,
           PatientEntityV2.class,
           PractitionerEntity.class,
+          PractitionerRoleEntity.class,
           ProcedureEntity.class,
           VitalVuidMappingEntity.class);
 
@@ -219,6 +223,32 @@ public class MitreMinimartMaker {
             .payload(datamartToString(dm))
             .build();
       };
+
+  private final Function<DatamartPractitionerRole, PractitionerRoleEntity>
+      toPractitionerRoleEntity =
+          dm -> {
+            CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
+            CompositeCdwId practitionerCdwId =
+                CompositeCdwId.fromCdwId(dm.practitioner().get().reference().get());
+            List<String> names =
+                Arrays.stream(dm.practitioner().get().display().get().split(",", -1))
+                    .map(StringUtils::trimToNull)
+                    .filter(Objects::nonNull)
+                    .collect(toList());
+            checkState(names.size() == 2);
+            return PractitionerRoleEntity.builder()
+                .cdwIdNumber(compositeCdwId.cdwIdNumber())
+                .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
+                .practitionerIdNumber(practitionerCdwId.cdwIdNumber())
+                .practitionerResourceCode(practitionerCdwId.cdwIdResourceCode())
+                .givenName(names.get(1))
+                .familyName(names.get(0))
+                .npi(dm.npi().orElse(null))
+                .active(dm.active())
+                .lastUpdated(Instant.now())
+                .payload(datamartToString(dm))
+                .build();
+          };
 
   private Function<DatamartDiagnosticReport, DiagnosticReportEntity> toDiagnosticReportEntity =
       (dm) ->
@@ -587,6 +617,9 @@ public class MitreMinimartMaker {
         break;
       case "Practitioner":
         loader.insertResourceByType(DatamartPractitioner.class, toPractitionerEntity);
+        break;
+      case "PractitionerRole":
+        loader.insertResourceByType(DatamartPractitionerRole.class, toPractitionerRoleEntity);
         break;
       case "Procedure":
         insertResourceByPattern(
