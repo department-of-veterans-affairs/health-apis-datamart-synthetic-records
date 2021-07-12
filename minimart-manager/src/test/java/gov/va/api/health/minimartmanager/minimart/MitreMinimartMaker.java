@@ -220,7 +220,6 @@ public class MitreMinimartMaker {
       dm -> {
         CompositeCdwId compositeCdwId = CompositeCdwId.fromCdwId(dm.cdwId());
         return PractitionerEntity.builder()
-            .cdwId(dm.cdwId())
             .cdwIdNumber(compositeCdwId.cdwIdNumber())
             .cdwIdResourceCode(compositeCdwId.cdwIdResourceCode())
             .npi(dm.npi().orElse(null))
