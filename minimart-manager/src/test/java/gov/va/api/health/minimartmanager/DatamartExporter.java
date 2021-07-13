@@ -18,6 +18,7 @@ import gov.va.api.health.dataquery.service.controller.organization.OrganizationE
 import gov.va.api.health.dataquery.service.controller.patient.PatientEntityV2;
 import gov.va.api.health.dataquery.service.controller.practitioner.PractitionerEntity;
 import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleEntity;
+import gov.va.api.health.dataquery.service.controller.practitionerrole.PractitionerRoleSpecialtyMapEntity;
 import gov.va.api.health.dataquery.service.controller.procedure.ProcedureEntity;
 import gov.va.api.health.fallrisk.service.controller.FallRiskEntity;
 import gov.va.api.health.vistafhirquery.service.controller.observation.VitalVuidMappingEntity;
@@ -64,6 +65,7 @@ public class DatamartExporter {
           ExportForPatientCriteria.of(PatientEntityV2.class),
           ExportAllCriteria.of(PractitionerEntity.class),
           ExportAllCriteria.of(PractitionerRoleEntity.class),
+          ExportAllCriteria.of(PractitionerRoleSpecialtyMapEntity.class),
           ExportForPatientCriteria.of(ProcedureEntity.class),
           ExportAllCriteria.of(VitalVuidMappingEntity.class));
 
